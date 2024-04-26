@@ -1,17 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
+    private tokenKey:string = 'app_token';
+    isAuthenticated = true;
     private apiBaseUrl = 'https://localhost:7050/api/'; // Replace with your API endpoint
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient
+        ,private router: Router
+    ) { }
 
-    fetchUsers(): Observable<any[]> {
-        return this.http.get<any[]>(this.apiBaseUrl);
+    store(content:string) {
+        localStorage.setItem(this.tokenKey,  content);
+    }
+
+    getToken(){
+        return localStorage.getItem(this.tokenKey);
+    }
+
+    clearToken() {
+        localStorage.removeItem(this.tokenKey);
     }
 
     login(user: any): Observable<any> {
@@ -20,21 +33,11 @@ export class AuthService {
         return this.http.post<any>(this.apiBaseUrl+api, user, { headers });
     }
 
-    createUser(user: any): Observable<any> {
-        const headers =  new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Credentials': 'true',
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
-            'key': 'x-api-key',
-            'value': 'NNctr6Tjrw9794gFXf3fi6zWBZ78j6Gv3UCb3y0x',
-
-        });
-        return this.http.post<any>(this.apiBaseUrl, user, { headers });
+    goToLogin(){
+        this.router.navigate(['/login']);
     }
 
-    deleteUser(userId: number): Observable<any> {
-        return this.http.delete<any>(`${this.apiBaseUrl}/${userId}`);
-    }
+    checkAuthentication(): boolean {
+        return this.getToken()!=null && this.getToken()!='';
+     }
 }

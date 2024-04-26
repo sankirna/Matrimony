@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoaderService } from './services/LoaderService';
 import { ErrorInterceptor } from './Interceptors/ErrorInterceptor';
+import { TokenInterceptor } from './Interceptors/TokenInterceptor';
 
 @NgModule({
   declarations: [AppComponent, LogInComponent, RegisterComponent],
@@ -27,6 +28,11 @@ import { ErrorInterceptor } from './Interceptors/ErrorInterceptor';
   ],
   providers: [
       LoaderService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: TokenInterceptor ,
+        multi: true,
+      },
       {
           provide: HTTP_INTERCEPTORS,
           useClass: ErrorInterceptor,

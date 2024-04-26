@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Matrimony.API.Controllers
 {
     [Authorize]
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
