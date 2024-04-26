@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TestService } from '../../services/TestService';
+import { TestService } from '../services/TestService';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +19,6 @@ export class DashboardComponent {
      fetchData(): void {
       this.testService.getData().subscribe(
         (response) => {
-          debugger
             console.log(response);
         },
         (error) => {

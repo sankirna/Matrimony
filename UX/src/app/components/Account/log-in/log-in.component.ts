@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { AuthService } from '../../services/authService';
+import { AuthService } from '../../../services/authService';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-log-in',
@@ -14,23 +14,23 @@ export class LogInComponent {
     password: new FormControl("", [Validators.required]),
   });
   constructor(private authService: AuthService
-    ,private router: Router) { }
+    , private router: Router) { }
 
-  onLogin(){
-    var formValues=this.loginForm.value;
+  onLogin() {
+    var formValues = this.loginForm.value;
     console.log(this.loginForm.value);
     this.authService.login(formValues)
-            .subscribe(
-                (response) => {
-                  debugger
-                    console.log('User created:', response);
-                    this.authService.store(response.token);
-                    // Refresh the user list after creating a new user
-                    this.router.navigate(['/dashboard']);
-                },
-                (error) => {
-                    console.error(error);
-                }
-            );
+      .subscribe(
+        (response) => {
+          debugger
+          console.log('User created:', response);
+          this.authService.store(response.token);
+          // Refresh the user list after creating a new user
+          this.router.navigate(['/dashboard']);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
   }
 }

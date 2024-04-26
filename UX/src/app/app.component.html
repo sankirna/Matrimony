@@ -1,11 +1,14 @@
-<!-- Toolbar -->
-<mat-toolbar color="primary" class="app-header">
-  <div><a class="positronx">Mantrimony App</a></div>
-  <span class="nav-tool-items">
-    <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
-    <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
-    <a mat-button mat-raised-button (click)="logout()">Logout</a>
-  </span>
-</mat-toolbar>
-
-<router-outlet></router-outlet>
+<ng-container *ngIf="!isLoggedIn">
+    <app-header></app-header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+   
+    <div class="container mw-100">
+      <!-- <app-footer></app-footer> -->
+    </div>
+  <ng-container *ngIf="isLoggedIn">
+    <!-- <app-alert></app-alert> -->
+    <router-outlet></router-outlet>
+  </ng-container>
+</ng-container>
