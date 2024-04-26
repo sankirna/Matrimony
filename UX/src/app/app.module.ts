@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoaderService } from './services/LoaderService';
+import { ErrorInterceptor } from './Interceptors/ErrorInterceptor';
 
 @NgModule({
   declarations: [AppComponent, LogInComponent, RegisterComponent],
@@ -20,8 +23,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+      LoaderService,
+      {
+          provide: HTTP_INTERCEPTORS,
+          useClass: ErrorInterceptor,
+          multi: true
+      }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
