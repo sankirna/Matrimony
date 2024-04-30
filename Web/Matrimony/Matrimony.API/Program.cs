@@ -5,20 +5,36 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Autofac.Core;
+using Matrimony.Data;
+using Nop.Data;
+using FluentMigrator.Runner.Initialization;
+using Matrimony.Service;
+using Nop.Core.Infrastructure;
+using Nop.Core;
+using Nop.Web.Framework.Infrastructure.Extensions;
+using Nop.Core.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 
-
+builder.Configuration.AddJsonFile(NopConfigurationDefaults.AppSettingsFilePath, true, true);
+if (!string.IsNullOrEmpty(builder.Environment?.EnvironmentName))
+{
+    var path = string.Format(NopConfigurationDefaults.AppSettingsEnvironmentFilePath, builder.Environment.EnvironmentName);
+    builder.Configuration.AddJsonFile(path, true, true);
+}
+builder.Configuration.AddEnvironmentVariables();
 
 builder.Services.AddDbContext<DatabaseContext>(options =>
        options.UseSqlServer(
            builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(
-        options => {
+        options =>
+        {
             options.SignIn.RequireConfirmedAccount = false;
             //Other options go here
         }).AddEntityFrameworkStores<DatabaseContext>();
@@ -75,6 +91,18 @@ builder.Services.AddSwaggerGen(option =>
         }
     });
 });
+
+//load application settings
+builder.Services.ConfigureApplicationSettings(builder);
+CommonHelper.DefaultFileProvider = new NopFileProvider(builder.Environment);
+builder.Services.AddScoped<IConnectionStringAccessor>(x => DataSettingsManager.LoadSettings());
+builder.Services.AddTransient<IDataProviderManager, DataProviderManager>();
+builder.Services.AddTransient(serviceProvider =>
+           serviceProvider.GetRequiredService<IDataProviderManager>().DataProvider);
+builder.Services.AddScoped(typeof(IRepository<>), typeof(EntityRepository<>));
+
+builder.Services.AddTransient<ITestService, TestService>();
+DataSettingsManager.IsDatabaseInstalled();
 
 builder.Services.AddProblemDetails();
 builder.Services.AddControllers();
