@@ -87,21 +87,21 @@ public abstract partial class BaseDataProvider
     /// </summary>
     public virtual void InitializeDatabase()
     {
-        //var migrationManager = EngineContext.Current.Resolve<IMigrationManager>();
+        var migrationManager = EngineContext.Current.Resolve<IMigrationManager>();
 
-        //var targetAssembly = typeof(NopDbStartup).Assembly;
-        //migrationManager.ApplyUpMigrations(targetAssembly);
+        var targetAssembly = typeof(NopDbStartup).Assembly;
+        migrationManager.ApplyUpMigrations(targetAssembly);
 
-        //var typeFinder = Singleton<ITypeFinder>.Instance;
-        //var mAssemblies = typeFinder.FindClassesOfType<MigrationBase>()
-        //    .Select(t => t.Assembly)
-        //    .Where(assembly => !assembly.FullName?.Contains("FluentMigrator.Runner") ?? false)
-        //    .Distinct()
-        //    .ToArray();
+        var typeFinder = Singleton<ITypeFinder>.Instance;
+        var mAssemblies = typeFinder.FindClassesOfType<MigrationBase>()
+            .Select(t => t.Assembly)
+            .Where(assembly => !assembly.FullName?.Contains("FluentMigrator.Runner") ?? false)
+            .Distinct()
+            .ToArray();
 
-        ////mark update migrations as applied
-        //foreach (var assembly in mAssemblies)
-        //    migrationManager.ApplyUpMigrations(assembly, MigrationProcessType.Update, true);
+        //mark update migrations as applied
+        foreach (var assembly in mAssemblies)
+            migrationManager.ApplyUpMigrations(assembly, MigrationProcessType.Update, true);
     }
 
     /// <summary>

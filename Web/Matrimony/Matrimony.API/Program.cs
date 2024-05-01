@@ -27,11 +27,10 @@ if (!string.IsNullOrEmpty(builder.Environment?.EnvironmentName))
     builder.Configuration.AddJsonFile(path, true, true);
 }
 builder.Configuration.AddEnvironmentVariables();
-
+builder.Services.ConfigureApplicationSettings(builder);
 builder.Services.AddDbContext<DatabaseContext>(options =>
        options.UseSqlServer(
            builder.Configuration.GetConnectionString("DefaultConnection")));
-
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(
         options =>
         {
@@ -46,7 +45,6 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-
 // Adding Jwt Bearer
 .AddJwtBearer(options =>
 {
@@ -61,8 +59,6 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SymmetricSecurityKey"]))
     };
 });
-
-builder.Services.AddDbContext<DatabaseContext>();
 
 builder.Services.AddSwaggerGen(option =>
 {
@@ -93,16 +89,13 @@ builder.Services.AddSwaggerGen(option =>
 });
 
 //load application settings
-builder.Services.ConfigureApplicationSettings(builder);
-CommonHelper.DefaultFileProvider = new NopFileProvider(builder.Environment);
-builder.Services.AddScoped<IConnectionStringAccessor>(x => DataSettingsManager.LoadSettings());
-builder.Services.AddTransient<IDataProviderManager, DataProviderManager>();
-builder.Services.AddTransient(serviceProvider =>
-           serviceProvider.GetRequiredService<IDataProviderManager>().DataProvider);
-builder.Services.AddScoped(typeof(IRepository<>), typeof(EntityRepository<>));
-
-builder.Services.AddTransient<ITestService, TestService>();
-DataSettingsManager.IsDatabaseInstalled();
+builder.Host.UseDefaultServiceProvider(options =>
+{
+    //we don't validate the scopes, since at the app start and the initial configuration we need 
+    //to resolve some services (registered as "scoped") through the root container
+    options.ValidateScopes = false;
+    options.ValidateOnBuild = true;
+});
 
 builder.Services.AddProblemDetails();
 builder.Services.AddControllers();
@@ -120,6 +113,8 @@ builder.Services.AddCors(options =>
                                                   .AllowAnyMethod();
                           });
 });
+//add services to the application and configure service provider
+builder.Services.ConfigureApplicationServices(builder);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

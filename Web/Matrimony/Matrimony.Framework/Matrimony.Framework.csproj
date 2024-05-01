@@ -15,6 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Matrimony.Core\Matrimony.Core.csproj" />
+    <ProjectReference Include="..\Matrimony.Data\Matrimony.Data.csproj" />
+    <ProjectReference Include="..\Matrimony.Service\Matrimony.Service.csproj" />
   </ItemGroup>
 
 </Project>

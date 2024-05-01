@@ -1,4 +1,7 @@
 using Matrimony.API.Auth;
+using Matrimony.API.Infrastructure.Mapper.Extensions;
+using Matrimony.API.Models;
+using Matrimony.Core.Domain;
 using Matrimony.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -6,12 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace Matrimony.API.Controllers
 {
     //[Authorize]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[Action]")]
     [ApiController]
     public class WeatherForecastController : ControllerBase
     {
         protected readonly ITestService _testService;
-       
+
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -25,7 +28,7 @@ namespace Matrimony.API.Controllers
             _testService = testService;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
+        [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
             var test = _testService.GetIds();
@@ -37,5 +40,32 @@ namespace Matrimony.API.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet]
+        public object All()
+        {
+            return _testService.GetAll().Select(x => x.ToModel<TestResponseModel>()).ToList();
+        }
+
+        [HttpPost]
+        public object Create(TestRequestModel model)
+        {
+            _testService.Create(model.ToEntity<Test>());
+            return model;
+        }
+
+        [HttpPost]
+        public object Update(TestRequestModel model)
+        {
+            _testService.Update(model.ToEntity<Test>());
+            return model;
+        }
+
+        [HttpPost]
+        public object Delete(TestRequestModel model)
+        {
+            _testService.Delete(model.ToEntity<Test>());
+            return model;
+        }
     }
-}
+} 
