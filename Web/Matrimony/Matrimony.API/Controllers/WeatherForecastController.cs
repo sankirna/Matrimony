@@ -2,6 +2,7 @@ using Matrimony.API.Auth;
 using Matrimony.API.Infrastructure.Mapper.Extensions;
 using Matrimony.API.Models;
 using Matrimony.Core.Domain;
+using Matrimony.Framework.Filters;
 using Matrimony.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace Matrimony.API.Controllers
     //[Authorize]
     [Route("api/[controller]/[Action]")]
     [ApiController]
+    [ApiValidationFilter]
     public class WeatherForecastController : ControllerBase
     {
         protected readonly ITestService _testService;
@@ -50,6 +52,7 @@ namespace Matrimony.API.Controllers
         [HttpPost]
         public object Create(TestRequestModel model)
         {
+            var test= ModelState.IsValid;
             _testService.Create(model.ToEntity<Test>());
             return model;
         }

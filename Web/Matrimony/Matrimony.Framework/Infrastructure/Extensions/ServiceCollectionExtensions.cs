@@ -1,9 +1,13 @@
 ﻿using System.Net;
 using System.Threading.RateLimiting;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 using Nop.Core;
 using Nop.Core.Configuration;
 using Nop.Core.Http;
@@ -322,6 +326,36 @@ public static class ServiceCollectionExtensions
 
     //    return mvcBuilder;
     //}
+
+
+    /// <summary>
+    /// Add and configure Web api for the application
+    /// </summary>
+    /// <param name="services">Collection of service descriptors</param>
+    /// <returns>A builder for configuring MVC services</returns>
+    public static IMvcBuilder AddAppWebAPI(this IServiceCollection services)
+    {
+        //add basic MVC feature
+        var mvcWebAPIBuilder = services.AddControllers();
+
+        //MVC now serializes JSON with camel case names by default, use this code to avoid it
+        mvcWebAPIBuilder.AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
+        //add fluent validation
+        services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+
+        ////register all available validators from Nop assemblies
+        var assemblies = mvcWebAPIBuilder.PartManager.ApplicationParts
+            .OfType<AssemblyPart>()
+            .Where(part => part.Name.StartsWith("Matrimony", StringComparison.InvariantCultureIgnoreCase))
+            .Select(part => part.Assembly);
+        services.AddValidatorsFromAssemblies(assemblies);
+
+        //register controllers as services, it'll allow to override them
+        mvcWebAPIBuilder.AddControllersAsServices();
+
+        return mvcWebAPIBuilder;
+    }
 
     /// <summary>
     /// Register custom RedirectResultExecutor

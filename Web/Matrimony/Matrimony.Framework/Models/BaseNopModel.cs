@@ -14,7 +14,7 @@ public partial record BaseNopModel
     /// </summary>
     public BaseNopModel()
     {
-        CustomProperties = new Dictionary<string, string>();
+        //CustomProperties = new Dictionary<string, string>();
         PostInitialize();
     }
 
@@ -37,8 +37,8 @@ public partial record BaseNopModel
     /// <summary>
     /// Gets or sets property to store any custom values for models 
     /// </summary>
-    [XmlIgnore]
-    public Dictionary<string, string> CustomProperties { get; set; }
+    //[XmlIgnore]
+    //public Dictionary<string, string> CustomProperties { get; set; }
 
     #endregion
 }

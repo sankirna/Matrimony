@@ -1,6 +1,7 @@
 ﻿using Matrimony.Core.DbContexts;
 using Matrimony.Core.IndentityModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -11,8 +12,6 @@ namespace Matrimony.API.Infrastructure
 {
     public class WebAPIStartUp : INopStartup
     {
-
-
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DatabaseContext>(options =>
@@ -90,6 +89,10 @@ namespace Matrimony.API.Infrastructure
                                                               .AllowAnyHeader()
                                                               .AllowAnyMethod();
                                       });
+            });
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
             });
         }
 
