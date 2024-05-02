@@ -9,11 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Matrimony.API.Controllers
 {
-    //[Authorize]
-    [Route("api/[controller]/[Action]")]
-    [ApiController]
-    [ApiValidationFilter]
-    public class WeatherForecastController : ControllerBase
+    
+   
+    public class WeatherForecastController : BaseController
     {
         protected readonly ITestService _testService;
 
@@ -46,7 +44,8 @@ namespace Matrimony.API.Controllers
         [HttpGet]
         public object All()
         {
-            return _testService.GetAll().Select(x => x.ToModel<TestResponseModel>()).ToList();
+            var result= _testService.GetAll().Select(x => x.ToModel<TestResponseModel>()).ToList();
+            return Success(result);
         }
 
         [HttpPost]
