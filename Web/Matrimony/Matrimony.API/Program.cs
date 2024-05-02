@@ -59,5 +59,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+//configure the application HTTP request pipeline
+app.ConfigureRequestPipeline();
+await app.StartEngineAsync();
 app.Run();

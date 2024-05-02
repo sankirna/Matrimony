@@ -1,6 +1,7 @@
 ﻿using Matrimony.API.Infrastructure;
 using Matrimony.Framework.Filters;
 using Matrimony.Framework.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 

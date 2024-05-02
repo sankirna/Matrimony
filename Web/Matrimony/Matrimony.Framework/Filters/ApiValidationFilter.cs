@@ -7,6 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using Matrimony.API.Infrastructure;
+using Nop.Core.Infrastructure;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
+using Matrimony.Core;
 
 namespace Matrimony.Framework.Filters
 {
@@ -14,6 +18,16 @@ namespace Matrimony.Framework.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
+            var test = EngineContext.Current.Resolve<IHttpContextAccessor>();
+            var workContext = EngineContext.Current.Resolve<IWorkContext>();
+            if (test.HttpContext.User != null)
+            {
+                var userId = test.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if(int.TryParse(userId, out var id))
+                {
+                    workContext.SetCurrentUserId(id);
+                }
+            }
             if (!context.ModelState.IsValid)
             {
                 //the only output i want are the error descriptions, nothing else

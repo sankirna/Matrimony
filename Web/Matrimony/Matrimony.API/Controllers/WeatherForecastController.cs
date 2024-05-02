@@ -48,7 +48,6 @@ namespace Matrimony.API.Controllers
         [HttpGet]
         public object All()
         {
-            _workContext.SetCurrentUserId(1);
             var userId=_workContext.GetCurrentUserId();
             var result= _testService.GetAll().Select(x => x.ToModel<TestResponseModel>()).ToList();
             return Success(result);
