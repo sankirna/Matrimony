@@ -1,6 +1,7 @@
 using Matrimony.API.Auth;
 using Matrimony.API.Infrastructure.Mapper.Extensions;
 using Matrimony.API.Models;
+using Matrimony.Core;
 using Matrimony.Core.Domain;
 using Matrimony.Framework.Filters;
 using Matrimony.Service;
@@ -14,6 +15,7 @@ namespace Matrimony.API.Controllers
     public class WeatherForecastController : BaseController
     {
         protected readonly ITestService _testService;
+        protected readonly IWorkContext _workContext;
 
         private static readonly string[] Summaries = new[]
         {
@@ -22,10 +24,12 @@ namespace Matrimony.API.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, ITestService testService)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ITestService testService,
+            IWorkContext workContext)
         {
             _logger = logger;
             _testService = testService;
+            _workContext = workContext;
         }
 
         [HttpGet]
@@ -44,6 +48,8 @@ namespace Matrimony.API.Controllers
         [HttpGet]
         public object All()
         {
+            _workContext.SetCurrentUserId(1);
+            var userId=_workContext.GetCurrentUserId();
             var result= _testService.GetAll().Select(x => x.ToModel<TestResponseModel>()).ToList();
             return Success(result);
         }

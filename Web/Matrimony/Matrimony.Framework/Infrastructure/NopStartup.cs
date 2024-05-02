@@ -1,4 +1,6 @@
-﻿using Matrimony.Service;
+﻿using Matrimony.Core;
+using Matrimony.Framework;
+using Matrimony.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
@@ -80,7 +82,7 @@ public partial class NopStartup : INopStartup
         //}
 
         //work context
-        //services.AddScoped<IWorkContext, WebWorkContext>();
+        services.AddScoped<IWorkContext, WebAPIWorkContext>();
         services.AddTransient<ITestService, TestService>();
         //store context
         //services.AddScoped<IStoreContext, WebStoreContext>();
