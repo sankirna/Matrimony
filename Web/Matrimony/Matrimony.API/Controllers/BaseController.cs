@@ -1,4 +1,5 @@
-﻿using Matrimony.Framework.Filters;
+﻿using Matrimony.API.Infrastructure;
+using Matrimony.Framework.Filters;
 using Matrimony.Framework.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -11,13 +12,22 @@ namespace Matrimony.API.Controllers
     [ApiValidationFilter]
     public class BaseController : ControllerBase
     {
-        protected BaseResponseModel<T> Success<T>(T data)
+        protected JsonResult Success<T>(T data)
         {
-            BaseResponseModel<T> response = new BaseResponseModel<T>();
-            response.StatusCode = HttpStatusCode.OK;
-            response.StatusDescription=HttpStatusCode.OK.ToString();
-            response.Data = data;
-            return response;
+            HttpStatusCode code = HttpStatusCode.OK;
+            return new JsonResult(code.ToSuccessApiResponse(data)) { StatusCode = (int)code };
+        }
+
+        protected JsonResult Error<T>(T data)
+        {
+            HttpStatusCode code = HttpStatusCode.InternalServerError;
+            return new JsonResult(code.ToErrorApiResponse(data)) { StatusCode = (int)code };
+        }
+
+        protected JsonResult BadRequest<T>(T data)
+        {
+            HttpStatusCode code = HttpStatusCode.BadRequest;
+            return new JsonResult(code.ToErrorApiResponse(data)) { StatusCode = (int)code };
         }
     }
 }

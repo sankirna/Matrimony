@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using Matrimony.API.Infrastructure;
 
 namespace Matrimony.Framework.Filters
 {
@@ -19,8 +21,8 @@ namespace Matrimony.Framework.Filters
                     .Values
                     .SelectMany(v => v.Errors.Select(b => b.ErrorMessage))
                     .ToList();
-
-                context.Result = new JsonResult(data) { StatusCode = 400 };
+                HttpStatusCode code = HttpStatusCode.BadRequest;
+                context.Result = new JsonResult(code.ToErrorApiResponse(data)) { StatusCode = 400 };
             }
             //base.OnActionExecuting(context);
         }
