@@ -13,7 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoaderService } from './services/LoaderService';
 import { ErrorInterceptor } from './Interceptors/ErrorInterceptor';
 import { TokenInterceptor } from './Interceptors/TokenInterceptor';
-import { AppHeaderComponent } from './Common/app-header/app-header.component';
+import { AppHeaderComponent } from './components/Common/app-header/app-header.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 

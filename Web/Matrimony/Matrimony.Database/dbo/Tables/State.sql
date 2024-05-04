@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[State]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY ,
+	Name VARCHAR(100) NOT NULL,
+    CountryID INT NULL,
+    FOREIGN KEY (CountryID) REFERENCES Country(ID)
+)
