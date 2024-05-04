@@ -21,8 +21,7 @@ export class LogInComponent {
     console.log(this.loginForm.value);
     this.authService.login(formValues)
       .subscribe(
-        (response) => {
-          debugger
+        (response) => { 
           console.log('User created:', response);
           this.authService.store(response.token);
           // Refresh the user list after creating a new user

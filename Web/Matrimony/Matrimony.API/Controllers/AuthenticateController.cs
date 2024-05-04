@@ -1,4 +1,5 @@
 ﻿using Matrimony.API.Auth;
+using Matrimony.API.Models;
 using Matrimony.Core.IndentityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -50,7 +51,7 @@ namespace Matrimony.API.Controllers
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
 
-               var token = GetToken(authClaims);
+                var token = GetToken(authClaims);
 
                 return Ok(new
                 {
@@ -77,7 +78,7 @@ namespace Matrimony.API.Controllers
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." + result.Errors.First().Description });
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
@@ -130,5 +131,6 @@ namespace Matrimony.API.Controllers
 
             return token;
         }
+
     }
 }

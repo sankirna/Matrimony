@@ -1,29 +1,29 @@
-<!-- <mat-toolbar color="primary">
+<mat-toolbar color="info">
     <div fxHide.gt-xs>
         <button mat-icon-button >
             <mat-icon>menu</mat-icon>
         </button>
     </div>
     <div>
-        <a routerLink="/home">Owner-Account</a>
+        <button mat-button routerLink="/user">Users</button>
+        <!-- <a routerLink="/home">Owner-Account</a> -->
     </div>
     <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <button mat-button [matMenuTriggerFor]="menu">User Name</button>
+            <mat-menu #menu="matMenu">
+            <button mat-menu-item  routerLink="/owner">Owner Actions</button>
+            <button mat-menu-item  (click)="logout()">Logout</button>
+            </mat-menu>
+
+        <!-- <ul fxLayout fxLayoutGap="15px" class="navigation-items">
             <li>
-                <a routerLink="/owner">Owner Actions</a>
+                <button mat-button routerLink="/owner">Owner Actions</button>
+                 
             </li>
             <li>
-                <a routerLink="/account">Account Actions</a>
+                <button mat-button routerLink="/account">Owner Actions</button>
+                 
             </li>
-        </ul>
+        </ul> -->
     </div>
-  </mat-toolbar> -->
-  <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>My App</span>
-    
   </mat-toolbar>
-  
-  

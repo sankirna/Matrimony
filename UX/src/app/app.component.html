@@ -1,16 +1,13 @@
 <ng-container *ngIf="!isLoggedIn">
-    <app-header></app-header>
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-   
-    <div class="container mw-100">
-      <!-- <app-footer></app-footer> -->
-    </div>
-  <ng-container *ngIf="isLoggedIn">
-    <!-- <app-alert></app-alert> -->
-    <main>
+ 
+  <app-header></app-header>
+  <main>
     <router-outlet></router-outlet>
   </main>
-  </ng-container>
+</ng-container>
+<div class="container mw-100">
+  <!-- <app-footer></app-footer> -->
+</div> 
+<ng-container *ngIf="isLoggedIn"> 
+  <router-outlet></router-outlet>
 </ng-container>
