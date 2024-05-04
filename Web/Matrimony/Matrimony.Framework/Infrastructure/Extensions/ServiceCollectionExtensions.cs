@@ -354,6 +354,18 @@ public static class ServiceCollectionExtensions
         //register controllers as services, it'll allow to override them
         mvcWebAPIBuilder.AddControllersAsServices();
 
+        var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        services.AddCors(options =>
+        {
+            options.AddPolicy(MyAllowSpecificOrigins,
+                                  policy =>
+                                  {
+                                      policy.AllowAnyOrigin()
+                                                          .AllowAnyHeader()
+                                                          .AllowAnyMethod();
+                                  });
+        });
+
         return mvcWebAPIBuilder;
     }
 

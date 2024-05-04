@@ -1,5 +1,6 @@
-﻿CREATE TABLE [dbo].[Country]
-(
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
-	Name VARCHAR(100) NOT NULL
-)
+﻿CREATE TABLE [dbo].[Country] (
+    [Id]   INT           IDENTITY (1, 1) NOT NULL,
+    [Name] VARCHAR (100) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

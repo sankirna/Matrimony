@@ -16,7 +16,7 @@ namespace Matrimony.API.Infrastructure
         {
             services.AddDbContext<DatabaseContext>(options =>
                                                    options.UseSqlServer(
-                                                       configuration.GetConnectionString("DefaultConnection")));
+                                                       configuration.GetConnectionString("ConnectionString")));
                                                         services.AddIdentity<ApplicationUser, ApplicationRole>(
                                                                 options =>
                                                                 {
