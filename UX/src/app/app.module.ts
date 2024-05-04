@@ -16,9 +16,14 @@ import { TokenInterceptor } from './Interceptors/TokenInterceptor';
 import { AppHeaderComponent } from './Common/app-header/app-header.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { UsersComponent } from './layout/users/users.component';
 
 @NgModule({
-  declarations: [AppComponent, LogInComponent, RegisterComponent, AppHeaderComponent],
+  declarations: [AppComponent, LogInComponent, RegisterComponent, AppHeaderComponent,UsersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,11 +33,13 @@ import { MatTabsModule } from '@angular/material/tabs';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatButtonModule, MatMenuModule,
+    MatTableModule,MatPaginatorModule
   ],
   exports: [
     MatTabsModule,
-    MatSidenavModule
+    MatSidenavModule, MatTableModule,MatPaginatorModule
   ],
   providers: [
       LoaderService,
