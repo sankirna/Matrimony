@@ -1,6 +1,7 @@
 ﻿using Matrimony.Core;
 using Matrimony.Framework;
 using Matrimony.Service;
+using Matrimony.Service.Countries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +28,9 @@ public partial class NopStartup : INopStartup
 
         //file provider
         services.AddScoped<INopFileProvider, NopFileProvider>();
+
+        //Servies
+        services.AddScoped<ICountryService, CountryService>();
 
         //web helper
         //services.AddScoped<IWebHelper, WebHelper>();

@@ -1,17 +1,3 @@
-using Matrimony.Core.DbContexts;
-using Microsoft.EntityFrameworkCore;
-using Matrimony.Core.IndentityModels;
-using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Autofac.Core;
-using Matrimony.Data;
-using Nop.Data;
-using FluentMigrator.Runner.Initialization;
-using Matrimony.Service;
-using Nop.Core.Infrastructure;
-using Nop.Core;
 using Nop.Web.Framework.Infrastructure.Extensions;
 using Nop.Core.Configuration;
 

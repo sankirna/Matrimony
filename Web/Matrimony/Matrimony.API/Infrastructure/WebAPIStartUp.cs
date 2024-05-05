@@ -1,4 +1,5 @@
-﻿using Matrimony.Core.DbContexts;
+﻿using Matrimony.API.Factories.Countries;
+using Matrimony.Core.DbContexts;
 using Matrimony.Core.IndentityModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
@@ -94,6 +95,9 @@ namespace Matrimony.API.Infrastructure
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
+
+            //Country
+            services.AddScoped<ICountryFactoryModel, CountryFactoryModel>();
         }
 
 
