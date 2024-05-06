@@ -4,7 +4,7 @@ using Matrimony.Data;
 
 namespace Matrimony.Service.Countries
 {
-    public class CountryService: ICountryService
+    public class CountryService : ICountryService
     {
         protected readonly IRepository<Country> _countryRepository;
         public CountryService(IRepository<Country> countryRepository)
@@ -12,7 +12,7 @@ namespace Matrimony.Service.Countries
             _countryRepository = countryRepository;
         }
 
-        public virtual async Task<IPagedList<Country>> GetCountriesAsync(string name, 
+        public virtual async Task<IPagedList<Country>> GetCountriesAsync(string name,
             int pageIndex = 0, int pageSize = int.MaxValue, bool getOnlyTotalCount = false)
         {
             var countries = await _countryRepository.GetAllPagedAsync(query =>
@@ -21,9 +21,14 @@ namespace Matrimony.Service.Countries
                     query = query.Where(c => c.Name.Contains(name));
 
                 return query;
-            }, pageIndex, pageSize, getOnlyTotalCount);
+            }, pageIndex, pageSize, getOnlyTotalCount, includeDeleted: false);
 
             return countries;
+        }
+
+        public virtual async Task<Country> GetByIdAsync(int Id)
+        {
+            return await _countryRepository.GetByIdAsync(Id);
         }
 
         /// <summary>
