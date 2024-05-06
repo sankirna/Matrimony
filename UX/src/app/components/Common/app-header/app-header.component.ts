@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from '../../../services/authService';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,9 @@ export class AppHeaderComponent {
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;
+  constructor(private authService: AuthService){
 
+  }
   mouseenter() {
     if (!this.isExpanded) {
       this.isShowing = true;
@@ -24,4 +27,9 @@ export class AppHeaderComponent {
       this.isShowing = false;
     }
   }
+  logout(){
+    this.authService.clearToken();
+    this.authService.goToLogin();
+  }
 }
+
