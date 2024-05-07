@@ -1,0 +1,29 @@
+<mat-toolbar color="info">
+    <div fxHide.gt-xs>
+        <button mat-icon-button >
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div>
+        <button mat-button routerLink="/user">Users</button>
+        <!-- <a routerLink="/home">Owner-Account</a> -->
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <button mat-button [matMenuTriggerFor]="menu">User Name</button>
+            <mat-menu #menu="matMenu">
+            <button mat-menu-item  routerLink="/owner">Owner Actions</button>
+            <button mat-menu-item  (click)="logout()">Logout</button>
+            </mat-menu>
+
+        <!-- <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+            <li>
+                <button mat-button routerLink="/owner">Owner Actions</button>
+                 
+            </li>
+            <li>
+                <button mat-button routerLink="/account">Owner Actions</button>
+                 
+            </li>
+        </ul> -->
+    </div>
+  </mat-toolbar>
