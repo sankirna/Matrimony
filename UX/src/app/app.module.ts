@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UsersComponent } from './layout/users/users.component';
+import { RequestInterceptor } from './Interceptors/request.interceptor';
 
 @NgModule({
   declarations: [AppComponent, LogInComponent, RegisterComponent, AppHeaderComponent,UsersComponent],
@@ -43,6 +44,11 @@ import { UsersComponent } from './layout/users/users.component';
   ],
   providers: [
       LoaderService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: RequestInterceptor ,
+        multi: true,
+      },
       {
         provide: HTTP_INTERCEPTORS,
         useClass: TokenInterceptor ,

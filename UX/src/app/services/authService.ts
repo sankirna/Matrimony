@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 export class AuthService {
     private tokenKey:string = 'app_token';
     isAuthenticated = true;
-    private apiBaseUrl = 'https://localhost:7050/api/'; // Replace with your API endpoint
 
     constructor(private http: HttpClient
         ,private router: Router
@@ -30,7 +29,7 @@ export class AuthService {
     login(user: any): Observable<any> {
         const api='Authenticate/login';
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post<any>(this.apiBaseUrl+api, user, { headers });
+        return this.http.post<any>(api, user, { headers });
     }
 
     goToLogin(){
