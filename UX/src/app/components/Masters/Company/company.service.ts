@@ -1,18 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CountryListModel, CountrySearchModel } from '../company.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
   name= 'test';
-  private apiBaseUrl = 'https://localhost:7050/api/';
   constructor(private http: HttpClient
 ) { }
 
-  list(name: string){
-    const api='Authenticate/login';
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>(this.apiBaseUrl+api, name, { headers });
+  list(model: CountrySearchModel){
+    const api='Country/List';
+    return this.http.post<CountryListModel>(api, model,{params:{isPageType:true}});
   }
 }

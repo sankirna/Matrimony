@@ -22,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UsersComponent } from './layout/users/users.component';
 import { RequestInterceptor } from './Interceptors/request.interceptor';
+import { ResponseInterceptor } from './Interceptors/Response.interceptor';
 
 @NgModule({
   declarations: [AppComponent, LogInComponent, RegisterComponent, AppHeaderComponent,UsersComponent],
@@ -58,6 +59,11 @@ import { RequestInterceptor } from './Interceptors/request.interceptor';
           provide: HTTP_INTERCEPTORS,
           useClass: ErrorInterceptor,
           multi: true
+      },
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: ResponseInterceptor ,
+        multi: true,
       }
   ],
   bootstrap: [AppComponent],
