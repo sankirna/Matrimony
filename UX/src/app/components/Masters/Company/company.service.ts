@@ -15,4 +15,9 @@ export class CompanyService {
     const api='Country/List';
     return this.http.post<PagedListModel<CountryModel>>(api, model,{params:{isPageType:true}});
   }
+
+  create(model: CountryModel){
+    const api='Country/Create';
+    return this.http.post<CountryModel>(api, model);
+  }
 }

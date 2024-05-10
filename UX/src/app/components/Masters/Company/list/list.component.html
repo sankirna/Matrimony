@@ -1,10 +1,17 @@
-
+<mat-card class="box">
+   <mat-card-header>
+        <mat-card-title>Country List</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
             <mat-form-field>
                 <mat-label>Filter</mat-label>
                 <input matInput   placeholder="Name" #input   [(ngModel)]="searchModel.name">
-
             </mat-form-field>
             <button mat-raised-button color="primary" (click)="applyFilter($event)">Apply Filter</button>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="box">
+        <mat-card-content>
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="dataSource" matSort>
 
@@ -25,5 +32,7 @@
 
                 <app-custom-paginator [paggerModel]="paggerModel" (changePage)="ChangePage($event)"></app-custom-paginator>
             </div>
-      
+   
 <!-- <app-users></app-users> -->
+</mat-card-content>
+</mat-card>

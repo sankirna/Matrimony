@@ -11,15 +11,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { AngularMaterialModule } from '../../../angular-material.module';
 import { FormsModule } from '@angular/forms';
-
+import { CreateComponent } from './create/create.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ ListComponent, CustomPaginatorComponent],
+  declarations: [ CustomPaginatorComponent,ListComponent,CreateComponent],
   imports: [
     CompanyRoutingModule,
     AngularMaterialModule,
     MatInputModule,
-    FormsModule 
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers:[
     CompanyService
