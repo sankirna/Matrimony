@@ -13,13 +13,13 @@ export class CustomPaginatorComponent {
   @Input() pageSize = 10;
   @Input() pageIndex = 0;
   @Input() pageSizeOptions = [5, 10, 25];
-  @Input() PaggerModel: PaggerModel = new PaggerModel();
-  @Output() ChangePage: EventEmitter<BaseSearchModel> = new EventEmitter();
+  @Input() paggerModel: PaggerModel = new PaggerModel();
+  @Output() changePage: EventEmitter<BaseSearchModel> = new EventEmitter();
 
   onChangePage(pe: PageEvent) {
     let baseSearchModel = new BaseSearchModel();
-    baseSearchModel.Start = pe.pageIndex * pe.pageSize;
-    baseSearchModel.Length = pe.pageSize;
-    this.ChangePage.emit(baseSearchModel);
+    baseSearchModel.start = pe.pageIndex * pe.pageSize;
+    baseSearchModel.length = pe.pageSize;
+    this.changePage.emit(baseSearchModel);
   }
 }

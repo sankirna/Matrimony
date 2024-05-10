@@ -30,9 +30,9 @@ export class ListComponent implements OnInit {
   search() {
     this.companyService.list(this.searchModel).subscribe(
       (response) => {
-        this.list = <CountryModel[]>response.Data;
+        this.list = <CountryModel[]>response.data;
         this.dataSource = new MatTableDataSource(this.list);
-        this.paggerModel = <PaggerModel>response.PaggerModel;
+        this.paggerModel = <PaggerModel>response.paggerModel;
         console.log(this.paggerModel);
       },
       (error) => {
@@ -42,8 +42,8 @@ export class ListComponent implements OnInit {
   }
 
   ChangePage($event: BaseSearchModel) {
-    this.searchModel.Start = $event.Start;
-    this.searchModel.Length = $event.Length;
+    this.searchModel.start = $event.start;
+    this.searchModel.length = $event.length;
     this.search();
   }
 }

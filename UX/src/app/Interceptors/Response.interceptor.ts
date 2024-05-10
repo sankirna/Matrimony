@@ -18,7 +18,7 @@ export class ResponseInterceptor implements HttpInterceptor {
   }
 
   private modifyBody(body: any, isPageType: any) {
-    return body.Data;
+    return body.data;
     /*
     * write your logic to modify the body
     * */

@@ -13,7 +13,7 @@ export class PaggerModel{
 
 
 export class PagedListModel<T>{
-    Data: T[]| undefined;
-    PaggerModel: PaggerModel|undefined;
+    data: T[]| undefined;
+    paggerModel: PaggerModel|undefined;
 }
     

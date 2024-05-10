@@ -339,7 +339,9 @@ public static class ServiceCollectionExtensions
         var mvcWebAPIBuilder = services.AddControllers();
 
         //MVC now serializes JSON with camel case names by default, use this code to avoid it
-        mvcWebAPIBuilder.AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+        //mvcWebAPIBuilder.AddNewtonsoftJson(options => 
+        //{ options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+        //});
 
         //add fluent validation
         services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
