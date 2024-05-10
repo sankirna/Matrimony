@@ -336,11 +336,13 @@ public static class ServiceCollectionExtensions
     public static IMvcBuilder AddAppWebAPI(this IServiceCollection services)
     {
         //add basic MVC feature
-        var mvcWebAPIBuilder = services.AddControllers();
+        var mvcWebAPIBuilder = services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 
         //MVC now serializes JSON with camel case names by default, use this code to avoid it
-        //mvcWebAPIBuilder.AddNewtonsoftJson(options => 
-        //{ options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+        //mvcWebAPIBuilder.AddNewtonsoftJson(options =>
+        //{
+        //    //options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+        //    options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
         //});
 
         //add fluent validation
