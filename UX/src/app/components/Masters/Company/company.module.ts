@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyService } from './company.service';
-import { CustomPaginatorComponent } from '../../Common/custom-paginator/custom-paginator.component';
 import { ListComponent } from './list/list.component';
+import { CustomPaginatorComponent } from '../../Common/custom-paginator/custom-paginator.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
-  declarations: [ CustomPaginatorComponent, ListComponent],
+  declarations: [ ListComponent, CustomPaginatorComponent],
   imports: [
-    CommonModule,
-    CompanyRoutingModule
+    CompanyRoutingModule,
+    MatPaginatorModule
   ],
   providers:[
     CompanyService

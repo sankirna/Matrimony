@@ -23,6 +23,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { UsersComponent } from './layout/users/users.component';
 import { RequestInterceptor } from './Interceptors/Request.interceptor';
 import { ResponseInterceptor } from './Interceptors/Response.interceptor';
+import { PaginatorInterceptor } from './Interceptors/Paginator.interceptor';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,12 @@ import { ResponseInterceptor } from './Interceptors/Response.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
+    },
+   
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: PaginatorInterceptor,
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,

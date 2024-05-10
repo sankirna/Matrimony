@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CountryListModel, CountrySearchModel } from '../company.model';
+import { CountryListModel, CountryModel, CountrySearchModel } from '../company.model';
+import { PagedListModel } from '../../../Common/Models/BasePagedListModel';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,6 @@ export class CompanyService {
 
   list(model: CountrySearchModel){
     const api='Country/List';
-    return this.http.post<CountryListModel>(api, model,{params:{isPageType:true}});
+    return this.http.post<PagedListModel<CountryModel>>(api, model,{params:{isPageType:true}});
   }
 }
