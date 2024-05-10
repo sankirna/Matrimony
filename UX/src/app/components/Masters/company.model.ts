@@ -2,12 +2,12 @@ import { BasePagedListModel } from "../../Common/Models/BasePagedListModel";
 import { BaseSearchModel } from "../../Common/Models/BaseSearchModel";
 
 export class CountrySearchModel extends BaseSearchModel{
-    Name: string | undefined="";
+    name: string | undefined="";
 }
 
 export class CountryModel {
-    Name: string | undefined;
-    Id: number | undefined;
+    name: string | undefined;
+    id: number | undefined;
  }
 
  export class CountryListModel extends BasePagedListModel<CountryModel> {

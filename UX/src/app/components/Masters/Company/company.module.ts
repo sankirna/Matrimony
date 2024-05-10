@@ -10,13 +10,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { AngularMaterialModule } from '../../../angular-material.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [ ListComponent, CustomPaginatorComponent],
   imports: [
     CompanyRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    MatInputModule,
+    FormsModule 
   ],
   providers:[
     CompanyService

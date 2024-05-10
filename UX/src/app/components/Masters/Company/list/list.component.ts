@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../company.service';
-import { CountryListModel, CountryModel, CountrySearchModel } from '../../company.model';
-import { PagedListModel, PaggerModel } from '../../../../Common/Models/BasePagedListModel';
+import { CountryModel, CountrySearchModel } from '../../company.model';
+import { PaggerModel } from '../../../../Common/Models/BasePagedListModel';
 import { BaseSearchModel } from '../../../../Common/Models/BaseSearchModel';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -24,6 +24,11 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.companyService.name = 'List updated';
+    this.search();
+  }
+
+  applyFilter(event: Event) {
+    this.searchModel.start=0;
     this.search();
   }
 

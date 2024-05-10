@@ -1,9 +1,10 @@
-<mat-card>
-    <mat-card-content>
-            <!-- <mat-form-field>
+
+            <mat-form-field>
                 <mat-label>Filter</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-            </mat-form-field> -->
+                <input matInput   placeholder="Name" #input   [(ngModel)]="searchModel.name">
+
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="applyFilter($event)">Apply Filter</button>
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="dataSource" matSort>
 
@@ -24,6 +25,5 @@
 
                 <app-custom-paginator [paggerModel]="paggerModel" (changePage)="ChangePage($event)"></app-custom-paginator>
             </div>
-        </mat-card-content>
-    </mat-card>
+      
 <!-- <app-users></app-users> -->

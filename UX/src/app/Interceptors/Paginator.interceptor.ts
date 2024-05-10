@@ -18,7 +18,6 @@ export class PaginatorInterceptor implements HttpInterceptor {
 
   private modifyBody(body: any,request: HttpRequest<any>, isPageType: any) {
     if(isPageType=='true'){
-      debugger
        let dataPaggerModel= new   PagedListModel();
        dataPaggerModel.data=body.data;
        var paggerModel=new PaggerModel();
