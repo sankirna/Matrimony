@@ -27,7 +27,7 @@ export class ListComponent implements OnInit {
     this.search();
   }
 
-  applyFilter(event: Event) {
+  applyFilter() {
     this.searchModel.start=0;
     this.search();
   }
@@ -53,6 +53,7 @@ export class ListComponent implements OnInit {
     this.countryService.delete(<number>row.id).subscribe(
       (response) => {
         console.log(response);
+        this.applyFilter();
       },
       (error) => {
         console.error(error);
