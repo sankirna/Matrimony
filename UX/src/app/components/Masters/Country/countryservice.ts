@@ -31,5 +31,10 @@ export class CountryService {
     return this.http.post<CountryModel>(api, model);
   }
 
+  delete(id: number){
+    const api='Country/delete';
+    return this.http.post<number>(api, null, {params:{id:id}});
+  }
+
   
 }

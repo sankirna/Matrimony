@@ -15,7 +15,7 @@ export class ListComponent implements OnInit {
   searchModel: CountrySearchModel = new CountrySearchModel();
   paggerModel: PaggerModel = new PaggerModel();
   list: CountryModel[] = [];
-  displayedColumns: string[] = ['Name'];
+  displayedColumns: string[] = ['Name','Actions'];
   dataSource: MatTableDataSource<CountryModel>;
   
   constructor(private countryService: CountryService) {
@@ -39,6 +39,20 @@ export class ListComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.list);
         this.paggerModel = <PaggerModel>response.paggerModel;
         console.log(this.paggerModel);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  edit(row: CountryModel){
+  }
+
+  delete(row: CountryModel){
+    this.countryService.delete(<number>row.id).subscribe(
+      (response) => {
+        console.log(response);
       },
       (error) => {
         console.error(error);
