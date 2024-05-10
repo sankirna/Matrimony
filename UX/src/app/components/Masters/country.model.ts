@@ -7,7 +7,7 @@ export class CountrySearchModel extends BaseSearchModel{
 
 export class CountryModel {
     name: string | undefined;
-    id: number | undefined;
+    id: number | undefined=0;
  }
 
  export class CountryListModel extends BasePagedListModel<CountryModel> {

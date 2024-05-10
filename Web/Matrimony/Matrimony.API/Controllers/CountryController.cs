@@ -30,7 +30,7 @@ ICountryService countryService)
         public virtual async Task<IActionResult> List(CountrySearchModel searchModel)
         {
             //prepare model
-            var model = await _countryFactoryModel.PrepareCompanyListModelAsync(searchModel);
+            var model = await _countryFactoryModel.PrepareCountryListModelAsync(searchModel);
             return Success(model);
         }
 
@@ -40,7 +40,7 @@ ICountryService countryService)
             var country = await _countryService.GetByIdAsync(id);
             if (country == null)
                 return Error("not found");
-            return Success(country);
+            return Success(country.ToModel<CountryModel>());
         }
 
         [HttpPost]
@@ -59,7 +59,7 @@ ICountryService countryService)
                 return Error("not found");
 
             country = model.ToEntity(country);
-            await _countryService.InsertAsync(country);
+            await _countryService.UpdateAsync(country);
             return Success(country.ToModel<CountryModel>());
         }
 

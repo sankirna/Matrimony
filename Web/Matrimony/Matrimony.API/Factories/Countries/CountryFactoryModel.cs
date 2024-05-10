@@ -20,7 +20,7 @@ namespace Matrimony.API.Factories.Countries
         /// A task that represents the asynchronous operation
         /// The task result contains the customer list model
         /// </returns>
-        public virtual async Task<CountryListModel> PrepareCompanyListModelAsync(CountrySearchModel searchModel)
+        public virtual async Task<CountryListModel> PrepareCountryListModelAsync(CountrySearchModel searchModel)
         {
             ArgumentNullException.ThrowIfNull(searchModel);
 

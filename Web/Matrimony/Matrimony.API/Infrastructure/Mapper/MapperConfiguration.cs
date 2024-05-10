@@ -12,7 +12,7 @@ namespace Matrimony.API.Infrastructure.Mapper
         public MapperConfiguration()
         {
             CreateTestMaps();
-            CreateCompanyMap();
+            CreateCountryMap();
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Matrimony.API.Infrastructure.Mapper
             CreateMap<TestResponseModel, Test>();
         }
 
-        public virtual void CreateCompanyMap()
+        public virtual void CreateCountryMap()
         {
             CreateMap<Country, CountryModel>();
             CreateMap<CountryModel, Country>();

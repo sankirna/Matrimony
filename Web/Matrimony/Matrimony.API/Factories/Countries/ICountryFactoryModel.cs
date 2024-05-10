@@ -4,6 +4,6 @@ namespace Matrimony.API.Factories.Countries
 {
     public interface ICountryFactoryModel
     {
-        Task<CountryListModel> PrepareCompanyListModelAsync(CountrySearchModel searchModel);
+        Task<CountryListModel> PrepareCountryListModelAsync(CountrySearchModel searchModel);
     }
 }

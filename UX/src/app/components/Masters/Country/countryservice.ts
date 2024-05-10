@@ -16,8 +16,20 @@ export class CountryService {
     return this.http.post<PagedListModel<CountryModel>>(api, model,{params:{isPageType:true}});
   }
 
+  get(id: number){
+    const api='Country/get';
+    return this.http.post<CountryModel>(api, null, {params:{id:id}});
+  }
+
   create(model: CountryModel){
     const api='Country/Create';
     return this.http.post<CountryModel>(api, model);
   }
+
+  update(model: CountryModel){
+    const api='Country/update';
+    return this.http.post<CountryModel>(api, model);
+  }
+
+  
 }
