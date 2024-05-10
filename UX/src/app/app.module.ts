@@ -21,11 +21,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UsersComponent } from './layout/users/users.component';
-import { RequestInterceptor } from './Interceptors/request.interceptor';
+import { RequestInterceptor } from './Interceptors/Request.interceptor';
 import { ResponseInterceptor } from './Interceptors/Response.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, LogInComponent, RegisterComponent, AppHeaderComponent,UsersComponent],
+  declarations: [
+    AppComponent, 
+    LogInComponent,
+    RegisterComponent, 
+    AppHeaderComponent, 
+    UsersComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,36 +42,40 @@ import { ResponseInterceptor } from './Interceptors/Response.interceptor';
     ReactiveFormsModule,
     HttpClientModule,
     MatSidenavModule,
-    MatButtonModule, MatMenuModule,
-    MatTableModule,MatPaginatorModule
+    MatButtonModule, 
+    MatMenuModule,
+    MatTableModule, 
+    MatPaginatorModule
   ],
   exports: [
     MatTabsModule,
-    MatSidenavModule, MatTableModule,MatPaginatorModule
+    MatSidenavModule, 
+    MatTableModule, 
+    MatPaginatorModule
   ],
   providers: [
-      LoaderService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: RequestInterceptor ,
-        multi: true,
-      },
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: TokenInterceptor ,
-        multi: true,
-      },
-      {
-          provide: HTTP_INTERCEPTORS,
-          useClass: ErrorInterceptor,
-          multi: true
-      },
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: ResponseInterceptor ,
-        multi: true,
-      }
+    LoaderService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
