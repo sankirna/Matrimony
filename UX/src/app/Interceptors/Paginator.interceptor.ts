@@ -17,14 +17,13 @@ export class PaginatorInterceptor implements HttpInterceptor {
   }
 
   private modifyBody(body: any,request: HttpRequest<any>, isPageType: any) {
-    debugger
     if(isPageType=='true'){
        let dataPaggerModel= new   PagedListModel();
        dataPaggerModel.Data=body.Data;
        var paggerModel=new PaggerModel();
        paggerModel.length=body.recordsTotal;
        paggerModel.pageSize=10;
-       paggerModel.pageIndex=request.body.Start;
+       paggerModel.pageIndex=request.body.Start/paggerModel.pageSize;
        dataPaggerModel.PaggerModel= paggerModel;
        return dataPaggerModel ;
     }
