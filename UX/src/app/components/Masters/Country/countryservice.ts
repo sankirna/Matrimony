@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CountryListModel, CountryModel, CountrySearchModel } from '../company.model';
+import { CountryListModel, CountryModel, CountrySearchModel } from '../country.model';
 import { PagedListModel } from '../../../Common/Models/BasePagedListModel';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyService {
+export class CountryService {
   name= 'test';
   constructor(private http: HttpClient
 ) { }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CompanyRoutingModule } from './company-routing.module';
-import { CompanyService } from './company.service';
+import { CountryRoutingModule } from './country-routing.module';
+import { CountryService } from './countryservice';
 import { ListComponent } from './list/list.component';
 import { CustomPaginatorComponent } from '../../Common/custom-paginator/custom-paginator.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -17,14 +17,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [ CustomPaginatorComponent,ListComponent,CreateComponent],
   imports: [
-    CompanyRoutingModule,
+    CountryRoutingModule,
     AngularMaterialModule,
     MatInputModule,
     FormsModule,
     ReactiveFormsModule
   ],
   providers:[
-    CompanyService
+    CountryService
   ]
 })
-export class CompanyModule { }
+export class CountryModule { }

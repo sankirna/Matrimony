@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CompanyService } from '../company.service';
-import { CountryModel, CountrySearchModel } from '../../company.model';
+import { CountryService } from '../countryservice';
+import { CountryModel, CountrySearchModel } from '../../country.model';
 import { PaggerModel } from '../../../../Common/Models/BasePagedListModel';
 import { BaseSearchModel } from '../../../../Common/Models/BaseSearchModel';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-company-list',
+  selector: 'app-country-list',
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
@@ -18,12 +18,12 @@ export class ListComponent implements OnInit {
   displayedColumns: string[] = ['Name'];
   dataSource: MatTableDataSource<CountryModel>;
   
-  constructor(private companyService: CompanyService) {
+  constructor(private countryService: CountryService) {
     this.dataSource = new MatTableDataSource(this.list);
   }
 
   ngOnInit() {
-    this.companyService.name = 'List updated';
+    this.countryService.name = 'List updated';
     this.search();
   }
 
@@ -33,7 +33,7 @@ export class ListComponent implements OnInit {
   }
 
   search() {
-    this.companyService.list(this.searchModel).subscribe(
+    this.countryService.list(this.searchModel).subscribe(
       (response) => {
         this.list = <CountryModel[]>response.data;
         this.dataSource = new MatTableDataSource(this.list);

@@ -5,7 +5,7 @@ import { RegisterComponent } from './components/Account/register/register.compon
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { AuthGuard } from './guards/AuthGuard';
 import { UsersComponent } from './layout/users/users.component';
-import { CompanyModule } from './components/Masters/Company/company.module';
+import { CountryModule } from './components/Masters/Country/country.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -21,8 +21,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'Masters/Company',
-    loadChildren: () => CompanyModule
+    path: 'Masters/Country',
+    loadChildren: () => CountryModule
   },
 ];
 

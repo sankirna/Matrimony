@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompanyService } from '../company.service';
+import { CountryService } from '../countryservice';
 
 @Component({
   selector: 'app-edit',
@@ -10,9 +10,9 @@ import { CompanyService } from '../company.service';
 })
 export class EditComponent  implements OnInit{
   name:string='';
-  constructor( private companyService: CompanyService ) {
+  constructor( private countryService: CountryService ) {
   }
   ngOnInit() {
-    this.name=this.companyService.name;
+    this.name=this.countryService.name;
   }
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CompanyService } from '../company.service';
-import { CountryModel } from '../../company.model';
+import { CountryService } from '../countryservice';
+import { CountryModel } from '../../country.model';
 
 @Component({
   selector: 'app-create',
@@ -14,7 +14,7 @@ export class CreateComponent {
 
   constructor(
     private router: Router
-    , private companyService: CompanyService
+    , private countryService: CountryService
     , private fb: FormBuilder) {
         this.buildForm();
   }
@@ -31,11 +31,11 @@ export class CreateComponent {
 
   onSubmit() {
     if (this.isValid()) {
-      this.companyService.create(<CountryModel>this.form.getRawValue()).subscribe(
+      this.countryService.create(<CountryModel>this.form.getRawValue()).subscribe(
         (response) => {
           debugger
           
-          this.router.navigateByUrl('/masters/Company/list');
+          this.router.navigateByUrl('/masters/Country/list');
         },
         (error) => {
           console.error(error);
