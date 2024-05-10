@@ -33,7 +33,7 @@ export class AuthService {
     }
 
     goToLogin(){
-        this.router.navigate(['/login']);
+        this.router.navigate(['/Account/login']);
     }
 
     checkAuthentication(): boolean {
