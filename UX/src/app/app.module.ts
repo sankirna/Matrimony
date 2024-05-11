@@ -25,6 +25,7 @@ import { RequestInterceptor } from './Interceptors/Request.interceptor';
 import { ResponseInterceptor } from './Interceptors/Response.interceptor';
 import { PaginatorInterceptor } from './Interceptors/Paginator.interceptor';
 import { MainComponent } from './layout/main/main.component';
+import { CustomConfirmDialogComponent } from './components/Common/custom-confirm-dialog/custom-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +34,10 @@ import { MainComponent } from './layout/main/main.component';
     LogInComponent,
     RegisterComponent, 
     AppHeaderComponent, 
-    UsersComponent
+    UsersComponent,
+    CustomConfirmDialogComponent
   ],
+  // entryComponents: [CustomConfirmDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -50,6 +53,7 @@ import { MainComponent } from './layout/main/main.component';
     MatTableModule, 
     MatPaginatorModule
   ],
+ 
   exports: [
     MatTabsModule,
     MatSidenavModule, 

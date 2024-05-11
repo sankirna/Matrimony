@@ -5,6 +5,8 @@ import { PaggerModel } from '../../../../Common/Models/BasePagedListModel';
 import { BaseSearchModel } from '../../../../Common/Models/BaseSearchModel';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogModel, CustomConfirmDialogComponent } from '../../../Common/custom-confirm-dialog/custom-confirm-dialog.component';
 
 @Component({
   selector: 'app-country-list',
@@ -18,10 +20,11 @@ export class ListComponent implements OnInit {
   list: CountryModel[] = [];
   displayedColumns: string[] = ['Name','Actions'];
   dataSource: MatTableDataSource<CountryModel>;
-  
+
   constructor(private countryService: CountryService
      , private router: Router
      , private route: ActivatedRoute
+     , private dialog: MatDialog
   ) {
     this.dataSource = new MatTableDataSource(this.list);
   }
@@ -54,16 +57,31 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/Masters/Country/Edit'], {queryParams:{id: row.id}, relativeTo: this.route});
   }
 
+
   delete(row: CountryModel){
-    this.countryService.delete(<number>row.id).subscribe(
-      (response) => {
-        console.log(response);
-        this.applyFilter();
-      },
-      (error) => {
-        console.error(error);
+    const message = `Are you sure you want to do delete?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(CustomConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if(dialogResult){
+        this.countryService.delete(<number>row.id).subscribe(
+          (response) => {
+            console.log(response);
+            this.applyFilter();
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
       }
-    );
+    });
+    
   }
 
   ChangePage($event: BaseSearchModel) {
