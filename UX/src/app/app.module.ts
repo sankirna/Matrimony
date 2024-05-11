@@ -24,10 +24,12 @@ import { UsersComponent } from './layout/users/users.component';
 import { RequestInterceptor } from './Interceptors/Request.interceptor';
 import { ResponseInterceptor } from './Interceptors/Response.interceptor';
 import { PaginatorInterceptor } from './Interceptors/Paginator.interceptor';
+import { MainComponent } from './layout/main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
+    MainComponent,
     LogInComponent,
     RegisterComponent, 
     AppHeaderComponent, 

@@ -7,14 +7,23 @@ import { AuthGuard } from './guards/AuthGuard';
 import { UsersComponent } from './layout/users/users.component';
 import { CountryModule } from './components/Masters/Country/country.module';
 import { AccountModule } from './components/Account/account.module';
+import { MainComponent } from './layout/main/main.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  { path: '', pathMatch: 'full', redirectTo: '' },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard]
-  }, {
+    path: '',
+    component: MainComponent,
+    canActivate: [AuthGuard],
+    children:[
+      {
+        path: 'Masters/Country',
+        loadChildren: () => CountryModule
+      }
+    ]
+    
+  },
+  {
     path: 'user',
     component: UsersComponent,
     canActivate: [AuthGuard]
@@ -23,10 +32,7 @@ const routes: Routes = [
     path: 'Account',
     loadChildren: () => AccountModule
   },
-  {
-    path: 'Masters/Country',
-    loadChildren: () => CountryModule
-  },
+ 
 ];
 
 @NgModule({
