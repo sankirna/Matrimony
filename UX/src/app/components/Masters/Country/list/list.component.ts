@@ -4,6 +4,7 @@ import { CountryModel, CountrySearchModel } from '../../country.model';
 import { PaggerModel } from '../../../../Common/Models/BasePagedListModel';
 import { BaseSearchModel } from '../../../../Common/Models/BaseSearchModel';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-country-list',
@@ -18,7 +19,10 @@ export class ListComponent implements OnInit {
   displayedColumns: string[] = ['Name','Actions'];
   dataSource: MatTableDataSource<CountryModel>;
   
-  constructor(private countryService: CountryService) {
+  constructor(private countryService: CountryService
+     , private router: Router
+     , private route: ActivatedRoute
+  ) {
     this.dataSource = new MatTableDataSource(this.list);
   }
 
@@ -47,6 +51,7 @@ export class ListComponent implements OnInit {
   }
 
   edit(row: CountryModel){
+    this.router.navigate(['/Masters/Country/Edit'], {queryParams:{id: row.id}, relativeTo: this.route});
   }
 
   delete(row: CountryModel){

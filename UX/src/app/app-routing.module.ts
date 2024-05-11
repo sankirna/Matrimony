@@ -18,7 +18,8 @@ const routes: Routes = [
     children:[
       {
         path: 'Masters/Country',
-        loadChildren: () => CountryModule
+        //loadChildren: () => CountryModule
+        loadChildren: () => import('./components/Masters/Country/country.module').then(m => m.CountryModule),
       }
     ]
     
