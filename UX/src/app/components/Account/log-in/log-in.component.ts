@@ -25,7 +25,7 @@ export class LogInComponent {
           console.log('User created:', response);
           this.authService.store(response.token);
           // Refresh the user list after creating a new user
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['country/list']);
         },
         (error) => {
           console.error(error);

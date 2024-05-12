@@ -54,7 +54,8 @@ export class ListComponent implements OnInit {
   }
 
   edit(row: CountryModel){
-    this.router.navigate(['/Masters/Country/Edit'], {queryParams:{id: row.id}, relativeTo: this.route});
+    this.router.navigateByUrl('/country/edit/'+ row.id);
+    //this.router.navigate(['/Country/Edit'], {queryParams:{id: row.id}, relativeTo: this.route});
   }
 
 
@@ -88,5 +89,8 @@ export class ListComponent implements OnInit {
     this.searchModel.start = $event.start;
     this.searchModel.length = $event.length;
     this.search();
+  }
+  addNew(){
+    this.router.navigateByUrl('/country/create');
   }
 }

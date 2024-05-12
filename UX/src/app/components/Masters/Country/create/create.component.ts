@@ -69,7 +69,7 @@ export class CreateComponent implements OnInit {
       if(!this.isEdit){
         this.countryService.create(this.model).subscribe(
           (response) => {
-            this.router.navigateByUrl('/masters/Country/list');
+            this.router.navigateByUrl('/country/list');
           },
           (error) => {
             console.error(error);
@@ -78,7 +78,7 @@ export class CreateComponent implements OnInit {
       }else{
         this.countryService.update(this.model).subscribe(
           (response) => {
-            this.router.navigateByUrl('/masters/Country/list');
+            this.router.navigateByUrl('/country/list');
           },
           (error) => {
             console.error(error);
@@ -92,5 +92,7 @@ export class CreateComponent implements OnInit {
   onClear() {
 
   }
-
+  gotoList(){
+    this.router.navigateByUrl('/country/list');
+  }
 }
