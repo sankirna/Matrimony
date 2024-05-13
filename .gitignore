@@ -98,3 +98,4 @@ aio/content/examples/.DS_Store
 .angular/
 *.dbmdl
 *.rej
+*.jfm

@@ -11,10 +11,11 @@ using Nop.Core.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using Matrimony.Core;
+using Matrimony.API.Infrastructure;
 
 namespace Matrimony.Framework.Filters
 {
-    public class ApiValidationFilter : ActionFilterAttribute
+    public class APIValidationFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
@@ -36,9 +37,8 @@ namespace Matrimony.Framework.Filters
                     .SelectMany(v => v.Errors.Select(b => b.ErrorMessage))
                     .ToList();
                 HttpStatusCode code = HttpStatusCode.BadRequest;
-                context.Result = new JsonResult(code.ToErrorApiResponse(data)) { StatusCode = 400 };
+                context.Result = new JsonResult(code.ToErrorApiResponse(data)) {  StatusCode = (int)code };
             }
-            //base.OnActionExecuting(context);
         }
     }
 }

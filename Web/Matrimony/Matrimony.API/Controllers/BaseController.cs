@@ -10,7 +10,7 @@ namespace Matrimony.API.Controllers
     //[Authorize]
     [Route("api/[controller]/[Action]")]
     [ApiController]
-    [ApiValidationFilter]
+    [APIValidationFilter]
     public class BaseController : ControllerBase
     {
         protected JsonResult Success<T>(T data)

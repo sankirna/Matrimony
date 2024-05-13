@@ -2,6 +2,7 @@
 using System.Threading.RateLimiting;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Matrimony.Framework.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
@@ -336,7 +337,13 @@ public static class ServiceCollectionExtensions
     public static IMvcBuilder AddAppWebAPI(this IServiceCollection services)
     {
         //add basic MVC feature
-        var mvcWebAPIBuilder = services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+        var mvcWebAPIBuilder = services.AddControllers(
+            options =>
+            {
+                options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true;
+                options.Filters.Add(typeof(APIExceptionFilter));
+            }
+            );
 
         //MVC now serializes JSON with camel case names by default, use this code to avoid it
         //mvcWebAPIBuilder.AddNewtonsoftJson(options =>

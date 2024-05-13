@@ -10,6 +10,9 @@ namespace Matrimony.API.Validators
             RuleFor(model => model.Name)
                 .NotEmpty()
                 .WithMessage("Name is required");
+            RuleFor(model => model.Email)
+                .NotEmpty()
+                .WithMessage("Name is required");
         }
     }
 }

@@ -24,5 +24,13 @@ namespace Matrimony.API.Infrastructure
             response.Data = data;
             return response;
         }
+
+        public static AppErrorResponse ToAppErrorResponse(this List<string> errors, List<string> innterErrors = null)
+        {
+            AppErrorResponse appErrorResponse = new AppErrorResponse();
+            appErrorResponse.Errors = errors;
+            appErrorResponse.InnerErrors = innterErrors;
+            return appErrorResponse;
+        }
     }
 }
