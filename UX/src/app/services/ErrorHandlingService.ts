@@ -23,6 +23,7 @@ export class ErrorHandlingService {
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
             let config = new MatSnackBarConfig();
             config.verticalPosition = 'top';
+            config.panelClass = ["snackbar-container", "error"];
             let message=_.join(error.error.data.errors, '\n');
             this.snackBar.open(message, "close", config);
         }
