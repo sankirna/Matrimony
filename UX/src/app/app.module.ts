@@ -26,6 +26,7 @@ import { ResponseInterceptor } from './Interceptors/Response.interceptor';
 import { PaginatorInterceptor } from './Interceptors/Paginator.interceptor';
 import { MainComponent } from './layout/main/main.component';
 import { CustomConfirmDialogComponent } from './components/Common/custom-confirm-dialog/custom-confirm-dialog.component';
+import { TestService } from './services/TestService';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { CustomConfirmDialogComponent } from './components/Common/custom-confirm
   ],
   providers: [
     LoaderService,
+    TestService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,

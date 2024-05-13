@@ -6,15 +6,28 @@ import { Router } from '@angular/router';
 @Injectable({
     providedIn: 'root'
 })
-
 export class TestService {
-    private apiBaseUrl = 'https://localhost:7050/api/'; // Replace with your API endpoint
     constructor(private http: HttpClient
         ,private router: Router
     ) { }
 
     getData(): Observable<any> {
         const api='WeatherForecast';
-        return this.http.get<any>(this.apiBaseUrl+api);
+        return this.http.get<any>(api);
+    }
+
+    customError(): Observable<any> {
+        const api='TestError/customError';
+        return this.http.post<any>(api,{});
+    }
+
+    applicationError(): Observable<any> {
+        const api='TestError/applicationError';
+        return this.http.post<any>(api,{});
+    }
+
+    modelError(): Observable<any> {
+        const api='TestError/modelError';
+        return this.http.post<any>(api,{name:'', email:''});
     }
 }

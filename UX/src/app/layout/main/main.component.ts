@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoaderService } from '../../services/LoaderService';
 import { delay } from 'rxjs';
+import { TestService } from '../../services/TestService';
 
 @Component({
   selector: 'app-main',
@@ -11,9 +12,9 @@ export class MainComponent implements OnInit {
   isLoading: boolean = false;
 
   constructor(
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private testService: TestService
   ){ }
-
 
   ngOnInit() {
     this.listenToLoading();
@@ -25,5 +26,17 @@ export class MainComponent implements OnInit {
       .subscribe((loading) => {
         this.isLoading = <boolean>loading;
       });
+  }
+   
+  customError(){
+    this.testService.customError()
+    .subscribe(
+      (response) => { 
+        console.log(response);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }
