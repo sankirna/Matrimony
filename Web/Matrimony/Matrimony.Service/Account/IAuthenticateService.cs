@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace Matrimony.Service.Account
 {
-    internal interface IAuthenticateService
+    public interface IAuthenticateService
     {
-        ApplicationUser FindByNameAsync(string username);
-        ApplicationUser CheckPasswordAsync(ApplicationUser user, string password);
-        ApplicationUser CreateAsync(ApplicationUser user, string password);
-        IList<string> GetRolesAsync(ApplicationUser user);
+        Task<ApplicationUser> FindByNameAsync(string username);
+        Task<bool> CheckPasswordAsync(ApplicationUser user, string password);
+        Task<bool> CreateAsync(ApplicationUser user, string password);
+        Task<IList<string>> GetRolesAsync(ApplicationUser user);
         Task<bool> RoleExistsAsync(string roleName);
+        Task<bool> CreateAsync(string roleName);
+        Task<bool> AddToRoleAsync(ApplicationUser user, string role);
     }
 }

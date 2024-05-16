@@ -1,6 +1,8 @@
 ﻿using Matrimony.Core;
 using Matrimony.Framework;
+using Matrimony.Framework.Authenticate;
 using Matrimony.Service;
+using Matrimony.Service.Account;
 using Matrimony.Service.Countries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -25,6 +27,8 @@ public partial class NopStartup : INopStartup
     {
         //add and configure web api feature
         services.AddAppWebAPI();
+
+        services.AddScoped<IAuthenticateService, AspNetCoreIdentityAuthenticate>();
 
         //file provider
         services.AddScoped<INopFileProvider, NopFileProvider>();
