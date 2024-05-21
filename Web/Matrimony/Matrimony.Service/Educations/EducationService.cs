@@ -27,6 +27,11 @@ namespace Matrimony.Service.Educations
             return countries;
         }
 
+        public virtual async Task<IList<Education>> GetByProfileIdAsync(int profileId)
+        {
+            return await _educationRepository.GetAllAsync(query => query.Where(x => x.ProfileId == profileId), false);
+        }
+
         public virtual async Task<Education> GetByIdAsync(int id)
         {
             return await _educationRepository.GetByIdAsync(id);

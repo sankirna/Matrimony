@@ -27,6 +27,11 @@ namespace Matrimony.Service.Addresss
             return countries;
         }
 
+        public virtual async Task<IList<Address>> GetByProfileIdAsync(int profileId)
+        {
+            return await _addressRepository.GetAllAsync(query => query.Where(x => x.ProfileId == profileId), false);
+        }
+
         public virtual async Task<Address> GetByIdAsync(int id)
         {
             return await _addressRepository.GetByIdAsync(id);

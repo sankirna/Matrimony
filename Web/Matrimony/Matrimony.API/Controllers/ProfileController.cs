@@ -11,6 +11,7 @@ using Matrimony.Service.Account;
 using Matrimony.Service.Countries;
 using Matrimony.Service.Profiles;
 using Microsoft.AspNetCore.Mvc;
+using Nop.Core;
 
 namespace Matrimony.API.Controllers
 {
@@ -30,6 +31,13 @@ namespace Matrimony.API.Controllers
             _authenticateService = authenticateService;
             _profileFactoryModel = profileFactoryModel;
             _profileService = profileService;
+        }
+
+        [HttpPost]
+        public virtual async Task<IActionResult> Get(int id)
+        {
+            var model = await _profileFactoryModel.PrepareProfileEditModelAsync(id);
+            return Success(model);
         }
 
         [HttpPost]
@@ -85,5 +93,7 @@ namespace Matrimony.API.Controllers
             await _profileService.InsertAsync(profile);
             return Success(profile.ToModel<ProfileCreateRequestModel>());
         }
+
+
     }
 }

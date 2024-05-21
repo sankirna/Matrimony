@@ -26,6 +26,11 @@ namespace Matrimony.Service.Families
             return families;
         }
 
+        public virtual async Task<IList<Family>> GetByProfileIdAsync(int profileId)
+        {
+            return await _entityRepository.GetAllAsync(query => query.Where(x => x.ProfileId == profileId), false);
+        }
+
         public virtual async Task<Family> GetByIdAsync(int Id)
         {
             return await _entityRepository.GetByIdAsync(Id);

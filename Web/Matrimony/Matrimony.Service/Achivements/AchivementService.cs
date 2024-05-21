@@ -32,6 +32,11 @@ namespace Matrimony.Service.Achivements
             return await _achivementRepository.GetByIdAsync(id);
         }
 
+        public virtual async Task<IList<Achivement>> GetByProfileIdAsync(int profileId)
+        {
+            return await _achivementRepository.GetAllAsync(query => query.Where(x => x.ProfileId == profileId));
+        }
+
         /// <summary>
         /// Insert a achivement
         /// </summary>
