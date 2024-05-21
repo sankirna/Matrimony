@@ -3,8 +3,12 @@ using Matrimony.API.Auth;
 using Matrimony.API.Factories.Countries;
 using Matrimony.API.Factories.Profiles;
 using Matrimony.API.Infrastructure.Mapper.Extensions;
+using Matrimony.API.Models.Achivements;
 using Matrimony.API.Models.Addresss;
 using Matrimony.API.Models.Countries;
+using Matrimony.API.Models.Educations;
+using Matrimony.API.Models.Families;
+using Matrimony.API.Models.Occupations;
 using Matrimony.API.Models.Profiles;
 using Matrimony.Core;
 using Matrimony.Core.Domain;
@@ -96,6 +100,158 @@ namespace Matrimony.API.Controllers
             }
         }
 
+        private async Task UpdateFamilies(int profileId, List<FamilyModel> requestFamilies)
+        {
+            if (requestFamilies != null)
+            {
+                var families = await _familyService.GetByProfileIdAsync(profileId);
+                var existingIds = families.Select(x => x.Id);
+                var requestIds = requestFamilies.Select(x => x.Id);
+                var updateIds = requestIds.Intersect(existingIds);
+                var deleteIds = existingIds.Except(requestIds);
+                var addedIds = requestIds.Except(existingIds);
+
+                var deleteFamilies = families.Where(x => deleteIds.Contains(x.Id));
+                foreach (var family in deleteFamilies)
+                {
+                    await _familyService.DeleteAsync(family);
+                }
+
+                var updateFamilies = requestFamilies.Where(x => updateIds.Contains(x.Id));
+                foreach (var familyRequest in updateFamilies)
+                {
+                    var family = families.FirstOrDefault(x => x.Id == familyRequest.Id);
+                    if (family == null)
+                        throw new NopException("address not found");
+                    familyRequest.ProfileId = profileId;
+                    family = familyRequest.ToEntity(family);
+                    await _familyService.UpdateAsync(family);
+                }
+
+                var addFamilies = requestFamilies.Where(x => addedIds.Contains(x.Id));
+                foreach (var familyRequest in addFamilies)
+                {
+                    familyRequest.ProfileId = profileId;
+                    var family = familyRequest.ToEntity<Family>();
+                    await _familyService.InsertAsync(family);
+                }
+            }
+        }
+
+        private async Task UpdateEducations(int profileId, List<EducationModel> requestEducations)
+        {
+            if (requestEducations != null)
+            {
+                var Educations = await _educationService.GetByProfileIdAsync(profileId);
+                var existingIds = Educations.Select(x => x.Id);
+                var requestIds = requestEducations.Select(x => x.Id);
+                var updateIds = requestIds.Intersect(existingIds);
+                var deleteIds = existingIds.Except(requestIds);
+                var addedIds = requestIds.Except(existingIds);
+
+                var deleteEducations = Educations.Where(x => deleteIds.Contains(x.Id));
+                foreach (var education in deleteEducations)
+                {
+                    await _educationService.DeleteAsync(education);
+                }
+
+                var updateEducations = requestEducations.Where(x => updateIds.Contains(x.Id));
+                foreach (var educationRequest in updateEducations)
+                {
+                    var education = Educations.FirstOrDefault(x => x.Id == educationRequest.Id);
+                    if (education == null)
+                        throw new NopException("education not found");
+                    educationRequest.ProfileId = profileId;
+                    education = educationRequest.ToEntity(education);
+                    await _educationService.UpdateAsync(education);
+                }
+
+                var addEducations = requestEducations.Where(x => addedIds.Contains(x.Id));
+                foreach (var educationRequest in addEducations)
+                {
+                    educationRequest.ProfileId = profileId;
+                    var education = educationRequest.ToEntity<Education>();
+                    await _educationService.InsertAsync(education);
+                }
+            }
+        }
+
+        private async Task UpdateOccupations(int profileId, List<OccupationModel> requestOccupations)
+        {
+            if (requestOccupations != null)
+            {
+                var Occupations = await _occupationService.GetByProfileIdAsync(profileId);
+                var existingIds = Occupations.Select(x => x.Id);
+                var requestIds = requestOccupations.Select(x => x.Id);
+                var updateIds = requestIds.Intersect(existingIds);
+                var deleteIds = existingIds.Except(requestIds);
+                var addedIds = requestIds.Except(existingIds);
+
+                var deleteOccupations = Occupations.Where(x => deleteIds.Contains(x.Id));
+                foreach (var occupation in deleteOccupations)
+                {
+                    await _occupationService.DeleteAsync(occupation);
+                }
+
+                var updateOccupations = requestOccupations.Where(x => updateIds.Contains(x.Id));
+                foreach (var occupationRequest in updateOccupations)
+                {
+                    var occupation = Occupations.FirstOrDefault(x => x.Id == occupationRequest.Id);
+                    if (occupation == null)
+                        throw new NopException("occupation not found");
+                    occupationRequest.ProfileId = profileId;
+                    occupation = occupationRequest.ToEntity(occupation);
+                    await _occupationService.UpdateAsync(occupation);
+                }
+
+                var addOccupations = requestOccupations.Where(x => addedIds.Contains(x.Id));
+                foreach (var occupationRequest in addOccupations)
+                {
+                    occupationRequest.ProfileId = profileId;
+                    var occupation = occupationRequest.ToEntity<Occupation>();
+                    await _occupationService.InsertAsync(occupation);
+                }
+            }
+        }
+
+        private async Task UpdateAchivements(int profileId, List<AchivementModel> requestAchivements)
+        {
+            if (requestAchivements != null)
+            {
+                var Achivements = await _achivementService.GetByProfileIdAsync(profileId);
+                var existingIds = Achivements.Select(x => x.Id);
+                var requestIds = requestAchivements.Select(x => x.Id);
+                var updateIds = requestIds.Intersect(existingIds);
+                var deleteIds = existingIds.Except(requestIds);
+                var addedIds = requestIds.Except(existingIds);
+
+                var deleteAchivements = Achivements.Where(x => deleteIds.Contains(x.Id));
+                foreach (var achivement in deleteAchivements)
+                {
+                    await _achivementService.DeleteAsync(achivement);
+                }
+
+                var updateAchivements = requestAchivements.Where(x => updateIds.Contains(x.Id));
+                foreach (var achivementRequest in updateAchivements)
+                {
+                    var achivement = Achivements.FirstOrDefault(x => x.Id == achivementRequest.Id);
+                    if (achivement == null)
+                        throw new NopException("achivement not found");
+                    achivementRequest.ProfileId = profileId;
+                    achivement = achivementRequest.ToEntity(achivement);
+                    await _achivementService.UpdateAsync(achivement);
+                }
+
+                var addAchivements = requestAchivements.Where(x => addedIds.Contains(x.Id));
+                foreach (var achivementRequest in addAchivements)
+                {
+                    achivementRequest.ProfileId = profileId;
+                    var achivement = achivementRequest.ToEntity<Achivement>();
+                    await _achivementService.InsertAsync(achivement);
+                }
+            }
+        }
+
         #endregion
 
         [HttpPost]
@@ -175,6 +331,10 @@ namespace Matrimony.API.Controllers
             await _profileService.UpdateAsync(profile);
 
             await UpdateAddresses(profileId, model.Addresses);
+            await UpdateFamilies(profileId, model.Families);
+            await UpdateEducations(profileId, model.Educations);
+            await UpdateOccupations(profileId, model.Occupations);
+            await UpdateAchivements(profileId, model.Achivements);
 
             return Success(model);
 

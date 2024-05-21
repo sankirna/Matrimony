@@ -7,7 +7,7 @@ namespace Matrimony.API.Models.Achivements
     {
         public int Id { get; set; }
 
-        //public int ProfileId { get; set; }
+        public int ProfileId { get; set; }
 
         public string Name { get; set; } = null!;
 
