@@ -41,11 +41,11 @@ public partial class NopStartup : INopStartup
 
         //Servies
         services.AddScoped<ICountryService, CountryService>();
-        services.AddScoped<IAchivementService, AchivementService>();
         services.AddScoped<IAddressService, AddressService>();
-        services.AddScoped<IEducationService, EducationService>();
         services.AddScoped<IFamilyService, FamilyService>();
         services.AddScoped<IOccupationService, OccupationService>();
+        services.AddScoped<IAchivementService, AchivementService>();
+        services.AddScoped<IEducationService, EducationService>();
         services.AddScoped<IProfileService, ProfileService>();
 
         //web helper
