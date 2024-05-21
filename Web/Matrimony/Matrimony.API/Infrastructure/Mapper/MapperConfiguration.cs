@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Matrimony.API.Models;
 using Matrimony.API.Models.Countries;
+using Matrimony.API.Models.Profiles;
 using Matrimony.Core.Domain;
 using Nop.Core.Infrastructure.Mapper;
 using Profile = AutoMapper.Profile;
@@ -13,6 +14,7 @@ namespace Matrimony.API.Infrastructure.Mapper
         {
             CreateTestMaps();
             CreateCountryMap();
+            CreateProfileMap();
         }
 
         /// <summary>
@@ -31,6 +33,11 @@ namespace Matrimony.API.Infrastructure.Mapper
         {
             CreateMap<Country, CountryModel>();
             CreateMap<CountryModel, Country>();
+        }
+
+        public virtual void CreateProfileMap()
+        {
+            CreateMap<Matrimony.Core.Domain.Profile, ProfileCreateRequestModel>().ReverseMap();
         }
 
         public int Order => 0;

@@ -4,6 +4,7 @@ using Matrimony.Framework.Authenticate;
 using Matrimony.Service;
 using Matrimony.Service.Account;
 using Matrimony.Service.Countries;
+using Matrimony.Service.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,7 @@ public partial class NopStartup : INopStartup
 
         //Servies
         services.AddScoped<ICountryService, CountryService>();
+        services.AddScoped<IProfileService, ProfileService>();
 
         //web helper
         //services.AddScoped<IWebHelper, WebHelper>();
