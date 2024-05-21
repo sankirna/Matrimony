@@ -1,6 +1,10 @@
-﻿namespace Matrimony.API.Factories.Profiles
+﻿using Matrimony.API.Models.Countries;
+using Matrimony.API.Models.Profiles;
+
+namespace Matrimony.API.Factories.Profiles
 {
-    public class IProfileFactoryModel
+    public interface IProfileFactoryModel
     {
+        Task<ProfileListModel> PrepareProfileListModelAsync(ProfileSearchModel searchModel);
     }
 }

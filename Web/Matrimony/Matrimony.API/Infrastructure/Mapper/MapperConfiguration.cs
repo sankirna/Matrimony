@@ -37,6 +37,7 @@ namespace Matrimony.API.Infrastructure.Mapper
 
         public virtual void CreateProfileMap()
         {
+            CreateMap<Matrimony.Core.Domain.Profile, ProfileModel>().ReverseMap();
             CreateMap<Matrimony.Core.Domain.Profile, ProfileCreateRequestModel>().ReverseMap();
         }
 

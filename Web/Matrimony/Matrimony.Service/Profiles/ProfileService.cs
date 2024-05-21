@@ -45,7 +45,7 @@ namespace Matrimony.Service.Profiles
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<bool> CheckDuplicateAsync(int id, string email)
         {
-            return await _profileRepository.Table.AnyAsync(x => id > 0 && x.Email == email);
+            return await _profileRepository.Table.AnyAsync(x => x.Id != id && x.Email == email);
         }
 
         /// <summary>

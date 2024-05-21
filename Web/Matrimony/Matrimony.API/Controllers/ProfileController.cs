@@ -33,6 +33,14 @@ namespace Matrimony.API.Controllers
         }
 
         [HttpPost]
+        public virtual async Task<IActionResult> List(ProfileSearchModel searchModel)
+        {
+            //prepare model
+            var model = await _profileFactoryModel.PrepareProfileListModelAsync(searchModel);
+            return Success(model);
+        }
+
+        [HttpPost]
         public virtual async Task<IActionResult> Create(ProfileCreateRequestModel model)
         {
             // check existing profile exist or not
