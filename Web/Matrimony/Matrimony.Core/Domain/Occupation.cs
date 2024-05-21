@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Matrimony.Core.Domain;
 
-public partial class Occupation
+public partial class Occupation : BaseEntity
 {
     public int Id { get; set; }
 

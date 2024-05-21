@@ -2,20 +2,20 @@
 using Matrimony.Core.Domain;
 using Matrimony.Data;
 
-namespace Matrimony.Service.Countries
+namespace Matrimony.Service.Families
 {
-    public class CountryService : ICountryService
+    public class FamilyService : IFamilyService
     {
-        protected readonly IRepository<Country> _entityRepository;
-        public CountryService(IRepository<Country> entityRepository)
+        protected readonly IRepository<Family> _entityRepository;
+        public FamilyService(IRepository<Family> entityRepository)
         {
             _entityRepository = entityRepository;
         }
 
-        public virtual async Task<IPagedList<Country>> GetCountriesAsync(string name,
+        public virtual async Task<IPagedList<Family>> GetFamiliesAsync(string name,
             int pageIndex = 0, int pageSize = int.MaxValue, bool getOnlyTotalCount = false)
         {
-            var countries = await _entityRepository.GetAllPagedAsync(query =>
+            var families = await _entityRepository.GetAllPagedAsync(query =>
             {
                 if (!string.IsNullOrWhiteSpace(name))
                     query = query.Where(c => c.Name.Contains(name));
@@ -23,10 +23,10 @@ namespace Matrimony.Service.Countries
                 return query;
             }, pageIndex, pageSize, getOnlyTotalCount, includeDeleted: false);
 
-            return countries;
+            return families;
         }
 
-        public virtual async Task<Country> GetByIdAsync(int Id)
+        public virtual async Task<Family> GetByIdAsync(int Id)
         {
             return await _entityRepository.GetByIdAsync(Id);
         }
@@ -34,9 +34,9 @@ namespace Matrimony.Service.Countries
         /// <summary>
         /// Insert a entity
         /// </summary>
-        /// <param name="Country">Customer</param>
+        /// <param name="Family">Customer</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task InsertAsync(Country entity)
+        public virtual async Task InsertAsync(Family entity)
         {
             await _entityRepository.InsertAsync(entity);
         }
@@ -46,7 +46,7 @@ namespace Matrimony.Service.Countries
         /// </summary>
         /// <param name="entity">Customer</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task UpdateAsync(Country entity)
+        public virtual async Task UpdateAsync(Family entity)
         {
             await _entityRepository.UpdateAsync(entity);
         }
@@ -56,7 +56,7 @@ namespace Matrimony.Service.Countries
         /// </summary>
         /// <param name="entity">Customer</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task DeleteAsync(Country entity)
+        public virtual async Task DeleteAsync(Family entity)
         {
             ArgumentNullException.ThrowIfNull(entity);
 

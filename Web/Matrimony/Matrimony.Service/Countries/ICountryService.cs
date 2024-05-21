@@ -12,8 +12,8 @@ namespace Matrimony.Service.Countries
     {
         Task<IPagedList<Country>> GetCountriesAsync(string name, int pageIndex = 0, int pageSize = int.MaxValue, bool getOnlyTotalCount = false);
         Task<Country> GetByIdAsync(int Id);
-        Task InsertAsync(Country country);
-        Task UpdateAsync(Country country);
-        Task DeleteAsync(Country customer);
+        Task InsertAsync(Country entity);
+        Task UpdateAsync(Country entity);
+        Task DeleteAsync(Country entity);
     }
 }

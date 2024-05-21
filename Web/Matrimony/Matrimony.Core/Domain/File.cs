@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Matrimony.Core.Domain;
 
-public partial class File
+public partial class File : BaseEntity
 {
     public int Id { get; set; }
 

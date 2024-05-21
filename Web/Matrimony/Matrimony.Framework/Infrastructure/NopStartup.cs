@@ -3,7 +3,12 @@ using Matrimony.Framework;
 using Matrimony.Framework.Authenticate;
 using Matrimony.Service;
 using Matrimony.Service.Account;
+using Matrimony.Service.Achivements;
+using Matrimony.Service.Addresss;
 using Matrimony.Service.Countries;
+using Matrimony.Service.Educations;
+using Matrimony.Service.Families;
+using Matrimony.Service.Occupations;
 using Matrimony.Service.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -36,6 +41,11 @@ public partial class NopStartup : INopStartup
 
         //Servies
         services.AddScoped<ICountryService, CountryService>();
+        services.AddScoped<IAchivementService, AchivementService>();
+        services.AddScoped<IAddressService, AddressService>();
+        services.AddScoped<IEducationService, EducationService>();
+        services.AddScoped<IFamilyService, FamilyService>();
+        services.AddScoped<IOccupationService, OccupationService>();
         services.AddScoped<IProfileService, ProfileService>();
 
         //web helper

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Matrimony.Core.Domain;
 
-public partial class City
+public partial class City : BaseEntity
 {
     public int Id { get; set; }
 
