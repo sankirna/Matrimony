@@ -1,17 +1,25 @@
-﻿using Matrimony.API.Auth;
+﻿using AutoMapper;
+using Matrimony.API.Auth;
 using Matrimony.API.Factories.Countries;
 using Matrimony.API.Factories.Profiles;
 using Matrimony.API.Infrastructure.Mapper.Extensions;
+using Matrimony.API.Models.Addresss;
 using Matrimony.API.Models.Countries;
 using Matrimony.API.Models.Profiles;
 using Matrimony.Core;
 using Matrimony.Core.Domain;
 using Matrimony.Core.IndentityModels;
 using Matrimony.Service.Account;
+using Matrimony.Service.Achivements;
+using Matrimony.Service.Addresss;
 using Matrimony.Service.Countries;
+using Matrimony.Service.Educations;
+using Matrimony.Service.Families;
+using Matrimony.Service.Occupations;
 using Matrimony.Service.Profiles;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
+using Profile = Matrimony.Core.Domain.Profile;
 
 namespace Matrimony.API.Controllers
 {
@@ -21,17 +29,74 @@ namespace Matrimony.API.Controllers
         private readonly IAuthenticateService _authenticateService;
         protected readonly IProfileFactoryModel _profileFactoryModel;
         protected readonly IProfileService _profileService;
+        protected readonly IAddressService _addressService;
+        protected readonly IFamilyService _familyService;
+        protected readonly IEducationService _educationService;
+        protected readonly IOccupationService _occupationService;
+        protected readonly IAchivementService _achivementService;
 
         public ProfileController(IWorkContext workContext
                                , IAuthenticateService authenticateService
                                , IProfileFactoryModel profileFactoryModel
-                               , IProfileService profileService)
+                               , IProfileService profileService
+                               , IAddressService addressService
+                               , IFamilyService familyService
+                               , IEducationService educationService
+                               , IOccupationService occupationService
+                               , IAchivementService achivementService)
         {
             _workContext = workContext;
             _authenticateService = authenticateService;
             _profileFactoryModel = profileFactoryModel;
             _profileService = profileService;
+            _addressService = addressService;
+            _familyService = familyService;
+            _educationService = educationService;
+            _occupationService = occupationService;
+            _achivementService = achivementService;
         }
+
+        #region Private Methods
+
+        private async Task UpdateAddresses(int profileId, List<AddressModel> requestAddresses)
+        {
+            if (requestAddresses != null)
+            {
+                var addresses = await _addressService.GetByProfileIdAsync(profileId);
+                var existingIds = addresses.Select(x => x.Id);
+                var requestIds = requestAddresses.Select(x => x.Id);
+                var updateIds = requestIds.Intersect(existingIds);
+                var deleteIds = existingIds.Except(requestIds);
+                var addedIds = requestIds.Except(existingIds);
+
+                var deleteAddresses = addresses.Where(x => deleteIds.Contains(x.Id));
+                foreach (var address in deleteAddresses)
+                {
+                    await _addressService.DeleteAsync(address);
+                }
+
+                var updateAddresses = requestAddresses.Where(x => updateIds.Contains(x.Id));
+                foreach (var addressRequest in updateAddresses)
+                {
+                    var address = addresses.FirstOrDefault(x => x.Id == addressRequest.Id);
+                    if (address == null)
+                        throw new NopException("address not found");
+                    addressRequest.ProfileId = profileId;
+                    address = addressRequest.ToEntity(address);
+                    await _addressService.UpdateAsync(address);
+                }
+
+                var addAddresses = requestAddresses.Where(x => addedIds.Contains(x.Id));
+                foreach (var addressRequest in addAddresses)
+                {
+                    addressRequest.ProfileId = profileId;
+                    var address = addressRequest.ToEntity<Address>();
+                    await _addressService.InsertAsync(address);
+                }
+            }
+        }
+
+        #endregion
 
         [HttpPost]
         public virtual async Task<IActionResult> Get(int id)
@@ -95,5 +160,24 @@ namespace Matrimony.API.Controllers
         }
 
 
+        [HttpPost]
+        public virtual async Task<IActionResult> Edit(ProfileEditRequestModel model)
+        {
+            int profileId = model.Id;
+
+            var profile = await _profileService.GetByIdAsync(model.Id);
+            if (profile == null)
+                throw new NopException("profile not found");
+
+            string email = profile.Email;
+            profile = model.Profile.ToEntity(profile);
+            profile.Email = email;
+            await _profileService.UpdateAsync(profile);
+
+            await UpdateAddresses(profileId, model.Addresses);
+
+            return Success(model);
+
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace Matrimony.API.Factories.Profiles
                 throw new NopException("profile not found");
 
             ProfileEditRequestModel model = new ProfileEditRequestModel();
+            model.Id = profile.Id;
             model.Profile = profile.ToModel<ProfileModel>();
 
             var addresses = await _addressService.GetByProfileIdAsync(id);
