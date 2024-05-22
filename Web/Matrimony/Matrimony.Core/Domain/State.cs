@@ -14,4 +14,6 @@ public partial class State : BaseEntity
     public virtual ICollection<City> Cities { get; set; } = new List<City>();
 
     public virtual Country? Country { get; set; }
+
+    public virtual ICollection<Address> Addresses { get; set; } = new List<Address>();
 }

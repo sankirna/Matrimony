@@ -15,11 +15,11 @@ public partial class Address : BaseEntity
 
     public string? Landmark { get; set; }
 
-    public string? CityId { get; set; }
+    public int? CityId { get; set; }
 
-    public string? StateId { get; set; }
+    public int? StateId { get; set; }
 
-    public string? CountryId { get; set; }
+    public int? CountryId { get; set; }
 
     public string? PinNo { get; set; }
 
@@ -37,9 +37,15 @@ public partial class Address : BaseEntity
 
     public bool? IsDeleted { get; set; }
 
+    public virtual City? City { get; set; }
+
+    public virtual Country? Country { get; set; }
+
     public virtual AspNetUser? CreatedByNavigation { get; set; }
 
     public virtual Profile Profile { get; set; } = null!;
+
+    public virtual State? State { get; set; }
 
     public virtual AspNetUser? UpdatedByNavigation { get; set; }
 }

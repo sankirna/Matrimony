@@ -35,6 +35,9 @@ public partial class NopStartup : INopStartup
         //add and configure web api feature
         services.AddAppWebAPI();
 
+        //work context
+        services.AddScoped<IWorkContext, WebAPIWorkContext>();
+
         services.AddScoped<IAuthenticateService, AspNetCoreIdentityAuthenticate>();
 
         //file provider
@@ -103,9 +106,8 @@ public partial class NopStartup : INopStartup
         //    services.AddScoped<ICacheKeyService, MemoryCacheManager>();
         //}
 
-        //work context
-        services.AddScoped<IWorkContext, WebAPIWorkContext>();
-        services.AddTransient<ITestService, TestService>();
+    
+
         //store context
         //services.AddScoped<IStoreContext, WebStoreContext>();
 

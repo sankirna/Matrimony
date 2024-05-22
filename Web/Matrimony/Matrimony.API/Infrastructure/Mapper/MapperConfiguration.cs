@@ -20,7 +20,6 @@ namespace Matrimony.API.Infrastructure.Mapper
         public MapperConfiguration()
         {
             CreateCommonMap();
-            CreateTestMaps();
             CreateCountryMap();
             CreateProfileMap();
             CreateAchivementMap();
@@ -33,17 +32,6 @@ namespace Matrimony.API.Infrastructure.Mapper
         public virtual void CreateCommonMap()
         {
             CreateMap<EnumClass, EnumModel>();
-        }
-        /// <summary>
-        /// Create warehouse maps 
-        /// </summary>
-        protected virtual void CreateTestMaps()
-        {
-            CreateMap<Test, TestRequestModel>();
-            CreateMap<TestRequestModel, Test>();
-
-            CreateMap<Test, TestResponseModel>();
-            CreateMap<TestResponseModel, Test>();
         }
 
         public virtual void CreateCountryMap()
