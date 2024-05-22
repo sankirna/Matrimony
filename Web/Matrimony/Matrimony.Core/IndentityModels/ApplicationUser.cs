@@ -10,6 +10,6 @@ namespace Matrimony.Core.IndentityModels
 {
     public class ApplicationUser : IdentityUser<int>
     {
-        public Role Role { get; set; }
+        public RoleEnum Role { get; set; }
     }
 }

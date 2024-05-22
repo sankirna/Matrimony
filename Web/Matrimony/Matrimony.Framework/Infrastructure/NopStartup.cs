@@ -5,6 +5,7 @@ using Matrimony.Service;
 using Matrimony.Service.Account;
 using Matrimony.Service.Achivements;
 using Matrimony.Service.Addresss;
+using Matrimony.Service.Common;
 using Matrimony.Service.Countries;
 using Matrimony.Service.Educations;
 using Matrimony.Service.Families;
@@ -40,6 +41,7 @@ public partial class NopStartup : INopStartup
         services.AddScoped<INopFileProvider, NopFileProvider>();
 
         //Servies
+        services.AddScoped<IPrimaryService, PrimaryService>();
         services.AddScoped<ICountryService, CountryService>();
         services.AddScoped<IAddressService, AddressService>();
         services.AddScoped<IFamilyService, FamilyService>();

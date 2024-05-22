@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Matrimony.Core
 {
-    public class EnumClass
+    public class EnumClass: BaseEntity
     {
         public string Key { get; set; }
         public int Value { get; set; }

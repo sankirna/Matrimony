@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Matrimony.Core.Enums
 {
-    public enum Role
+    public enum RoleEnum
     {
-        Admin,
-        User
+        Admin = 1,
+        User = 2
     }
 }

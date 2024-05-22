@@ -13,7 +13,7 @@ namespace Matrimony.API.Models.Profiles
 
         public string? LastName { get; set; }
 
-        public SexTypeEnum Sex { get; set; }
+        public GenderTypeEnum Sex { get; set; }
 
         public string SexValue { get { return Sex.ToString(); } }
 

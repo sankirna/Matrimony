@@ -7,7 +7,9 @@ using Matrimony.API.Models.Educations;
 using Matrimony.API.Models.Families;
 using Matrimony.API.Models.Occupations;
 using Matrimony.API.Models.Profiles;
+using Matrimony.Core;
 using Matrimony.Core.Domain;
+using Matrimony.Framework.Models;
 using Nop.Core.Infrastructure.Mapper;
 using Profile = AutoMapper.Profile;
 
@@ -17,6 +19,7 @@ namespace Matrimony.API.Infrastructure.Mapper
     {
         public MapperConfiguration()
         {
+            CreateCommonMap();
             CreateTestMaps();
             CreateCountryMap();
             CreateProfileMap();
@@ -27,6 +30,10 @@ namespace Matrimony.API.Infrastructure.Mapper
             CreateOccupationMap();
         }
 
+        public virtual void CreateCommonMap()
+        {
+            CreateMap<EnumClass, EnumModel>();
+        }
         /// <summary>
         /// Create warehouse maps 
         /// </summary>

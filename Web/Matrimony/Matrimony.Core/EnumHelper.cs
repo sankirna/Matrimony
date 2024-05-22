@@ -24,7 +24,7 @@ namespace Matrimony.Core
             return value.ToString();
         }
 
-        private static IEnumerable<EnumClass> ListFor<T>(T t) where T : struct
+        public static IEnumerable<EnumClass> ListFor<T>() where T : struct
         {
             return Enum.GetValues(typeof(T))
                        .Cast<Enum>()

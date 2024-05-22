@@ -14,6 +14,6 @@ namespace Matrimony.API.Models
         [Required]
         public string? Password { get; set; }
 
-        public Role Role { get; set; }
+        public RoleEnum Role { get; set; }
     }
 }

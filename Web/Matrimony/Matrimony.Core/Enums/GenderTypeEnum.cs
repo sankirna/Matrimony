@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Matrimony.Core.Enums
 {
-    public enum SexTypeEnum : int
+    public enum GenderTypeEnum : int
     {
         Male = 1,
         Female = 2
