@@ -32,6 +32,16 @@ const routes: Routes = [
         },
         canActivate: [AuthGuard],
       }, 
+      {
+        path: 'profile',
+        component: MainComponent,
+        loadChildren: () =>
+          import('./components/Profile/profile.module').then((m) => m.ProfileModule),
+        data: {
+          title: 'Profile ',
+        },
+        canActivate: [AuthGuard],
+      } 
     ]
     }
 ];

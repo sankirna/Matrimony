@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { LoaderService } from '../../services/LoaderService';
 import { delay } from 'rxjs';
 import { TestService } from '../../services/TestService';
+import { AppCommonModule } from '../../components/Common/common.module';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrl: './main.component.css'
+  styleUrl: './main.component.css',
 })
 export class MainComponent implements OnInit {
   isLoading: boolean = false;
