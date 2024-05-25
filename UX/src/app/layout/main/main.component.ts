@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoaderService } from '../../services/LoaderService';
 import { delay } from 'rxjs';
 import { TestService } from '../../services/TestService';
 import { AppCommonModule } from '../../components/Common/common.module';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-main',
@@ -10,6 +11,7 @@ import { AppCommonModule } from '../../components/Common/common.module';
   styleUrl: './main.component.css',
 })
 export class MainComponent implements OnInit {
+  @ViewChild('drawer') public drawer:  MatSidenav | undefined;
   isLoading: boolean = false;
 
   constructor(
@@ -19,6 +21,12 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.listenToLoading();
+  }
+
+  drawerClick() {
+    if(this.drawer!=null){
+      this.drawer.toggle();
+    }
   }
 
   listenToLoading(): void {

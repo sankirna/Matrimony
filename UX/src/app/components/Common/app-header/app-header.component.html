@@ -1,3 +1,4 @@
+<!-- <div fxLayout="row" fxLayoutAlign="space-between">
 <mat-toolbar color="primary">
     <div fxHide.gt-xs>
         <button mat-icon-button >
@@ -6,8 +7,6 @@
     </div>
     <div>
         Mantrimony
-        <!-- <button mat-button routerLink="/user">Users</button> -->
-        <!-- <a routerLink="/home">Owner-Account</a> -->
     </div>
     <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
         <button mat-button [matMenuTriggerFor]="menu">User Name</button>
@@ -15,16 +14,26 @@
             <button mat-menu-item  routerLink="/owner">Owner Actions</button>
             <button mat-menu-item  (click)="logout()">Logout</button>
             </mat-menu>
-
-        <!-- <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-            <li>
-                <button mat-button routerLink="/owner">Owner Actions</button>
-                 
-            </li>
-            <li>
-                <button mat-button routerLink="/account">Owner Actions</button>
-                 
-            </li>
-        </ul> -->
     </div>
+</mat-toolbar>
+</div>
+ -->
+
+<div fxLayout >
+   <mat-toolbar color="primary">
+        <div fxLayoutAlign="start center" fxFlex="80%">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawerClick()" *ngIf="true">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <span>Mantrimony</span>
+        </div>
+
+        <div fxLayoutAlign="end">
+            <button mat-button [matMenuTriggerFor]="menu">User Name</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/owner">Owner Actions</button>
+                <button mat-menu-item (click)="logout()">Logout</button>
+            </mat-menu>
+        </div>
   </mat-toolbar>
+</div>

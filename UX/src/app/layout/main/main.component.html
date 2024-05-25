@@ -1,4 +1,23 @@
+<!-- 
 <app-header></app-header>
+<mat-divider></mat-divider>
 <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <button mat-stroked-button (click)="customError()">check Custom Error</button>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
+
+<div fxFlex="auto" >  
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="'dialog'" [mode]="'over'">
+    <mat-toolbar>Menu</mat-toolbar>
+    <app-navigation-list></app-navigation-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (drawerClickCallBack)="drawerClick()"></app-header>
+    <div>
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+      <button mat-stroked-button (click)="customError()">check Custom Error</button>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</div>

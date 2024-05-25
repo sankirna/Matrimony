@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from '../../../services/authService';
 
@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/authService';
 })
 export class AppHeaderComponent {
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
+  @Output() drawerClickCallBack: EventEmitter<boolean> = new EventEmitter();
   isExpanded = true;
   showSubmenu: boolean = false;
   isShowing = false;
@@ -31,5 +32,10 @@ export class AppHeaderComponent {
     this.authService.clearToken();
     this.authService.goToLogin();
   }
+
+  drawerClick() {
+    this.drawerClickCallBack.emit();
+  }
+
 }
 
