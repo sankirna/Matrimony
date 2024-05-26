@@ -21,14 +21,13 @@
 
 <div fxLayout >
    <mat-toolbar color="primary">
-        <div fxLayoutAlign="start center" fxFlex="80%">
+        <div fxLayoutAlign="start center"  fxFlex="80">
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawerClick()" *ngIf="true">
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
             <span>Mantrimony</span>
         </div>
-
-        <div fxLayoutAlign="end">
+        <div fxLayoutAlign="end"  fxFlex="20">
             <button mat-button [matMenuTriggerFor]="menu">User Name</button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item routerLink="/owner">Owner Actions</button>

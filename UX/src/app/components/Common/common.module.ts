@@ -5,6 +5,7 @@ import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.co
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { CustomConfirmDialogComponent } from './custom-confirm-dialog/custom-confirm-dialog.component';
 import { AppNavigationListComponent } from './app-navigation-list/app-navigation-list.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -12,12 +13,14 @@ import { AppNavigationListComponent } from './app-navigation-list/app-navigation
   imports: [
     CommonModule,
     AngularMaterialModule,
+    FlexLayoutModule
   ],
   exports:[
     AppHeaderComponent, 
     CustomConfirmDialogComponent, 
     CustomPaginatorComponent,
-    AppNavigationListComponent
+    AppNavigationListComponent,
+    FlexLayoutModule
   ]
 })
 export class AppCommonModule { }
