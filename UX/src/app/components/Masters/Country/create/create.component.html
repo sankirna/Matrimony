@@ -1,18 +1,25 @@
+<h2>Country {{isEdit?'Edit':'Create'}}</h2>
 
+<mat-card fxLayout="column">
+  <mat-card-header>
+    <mat-card-title></mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="end end">
+        <button mat-raised-button color="primary" (click)="gotoList()">List</button>
+      </div>
+      <div fxLayout="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="20px">
+        <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
+        <button mat-raised-button color="primary">{{isEdit?'Update':'Create'}}</button>
+      </div>
+    </mat-card-content>
+  </form>
 
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Country {{isEdit?'Edit':'Create'}}</mat-card-title>
-        <button mat-raised-button color="primary" (click)="gotoList()" >List</button>
-      </mat-card-header>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <mat-card-content>
-          <mat-form-field >
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="Name" formControlName="name">
-          </mat-form-field>
-        </mat-card-content>
-        <button mat-raised-button color="primary" >{{isEdit?'Update':'Create'}}</button>
-      </form>
-    </mat-card>
-  
+</mat-card>

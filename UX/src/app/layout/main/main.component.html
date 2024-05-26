@@ -13,7 +13,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <app-header (drawerClickCallBack)="drawerClick()"></app-header>
-    <div style="margin-left: 10px; margin-top: 10px;">
+    <div style="margin-left: 10px;margin-right: 10px; margin-top: 10px;">
       <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
       <!-- <button mat-stroked-button (click)="customError()">check Custom Error</button> -->
       <router-outlet></router-outlet>
