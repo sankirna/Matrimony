@@ -7,7 +7,6 @@ import { PagedListModel } from '../../../Common/Models/BasePagedListModel';
   providedIn: 'root'
 })
 export class CountryService {
-  name= 'test';
   constructor(private http: HttpClient
 ) { }
 

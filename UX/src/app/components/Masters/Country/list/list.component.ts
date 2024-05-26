@@ -30,7 +30,6 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.countryService.name = 'List updated';
     this.search();
   }
 
@@ -61,9 +60,7 @@ export class ListComponent implements OnInit {
 
   delete(row: CountryModel){
     const message = `Are you sure you want to do delete?`;
-
     const dialogData = new ConfirmDialogModel("Confirm Action", message);
-
     const dialogRef = this.dialog.open(CustomConfirmDialogComponent, {
       maxWidth: "400px",
       data: dialogData

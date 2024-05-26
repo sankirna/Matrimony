@@ -13,6 +13,5 @@ export class EditComponent  implements OnInit{
   constructor( private countryService: CountryService ) {
   }
   ngOnInit() {
-    this.name=this.countryService.name;
   }
 }
