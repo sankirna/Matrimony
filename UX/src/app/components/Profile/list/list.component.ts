@@ -87,7 +87,8 @@ export class ProfileListComponent implements OnInit {
     this.searchModel.length = $event.length;
     this.search();
   }
+  
   addNew(){
-    this.router.navigateByUrl('/Profile/create');
+    this.router.navigateByUrl('/profile/create');
   }
 }

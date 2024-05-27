@@ -4,6 +4,7 @@ import { delay } from 'rxjs';
 import { TestService } from '../../services/TestService';
 import { AppCommonModule } from '../../components/Common/common.module';
 import { MatSidenav } from '@angular/material/sidenav';
+import { CommonService } from '../../services/commonService';
 
 @Component({
   selector: 'app-main',
@@ -16,11 +17,25 @@ export class MainComponent implements OnInit {
 
   constructor(
     private loaderService: LoaderService,
-    private testService: TestService
+    private testService: TestService,
+    private commonService: CommonService
   ){ }
 
   ngOnInit() {
     this.listenToLoading();
+    this.getPrimaryData()
+  }
+
+  getPrimaryData(){
+    this.commonService.getPrimaryData().subscribe(
+      (response) => {
+        this.commonService.primaryData = response;
+        console.log(this.commonService.primaryData);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   drawerClick() {

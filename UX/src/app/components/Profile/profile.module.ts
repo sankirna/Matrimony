@@ -7,6 +7,7 @@ import { AngularMaterialModule } from '../../angular-material.module';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppCommonModule } from '../Common/common.module';
+import { ProfileService } from './profileService';
 
 
 @NgModule({
@@ -19,6 +20,9 @@ import { AppCommonModule } from '../Common/common.module';
     FormsModule,
     ReactiveFormsModule,
     AppCommonModule,
+  ],
+  providers: [
+    ProfileService
   ]
 })
 export class ProfileModule { }
