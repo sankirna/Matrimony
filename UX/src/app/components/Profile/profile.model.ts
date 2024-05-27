@@ -22,6 +22,7 @@ export class ProfileModel {
 }
 
 export class AddressModel {
+    randomId: string| undefined="";
     id: number | undefined = 0;
     profileId: number | undefined = 0;
     address1: string | undefined = "";

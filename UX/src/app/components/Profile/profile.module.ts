@@ -10,7 +10,7 @@ import { AppCommonModule } from '../Common/common.module';
 import { ProfileService } from './profileService';
 import { ProfileEditComponent } from './edit/edit.component';
 import { ProfileInformationComponent } from './Common/information/information.component';
-
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [ ProfileListComponent
@@ -26,6 +26,7 @@ import { ProfileInformationComponent } from './Common/information/information.co
     FormsModule,
     ReactiveFormsModule,
     AppCommonModule,
+    MatStepperModule
   ],
   providers: [
     ProfileService

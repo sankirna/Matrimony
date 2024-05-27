@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProfileEditRequestModel, ProfileModel, ProfileSearchModel } from './profile.model';
+import { AddressModel, ProfileEditRequestModel, ProfileModel, ProfileSearchModel } from './profile.model';
 import { PagedListModel } from '../../Common/Models/BasePagedListModel';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -40,7 +40,7 @@ export class ProfileService {
     return this.http.post<number>(api, null, { params: { id: id } });
   }
 
-  getProfileInformationForm(model: ProfileModel) : FormGroup{
+  getProfileInformationForm(model: ProfileModel): FormGroup {
     let form: FormGroup = this.fb.group({
       id: [model.id],
       firstName: [model.firstName, Validators.required],
@@ -53,6 +53,32 @@ export class ProfileService {
       alternatePhoneNo: [model.alternatePhoneNo],
       langauge: [model.langauge, Validators.required],
       otherInformation: [model.otherInformation],
+    });
+    return form;
+  }
+
+  newGuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0,
+        v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  getProfileAddressForm(model: AddressModel): FormGroup {
+    let form: FormGroup = this.fb.group({
+      randomId: [this.newGuid()],
+      id: [model.id],
+      profileId: [model.profileId, Validators.required],
+      address1: [model.address1, Validators.required],
+      address2: [model.address2],
+      landmark: [model.landmark],
+      cityId: [model.cityId, Validators.required],
+      stateId: [model.stateId, Validators.required],
+      countryId: [model.countryId, Validators.required],
+      pinNo: [model.pinNo],
+      typeId: [model.typeId],
+      displayOrder: [model.displayOrder],
     });
     return form;
   }
