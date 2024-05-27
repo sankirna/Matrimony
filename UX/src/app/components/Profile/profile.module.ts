@@ -8,10 +8,16 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppCommonModule } from '../Common/common.module';
 import { ProfileService } from './profileService';
+import { ProfileEditComponent } from './edit/edit.component';
+import { ProfileInformationComponent } from './Common/information/information.component';
 
 
 @NgModule({
-  declarations: [ ProfileListComponent, ProfileCreateComponent],
+  declarations: [ ProfileListComponent
+    , ProfileCreateComponent
+    , ProfileEditComponent
+    , ProfileInformationComponent
+  ],
   imports: [
     CommonModule,
     ProfileRoutingModule,

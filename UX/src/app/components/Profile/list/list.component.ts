@@ -53,7 +53,7 @@ export class ProfileListComponent implements OnInit {
   }
 
   edit(row: ProfileModel){
-    this.router.navigateByUrl('/Profile/edit/'+ row.id);
+    this.router.navigateByUrl('/profile/edit/'+ row.id);
     //this.router.navigate(['/Profile/Edit'], {queryParams:{id: row.id}, relativeTo: this.route});
   }
 

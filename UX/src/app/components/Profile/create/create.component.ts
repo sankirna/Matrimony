@@ -22,7 +22,6 @@ export class ProfileCreateComponent implements OnInit  {
     , private commonService: CommonService
     , private fb: FormBuilder) {
     this.buildForm();
-    
   }
 
   ngOnInit() {
@@ -65,6 +64,9 @@ export class ProfileCreateComponent implements OnInit  {
   //   this.form.controls['sex'].setValue( $event.value);
   // }
 
+  clear(){
+    this.buildForm();
+  }
 
   onSubmit() {
     if (this.isValid()) {
@@ -84,6 +86,6 @@ export class ProfileCreateComponent implements OnInit  {
   }
 
   gotoList(){
-    this.buildForm();
+    this.router.navigateByUrl('/profile/list');
   }
 }
