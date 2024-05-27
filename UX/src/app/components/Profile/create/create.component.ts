@@ -41,28 +41,14 @@ export class ProfileCreateComponent implements OnInit  {
 
   buildForm() {
     this.model= new ProfileModel();
-    this.form = this.fb.group({
-      id: [this.model.id],
-      firstName: [this.model.firstName, Validators.required],
-      middleName: [this.model.middleName],
-      lastName: [this.model.lastName],
-      sex: [this.model.sex, Validators.required],
-      email: [this.model.email, Validators.required],
-      alternateEmail: [this.model.alternateEmail],
-      phoneNo: [this.model.phoneNo, Validators.required],
-      alternatePhoneNo: [this.model.alternatePhoneNo],
-      langauge: [this.model.langauge, Validators.required],
-      otherInformation: [this.model.otherInformation],
-    });
+    this.form = this.profileService.getProfileInformationForm(this.model);
   }
+
+  
 
   isValid(): boolean {
     return this.form.valid;
   }
-
-  // onChange($event:any) {
-  //   this.form.controls['sex'].setValue( $event.value);
-  // }
 
   clear(){
     this.buildForm();

@@ -13,11 +13,11 @@ namespace Matrimony.API.Models.Addresss
 
         public string? Landmark { get; set; }
 
-        public string? CityId { get; set; }
+        public int? CityId { get; set; }
 
-        public string? StateId { get; set; }
+        public int? StateId { get; set; }
 
-        public string? CountryId { get; set; }
+        public int? CountryId { get; set; }
 
         public string? PinNo { get; set; }
 

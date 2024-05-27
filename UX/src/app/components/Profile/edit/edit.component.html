@@ -1,3 +1,17 @@
 <mat-toolbar>
     <span>Profile Edit</span>
 </mat-toolbar>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <ng-container *ngIf="form" [formGroup]="form">
+            <app-profile-information *ngIf="getProfileForm()" [genderTypes]="genderTypes" [form]="getProfileForm()"> </app-profile-information>
+            <div fxLayout="row"  fxLayoutAlign="end end" fxLayoutGap="20px">
+                <button mat-raised-button color="basic" (click)="clear()">Reset</button>
+                <button mat-raised-button color="primary" (click)="onSubmit()">Create</button>
+            </div>
+        </ng-container>
+    </mat-card-content>
+</mat-card>

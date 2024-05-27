@@ -7,6 +7,7 @@ export class ProfileSearchModel extends BaseSearchModel {
 
 export class ProfileModel {
     id: number | undefined = 0;
+    userId: number | undefined = 0;
     firstName: string | undefined = "";
     middleName: string | undefined = "";
     lastName: string | undefined = "";
@@ -18,5 +19,71 @@ export class ProfileModel {
     alternatePhoneNo: string | undefined = "";
     langauge: string | undefined = "";
     otherInformation: string | undefined = "";
+}
 
+export class AddressModel {
+    id: number | undefined = 0;
+    profileId: number | undefined = 0;
+    address1: string | undefined = "";
+    address2: string | undefined = "";
+    landmark: string | undefined = "";
+    cityId: number | undefined = 0;
+    stateId: number | undefined = 0;
+    countryId: number | undefined = 0;
+    pinNo: string | undefined = "";
+    typeId: string | undefined = "";
+    displayOrder: number | undefined = 0;
+}
+
+export class FamilyModel {
+    id: number | undefined = 0;
+    profileId: number | undefined = 0;
+    name: string | undefined = "";
+    relationTypeId: number | undefined = 0;
+    email: string | undefined = "";
+    phoneNo: string | undefined = "";
+    description: string | undefined = "";
+}
+
+export class EducationModel {
+    id: number | undefined = 0;
+    profileId: number | undefined = 0;
+    name: string | undefined = "";
+    startYear: number | undefined = 0;
+    startMonth: number | undefined = 0;
+    endYear: number | undefined = 0;
+    endMonth: number | undefined = 0;
+    isPresent: boolean | undefined = false;
+    grade: string | undefined = "";
+    percentage: number | undefined = 0;
+    degree: string | undefined = "";
+    description: string | undefined = "";
+}
+
+export class OccupationModel {
+    id: number | undefined = 0;
+    profileId: number | undefined = 0;
+    name: string | undefined = "";
+    startDate: string | undefined = "";
+    endDate: string | undefined = "";
+    isPresent: boolean | undefined = false;
+    type: number | undefined = 0;
+    description: string | undefined = "";
+}
+
+export class AchivementModel {
+    id: number | undefined = 0;
+    profileId: number | undefined = 0;
+    name: string | undefined = "";
+    year: number | undefined = 0;
+    description: string | undefined = "";
+}
+
+export interface  ProfileEditRequestModel {
+    profile: ProfileModel;
+    addresses: AddressModel[] ;
+    families: FamilyModel[] ;
+    educations: EducationModel[] ;
+    occupations: OccupationModel[] ;
+    achivements: AchivementModel[];
 }
