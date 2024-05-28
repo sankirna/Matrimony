@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AddressModel, ProfileEditRequestModel, ProfileModel, ProfileSearchModel } from './profile.model';
 import { PagedListModel } from '../../Common/Models/BasePagedListModel';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonService } from '../../services/commonService';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class ProfileService {
 
   constructor(private http: HttpClient
     , private fb: FormBuilder
+    , private commonService: CommonService
   ) {
 
   }
@@ -57,17 +59,11 @@ export class ProfileService {
     return form;
   }
 
-  newGuid() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      var r = Math.random() * 16 | 0,
-        v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
-  }
+  
 
   getProfileAddressForm(model: AddressModel): FormGroup {
     let form: FormGroup = this.fb.group({
-      randomId: [this.newGuid()],
+      randomId: [this.commonService.newGuid()],
       id: [model.id],
       profileId: [model.profileId, Validators.required],
       address1: [model.address1, Validators.required],

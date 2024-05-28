@@ -64,8 +64,6 @@ export class ProfileCreateComponent implements OnInit  {
             console.error(error);
           }
         );
-      
-      
     }
   }
 

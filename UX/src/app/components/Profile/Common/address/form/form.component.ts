@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class ProfileAddressFormComponent {
   @Input() form: FormGroup = new FormGroup({});
-  @Input() isAdd: boolean = false;
+  @Input() isEdit: boolean = false;
   @Output() cancelEvent: EventEmitter<boolean> = new EventEmitter();
   @Output() submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
@@ -18,7 +18,7 @@ export class ProfileAddressFormComponent {
   }
 
   isValid(): boolean {
-    return this.form.valid;
+    return  true || this.form.valid;
   }
 
   onSubmit() {

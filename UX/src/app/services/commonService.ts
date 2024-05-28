@@ -9,15 +9,23 @@ import { PrimaryDataModel } from '../models/common.model';
 })
 export class CommonService {
 
-    primaryData: PrimaryDataModel| undefined;
+    primaryData: PrimaryDataModel | undefined;
 
     constructor(private http: HttpClient
-              , private router: Router
+        , private router: Router
     ) { }
 
     getPrimaryData(): Observable<PrimaryDataModel> {
-        const api='Common/GetPrimaryData';
-        return this.http.post<PrimaryDataModel>(api,null);
+        const api = 'Common/GetPrimaryData';
+        return this.http.post<PrimaryDataModel>(api, null);
     }
-    
+
+    newGuid(): string {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
 }
