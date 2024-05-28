@@ -23,7 +23,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.listenToLoading();
-    this.getPrimaryData()
+    this.getPrimaryData();
   }
 
   getPrimaryData(){

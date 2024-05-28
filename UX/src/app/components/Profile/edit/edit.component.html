@@ -9,11 +9,10 @@
 
         <div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="20px">
             <button mat-raised-button color="primary" (click)="gotoList()">List</button>
-
         </div>
         <ng-container *ngIf="form" [formGroup]="form">
             <mat-stepper [linear]="true" #stepper>
-                <mat-step fxLayoutGap="20px">
+                <mat-step fxLayoutGap="20px" fxLayoutGap="20px">
                     <form>
                         <ng-template matStepLabel>Information</ng-template>
                         <app-profile-information *ngIf="profileForm" [genderTypes]="genderTypes"
@@ -24,15 +23,10 @@
                     </form>
                 </mat-step>
                 <mat-step  label="Address">
-                    <div fxLayout="row" fxLayoutGap="20px">
+                    <div fxLayout="row" fxLayoutGap="20px"  fxLayoutGap="10px grid">
                     <form>
-                        <ng-container *ngFor="let addressForm of addressesForm.controls; let i = index">
-                           <div>
-                            {{addressForm.getRawValue()|json}}
-                           </div>
-                        </ng-container>
-                      <div>Address</div>
-                        <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="20px"> 
+                        <app-profile-addresse-list [forms]="addressesForm"></app-profile-addresse-list>
+                        <div  fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="20px"> 
                             <button mat-button mat-raised-button color="primary" matStepperPrevious>Back</button>
                             <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
                         </div>
@@ -48,7 +42,7 @@
                     </div>
                 </mat-step>
             </mat-stepper>
-            <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="20px">
+            <div fxLayout="row" flex="100" fxLayoutAlign="end end" fxLayoutGap="20px">
                 <button mat-raised-button color="basic" (click)="clear()">Reset</button>
                 <button mat-raised-button color="primary" (click)="onSubmit()">Create</button>
             </div>

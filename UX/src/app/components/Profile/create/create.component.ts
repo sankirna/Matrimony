@@ -44,8 +44,6 @@ export class ProfileCreateComponent implements OnInit  {
     this.form = this.profileService.getProfileInformationForm(this.model);
   }
 
-  
-
   isValid(): boolean {
     return this.form.valid;
   }

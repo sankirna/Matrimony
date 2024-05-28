@@ -11,12 +11,16 @@ import { ProfileService } from './profileService';
 import { ProfileEditComponent } from './edit/edit.component';
 import { ProfileInformationComponent } from './Common/information/information.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { ProfileAddressListComponent } from './Common/address/list/list.component';
+import { ProfileAddressFormComponent } from './Common/address/form/form.component';
 
 @NgModule({
   declarations: [ ProfileListComponent
     , ProfileCreateComponent
     , ProfileEditComponent
     , ProfileInformationComponent
+    , ProfileAddressListComponent
+    , ProfileAddressFormComponent
   ],
   imports: [
     CommonModule,

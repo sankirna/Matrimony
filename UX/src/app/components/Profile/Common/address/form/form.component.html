@@ -1,0 +1,20 @@
+<form [formGroup]="form">
+    <div fxLayout="row" fxLayoutGap="20px">
+        <div fxLayout="column" fxFlex="50">
+            <mat-form-field appearance="outline">
+                <mat-label>Address1</mat-label>
+                <input matInput placeholder="Address1" formControlName="address1">
+            </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="50">
+            <mat-form-field appearance="outline">
+                <mat-label>Address2</mat-label>
+                <input matInput placeholder="Address2" formControlName="address2">
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="20px">
+        <button mat-raised-button color="basic" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="onSubmit()"> {{isAdd?"Create":"Edit"}}</button>
+    </div>
+</form>
