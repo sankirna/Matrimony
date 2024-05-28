@@ -9,7 +9,7 @@
 
     <a class="navbar-brand" [routerLink]="['/']" matTooltip="Home">
       <h1>
-        angular-material-template
+        Matrimonial
       </h1>
     </a>
 
@@ -67,7 +67,12 @@
           </mat-icon>
           <p mat-line> Dashboard </p>
         </a>
-
+        <a mat-list-item [routerLink]="['/countries/list']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            contry
+          </mat-icon>
+          <p mat-line> Countries </p>
+        </a>
         <a mat-list-item [routerLink]="['/customers']" routerLinkActive="active">
           <mat-icon mat-list-icon>
             business

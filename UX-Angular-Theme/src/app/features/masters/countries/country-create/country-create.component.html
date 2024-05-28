@@ -1,0 +1,26 @@
+<mat-toolbar>
+  <span>Country {{isEdit?'Edit':'Create'}}</span>
+</mat-toolbar>
+<mat-card fxLayout="column">
+  <mat-card-header>
+    <mat-card-title></mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="end end">
+        <button mat-raised-button color="primary" (click)="gotoList()">List</button>
+      </div>
+      <div fxLayout="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="20px">
+        <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
+        <button mat-raised-button color="primary">{{isEdit?'Update':'Create'}}</button>
+      </div>
+    </mat-card-content>
+  </form>
+
+</mat-card>

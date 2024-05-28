@@ -11,7 +11,7 @@ import { GlobalErrorHandler } from './services/globar-error.handler';
 import { AdminGuard } from './guards/admin.guard';
 import { PaginatorInterceptor } from './interceptors/paginator.interceptor';
 import { ResponseInterceptor } from './interceptors/response.interceptor';
-import { RequestInterceptor } from './interceptors/Request.interceptor';
+import { RequestInterceptor } from './interceptors/request.interceptor';
 
 @NgModule({
   imports: [

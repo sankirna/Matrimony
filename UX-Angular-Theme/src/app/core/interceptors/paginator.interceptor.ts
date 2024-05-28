@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, tap, map } from "rxjs";
-import { PagedListModel, PaggerModel } from "src/app/models/BasePagedListModel";
+import { PagedListModel, PaggerModel } from "src/app/models/base-paged-list.model";
 
 @Injectable()
 export class PaginatorInterceptor implements HttpInterceptor {
