@@ -32,7 +32,7 @@ namespace Matrimony.API.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var user = await _authenticateService.FindByNameAsync(model.Username);
+            var user = await _authenticateService.FindByNameAsync(model.Email);
             if (user != null && await _authenticateService.CheckPasswordAsync(user, model.Password))
             {
                 var userRoles = await _authenticateService.GetRolesAsync(user);

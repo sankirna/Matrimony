@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.titleService.setTitle('angular-material-template - Login');
+        this.titleService.setTitle('Matrimony - Login');
         this.authenticationService.logout();
         this.createForm();
     }
@@ -39,12 +39,11 @@ export class LoginComponent implements OnInit {
 
     login() {
         const email = this.loginForm.get('email')?.value;
-        const password = this.loginForm.get('password')?.value;
         const rememberMe = this.loginForm.get('rememberMe')?.value;
 
         this.loading = true;
         this.authenticationService
-            .login(email.toLowerCase(), password)
+            .login(this.loginForm.getRawValue())
             .subscribe(
                 data => {
                     if (rememberMe) {
