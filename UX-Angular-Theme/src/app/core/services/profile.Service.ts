@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AddressModel, ProfileEditRequestModel, ProfileModel, ProfileSearchModel } from './profile.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommonService } from '../../services/commonService';
-import { PagedListModel } from 'src/app/models/BasePagedListModel';
+import { PagedListModel } from 'src/app/models/base-paged-list.model';
+import { CommonService } from './common.service';
+import { AddressModel, ProfileEditRequestModel, ProfileModel, ProfileSearchModel } from 'src/app/models/profile.model';
 
 @Injectable({
   providedIn: 'root'

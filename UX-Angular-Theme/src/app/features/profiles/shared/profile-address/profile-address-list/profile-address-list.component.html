@@ -1,0 +1,29 @@
+<div *ngIf="forms  && forms.controls" fxLayout="row" fxLayoutGap="20px">
+  <ng-container *ngFor="let form of forms.controls; let i = index">
+    <mat-card fxLayout="column" flex="30">
+      <mat-card-content>
+        <div> <span>Address1:</span> {{form.get("address1")?.getRawValue()}} </div>
+        <div> <span>Address2:</span> {{form.get("address2")?.getRawValue()}} </div>
+        <div> <span>Landmark:</span> {{form.get("landmark")?.getRawValue()}} </div>
+        <div> <span>Country:</span> {{form.get("countryId")?.getRawValue()}} </div>
+        <div> <span>state:</span> {{form.get("stateId")?.getRawValue()}} </div>
+        <div> <span>City:</span> {{form.get("cityId")?.getRawValue()}} </div>
+        <div> <span>Pin No:</span> {{form.get("pinNo")?.getRawValue()}} </div>
+        <div> <span>Type:</span> {{form.get("typeId")?.getRawValue()}} </div>
+        <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="20px">
+          <button mat-raised-button color="warn" (click)="delete(i,form)">Delete</button>
+          <button mat-raised-button color="primary" (click)="edit(i,form)">Edit</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</div>
+<div fxLayout="row" fxLayoutGap="20px">
+  <button mat-raised-button color="primary" (click)="add()">Add New</button>
+</div>
+<div fxLayout="row" fxLayoutGap="20px">
+  <app-profile-addresse-form *ngIf="isShowForm" [form]="requestForm" 
+    [isEdit]="isEdit"
+    (cancelEvent)="cancelEvent($event)"
+    (submitEvent)="submitEvent($event)"></app-profile-addresse-form>
+</div>
