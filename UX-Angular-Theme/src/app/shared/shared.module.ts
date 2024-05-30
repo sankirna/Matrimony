@@ -11,6 +11,7 @@ import { LocalDatePipe } from './pipes/local-date.pipe';
 import { YesNoPipe } from './pipes/yes-no.pipe';
 import { LayoutComponent } from './layout/layout.component';
 import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.component';
+import { ConfirmComponentDialogComponent } from './confirm-component-dialog/confirm-component-dialog.component';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.co
         LocalDatePipe,
         YesNoPipe,
         LayoutComponent,
-        CustomPaginatorComponent
+        CustomPaginatorComponent,
+        ConfirmComponentDialogComponent
     ],
     exports: [
         FormsModule,
@@ -39,7 +41,8 @@ import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.co
         ContentPlaceholderAnimationComponent,
         LocalDatePipe,
         YesNoPipe,
-        CustomPaginatorComponent
+        CustomPaginatorComponent,
+        ConfirmComponentDialogComponent
     ]
 })
 export class SharedModule { }

@@ -2,7 +2,8 @@
   <div fxFlex="95%">
     <mat-card>
       <mat-card-content>
-          <h2>Country {{isEdit?'Edit':'Create'}}</h2>
+        <h2>Country {{isEdit?'Edit':'Create'}}</h2>
+        <form [formGroup]="form">
           <div fxLayout="row" fxLayoutAlign="end end">
             <button mat-raised-button color="primary" (click)="gotoList()">List</button>
           </div>
@@ -14,8 +15,9 @@
           </div>
           <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
             <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
-            <button mat-raised-button color="primary">{{isEdit?'Update':'Create'}}</button>
+            <button mat-raised-button color="primary" (click)="onSubmit()">{{isEdit?'Update':'Create'}}</button>
           </div>
+        </form>
       </mat-card-content>
     </mat-card>
   </div>

@@ -25,15 +25,18 @@
     </div>
   </div>
 </div>
-<br/>
+<br />
 <div class="content">
-  <div fxLayout="grow" fxLayoutGap="10px" fxLayoutAlign="center center" >
+  <div fxLayout="grow" fxLayoutGap="10px" fxLayoutAlign="center center">
     <button mat-raised-button color="primary" (click)="add()">Add New</button>
   </div>
 </div>
 <div class="content">
   <div fxLayout="grow" fxLayoutGap="10px" fxLayoutAlign="center center">
-    <app-profile-addresse-form *ngIf="isShowForm" [form]="requestForm" [isEdit]="isEdit"
-      (cancelEvent)="cancelEvent($event)" (submitEvent)="submitEvent($event)"></app-profile-addresse-form>
+    <!-- Data Example -->
+    <ng-template #dataDialogTemplate>
+      <app-profile-addresse-form *ngIf="isShowForm" [form]="requestForm" [isEdit]="isEdit"
+        (cancelEvent)="cancelEvent($event)" (submitEvent)="submitEvent($event)"></app-profile-addresse-form>
+    </ng-template>
   </div>
 </div>
