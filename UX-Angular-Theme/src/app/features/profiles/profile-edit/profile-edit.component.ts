@@ -69,7 +69,8 @@ export class ProfileEditComponent implements OnInit {
   buildForm() {
     if (this.model) {
       let profileInformationForm: FormGroup = this.profileService.getProfileInformationForm(this.model.profile);
-      this.form = new FormGroup({
+      this.form = this.fb.group({
+        id: [this.model.id],
         profile: profileInformationForm,
         addresses: this.fb.array([])
       });
@@ -105,17 +106,18 @@ export class ProfileEditComponent implements OnInit {
   }
 
   onSubmit() {
+    debugger
     if (this.isValid()) {
-      // this.model = <ProfileModel>this.form.getRawValue();
+      this.model = <ProfileEditRequestModel>this.form.getRawValue();
 
-      //   this.profileService.create(this.model).subscribe(
-      //     (response) => {
-      //       this.router.navigateByUrl('/profiles/list');
-      //     },
-      //     (error) => {
-      //       console.error(error);
-      //     }
-      //   );
+        this.profileService.update(this.model).subscribe(
+          (response) => {
+            this.router.navigateByUrl('/profiles/list');
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
     }
   }
 

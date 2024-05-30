@@ -80,6 +80,7 @@ export class AchivementModel {
 }
 
 export interface  ProfileEditRequestModel {
+    id: number;
     profile: ProfileModel;
     addresses: AddressModel[] ;
     families: FamilyModel[] ;

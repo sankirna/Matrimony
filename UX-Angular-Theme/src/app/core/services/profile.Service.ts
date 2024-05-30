@@ -32,9 +32,9 @@ export class ProfileService {
     return this.http.post<ProfileModel>(api, model);
   }
 
-  update(model: ProfileModel) {
+  update(model: ProfileEditRequestModel) {
     const api = 'profile/update';
-    return this.http.post<ProfileModel>(api, model);
+    return this.http.post<ProfileEditRequestModel>(api, model);
   }
 
   delete(id: number) {
@@ -45,6 +45,7 @@ export class ProfileService {
   getProfileInformationForm(model: ProfileModel): FormGroup {
     let form: FormGroup = this.fb.group({
       id: [model.id],
+      userId: [model.userId],
       firstName: [model.firstName, Validators.required],
       middleName: [model.middleName],
       lastName: [model.lastName],

@@ -317,7 +317,7 @@ namespace Matrimony.API.Controllers
 
 
         [HttpPost]
-        public virtual async Task<IActionResult> Edit(ProfileEditRequestModel model)
+        public virtual async Task<IActionResult> Update(ProfileEditRequestModel model)
         {
             int profileId = model.Id;
 
@@ -326,8 +326,10 @@ namespace Matrimony.API.Controllers
                 throw new NopException("profile not found");
 
             string email = profile.Email;
+            int userId = profile.UserId;
             profile = model.Profile.ToEntity(profile);
             profile.Email = email;
+            profile.UserId = userId;
             await _profileService.UpdateAsync(profile);
 
             await UpdateAddresses(profileId, model.Addresses);
