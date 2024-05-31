@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Matrimony.API.Infrastructure.Mapper.Extensions;
 using Matrimony.API.Models;
 using Matrimony.API.Models.Achivements;
 using Matrimony.API.Models.Addresss;
@@ -46,13 +47,13 @@ namespace Matrimony.API.Infrastructure.Mapper
 
         public virtual void CreateStateMap()
         {
-            CreateMap<State, StateModel>();
+            CreateMap<State, StateModel>().ForMember(desc => desc.Country, opt => opt.MapFrom(src => src.Country == null ? null : src.Country.ToModel<CountryModel>()));
             CreateMap<StateModel, State>();
         }
 
         public virtual void CreateCityMap()
         {
-            CreateMap<City, CityModel>();
+            CreateMap<City, CityModel>().ForMember(desc => desc.State, opt => opt.MapFrom(src => src.State == null ? null : src.State.ToModel<StateModel>())); ;
             CreateMap<CityModel, City>();
         }
 

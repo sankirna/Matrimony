@@ -1,6 +1,7 @@
 ﻿using Matrimony.Core;
 using Matrimony.Core.Domain;
 using Matrimony.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Matrimony.Service.Cities
 {
@@ -17,11 +18,14 @@ namespace Matrimony.Service.Cities
         {
             var cities = await _entityRepository.GetAllPagedAsync(query =>
             {
+
                 if (!string.IsNullOrWhiteSpace(name))
                     query = query.Where(c => c.Name.Contains(name));
 
+                query = query.Include(x => x.State);
                 return query;
             }, pageIndex, pageSize, getOnlyTotalCount, includeDeleted: false);
+
 
             return cities;
         }
