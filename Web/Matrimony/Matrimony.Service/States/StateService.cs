@@ -16,7 +16,7 @@ namespace Matrimony.Service.States
             _entityRepository = entityRepository;
         }
 
-        public virtual async Task<IPagedList<State>> GetStatesAsync(string name, int pageIndex = 0, int pageSize = int.MaxValue, bool getOnlyTotalCount = false)
+        public virtual async Task<IPagedList<State>> GetStatesAsync(string name, int countryId = 0, int pageIndex = 0, int pageSize = int.MaxValue, bool getOnlyTotalCount = false)
         {
             var states = await _entityRepository.GetAllPagedAsync(query =>
             {
@@ -24,6 +24,9 @@ namespace Matrimony.Service.States
                     query = query.Where(s => s.Name.Contains(name));
                 
                 query = query.Include(x => x.Country);
+
+                if (countryId > 0)
+                    query = query.Where(c => c.CountryId == countryId);
 
                 return query;
             }, pageIndex, pageSize, getOnlyTotalCount, includeDeleted: false);

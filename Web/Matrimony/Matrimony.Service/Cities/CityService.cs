@@ -14,13 +14,16 @@ namespace Matrimony.Service.Cities
             _entityRepository = entityRepository;
         }
 
-        public virtual async Task<IPagedList<City>> GetCitiesAsync(string name, int pageIndex = 0, int pageSize = int.MaxValue, bool getOnlyTotalCount = false)
+        public virtual async Task<IPagedList<City>> GetCitiesAsync(string name, int stateId = 0, int pageIndex = 0, int pageSize = int.MaxValue, bool getOnlyTotalCount = false)
         {
             var cities = await _entityRepository.GetAllPagedAsync(query =>
             {
 
                 if (!string.IsNullOrWhiteSpace(name))
                     query = query.Where(c => c.Name.Contains(name));
+
+                if (stateId > 0)
+                    query = query.Where(c => c.StateId == stateId);
 
                 query = query.Include(x => x.State);
                 return query;

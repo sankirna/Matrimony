@@ -28,6 +28,7 @@ namespace Matrimony.API.Factories.Cities
 
             //get cities
             var cities = await _cityService.GetCitiesAsync(name: searchModel.Name,
+                stateId: searchModel.StateId,
                 pageIndex: searchModel.Page - 1, pageSize: searchModel.PageSize);
 
             //prepare list model
