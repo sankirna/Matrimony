@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
  import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { SpinnerService } from '../../core/services/spinner.service';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { CommonService } from 'src/app/core/services/common.service';
 
 @Component({
     selector: 'app-layout',
@@ -26,7 +27,8 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
         private media: MediaMatcher,
         public spinnerService: SpinnerService,
         private authService: AuthenticationService,
-        private authGuard: AuthGuard) {
+        private authGuard: AuthGuard,
+        private commonService: CommonService) {
 
         this.mobileQuery = this.media.matchMedia('(max-width: 1000px)');
         this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -56,4 +58,5 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     ngAfterViewInit(): void {
         this.changeDetectorRef.detectChanges();
     }
+    
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { PrimaryDataModel } from 'src/app/models/common.model';
 
@@ -11,9 +11,22 @@ export class CommonService {
 
     primaryData: PrimaryDataModel | undefined;
 
+    primaryDataSubject: Subject<PrimaryDataModel> = new Subject();
+
     constructor(private http: HttpClient
         , private router: Router
-    ) { }
+    ) {
+        this.getPrimaryData().subscribe(
+            (response) => {
+                debugger
+                this.primaryDataSubject.next(response)
+                this.primaryData = response;
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
+     }
 
     getPrimaryData(): Observable<PrimaryDataModel> {
         const api = 'Common/GetPrimaryData';

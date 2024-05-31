@@ -11,27 +11,31 @@ import { CommonService } from 'src/app/core/services/common.service';
   templateUrl: './profile-create.component.html',
   styleUrls: ['./profile-create.component.css']
 })
-export class ProfileCreateComponent implements OnInit  {
+export class ProfileCreateComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   model: ProfileModel | undefined;
-  genderTypes: EnumModel[] | undefined=[];
+  genderTypes: EnumModel[] | undefined = [];
   constructor(
     private router: Router
     , private route: ActivatedRoute
     , private profileService: ProfileService
-    , private commonService: CommonService
+    , public commonService: CommonService
     , private fb: FormBuilder) {
     this.buildForm();
   }
 
   ngOnInit() {
+
     this.getPrimaryData();
   }
 
-  getPrimaryData(){
+  getPrimaryData() {
+    //debugger
+    //this.genderTypes = this.commonService.primaryData?.genderTypes;
     this.commonService.getPrimaryData().subscribe(
       (response) => {
-        this.genderTypes=response.genderTypes;
+        this.commonService.primaryData=response;
+        this.genderTypes=this.commonService.primaryData.genderTypes;
       },
       (error) => {
         console.error(error);
@@ -40,7 +44,7 @@ export class ProfileCreateComponent implements OnInit  {
   }
 
   buildForm() {
-    this.model= new ProfileModel();
+    this.model = new ProfileModel();
     this.form = this.profileService.getProfileInformationForm(this.model);
   }
 
@@ -48,26 +52,26 @@ export class ProfileCreateComponent implements OnInit  {
     return this.form.valid;
   }
 
-  clear(){
+  clear() {
     this.buildForm();
   }
 
   onSubmit() {
     if (this.isValid()) {
       this.model = <ProfileModel>this.form.getRawValue();
-  
-        this.profileService.create(this.model).subscribe(
-          (response) => {
-            this.router.navigateByUrl('/profiles/list');
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
+
+      this.profileService.create(this.model).subscribe(
+        (response) => {
+          this.router.navigateByUrl('/profiles/list');
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     }
   }
 
-  gotoList(){
+  gotoList() {
     this.router.navigateByUrl('/profiles/list');
   }
 }

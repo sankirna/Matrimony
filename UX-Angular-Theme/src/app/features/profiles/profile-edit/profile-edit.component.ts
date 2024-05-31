@@ -46,7 +46,8 @@ export class ProfileEditComponent implements OnInit {
   getPrimaryData() {
     this.commonService.getPrimaryData().subscribe(
       (response) => {
-        this.genderTypes = response.genderTypes;
+        this.commonService.primaryData=response;
+        this.genderTypes=this.commonService.primaryData.genderTypes;
       },
       (error) => {
         console.error(error);
