@@ -30,6 +30,7 @@ namespace Matrimony.API.Factories.States
 
             //get states
             var states = await _stateService.GetStatesAsync(name: searchModel.Name,
+                countryId: searchModel.CounryId,
                 pageIndex: searchModel.Page - 1, pageSize: searchModel.PageSize);
 
             //prepare list model
