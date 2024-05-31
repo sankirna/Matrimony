@@ -2,11 +2,13 @@
 using Matrimony.API.Models;
 using Matrimony.API.Models.Achivements;
 using Matrimony.API.Models.Addresss;
+using Matrimony.API.Models.Cities;
 using Matrimony.API.Models.Countries;
 using Matrimony.API.Models.Educations;
 using Matrimony.API.Models.Families;
 using Matrimony.API.Models.Occupations;
 using Matrimony.API.Models.Profiles;
+using Matrimony.API.Models.States;
 using Matrimony.Core;
 using Matrimony.Core.Domain;
 using Matrimony.Framework.Models;
@@ -21,6 +23,8 @@ namespace Matrimony.API.Infrastructure.Mapper
         {
             CreateCommonMap();
             CreateCountryMap();
+            CreateStateMap();
+            CreateCityMap();
             CreateProfileMap();
             CreateAchivementMap();
             CreateAddressMap();
@@ -38,6 +42,18 @@ namespace Matrimony.API.Infrastructure.Mapper
         {
             CreateMap<Country, CountryModel>();
             CreateMap<CountryModel, Country>();
+        }
+
+        public virtual void CreateStateMap()
+        {
+            CreateMap<State, StateModel>();
+            CreateMap<StateModel, State>();
+        }
+
+        public virtual void CreateCityMap()
+        {
+            CreateMap<City, CityModel>();
+            CreateMap<CityModel, City>();
         }
 
         public virtual void CreateProfileMap()

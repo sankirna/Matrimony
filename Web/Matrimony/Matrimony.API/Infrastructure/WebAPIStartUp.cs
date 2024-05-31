@@ -1,5 +1,7 @@
-﻿using Matrimony.API.Factories.Countries;
+﻿using Matrimony.API.Factories.Cities;
+using Matrimony.API.Factories.Countries;
 using Matrimony.API.Factories.Profiles;
+using Matrimony.API.Factories.States;
 using Matrimony.Core.DbContexts;
 using Matrimony.Core.IndentityModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -97,10 +99,10 @@ namespace Matrimony.API.Infrastructure
                 options.SuppressModelStateInvalidFilter = true;
             });
 
-            //Country
+            //Factoreis
             services.AddScoped<ICountryFactoryModel, CountryFactoryModel>();
-
-            //Profile
+            services.AddScoped<IStateFactoryModel, StateFactoryModel>();
+            services.AddScoped<ICityFactoryModel, CityFactoryModel>();
             services.AddScoped<IProfileFactoryModel, ProfileFactoryModel>();
         }
 
