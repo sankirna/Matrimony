@@ -8,7 +8,7 @@
     [StateId]         INT NULL,
     [CountryId]       INT NULL,
     [PinNo]           NVARCHAR(MAX) NULL,
-    [TypeId]          NVARCHAR(MAX) NULL,
+    [TypeId]          INT NULL,
     [DisplayOrder]    INT        NULL,
     [CreatedBy]       INT        NULL,
     [CreatedDateTime] DATETIME   NULL,

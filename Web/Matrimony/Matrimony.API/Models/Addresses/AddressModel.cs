@@ -21,7 +21,7 @@ namespace Matrimony.API.Models.Addresss
 
         public string? PinNo { get; set; }
 
-        public string? TypeId { get; set; }
+        public int? TypeId { get; set; }
 
         public int? DisplayOrder { get; set; }
     }

@@ -14,7 +14,7 @@ import { CommonService } from 'src/app/core/services/common.service';
 export class ProfileCreateComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   model: ProfileModel | undefined;
-  genderTypes: EnumModel[] | undefined = [];
+  
   constructor(
     private router: Router
     , private route: ActivatedRoute
@@ -26,21 +26,8 @@ export class ProfileCreateComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getPrimaryData();
   }
 
-  getPrimaryData() {
-    //this.genderTypes = this.commonService.primaryData?.genderTypes;
-    this.commonService.getPrimaryData().subscribe(
-      (response) => {
-        this.commonService.primaryData=response;
-        this.genderTypes=this.commonService.primaryData.genderTypes;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
 
   buildForm() {
     this.model = new ProfileModel();

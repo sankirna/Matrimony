@@ -31,7 +31,7 @@ export class AddressModel {
     stateId: number | undefined = 0;
     countryId: number | undefined = 0;
     pinNo: string | undefined = "";
-    typeId: string | undefined = "";
+    typeId: number | undefined;
     displayOrder: number | undefined = 0;
 }
 

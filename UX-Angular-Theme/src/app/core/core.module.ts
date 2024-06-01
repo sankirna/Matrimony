@@ -1,4 +1,4 @@
-import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
+import { NgModule, Optional, SkipSelf, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -12,6 +12,8 @@ import { AdminGuard } from './guards/admin.guard';
 import { PaginatorInterceptor } from './interceptors/paginator.interceptor';
 import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { RequestInterceptor } from './interceptors/request.interceptor';
+import { initializeApp } from '../app-init.factory';
+import { CommonService } from './services/common.service';
 
 @NgModule({
   imports: [
@@ -24,6 +26,12 @@ import { RequestInterceptor } from './interceptors/request.interceptor';
     AuthGuard,
     AdminGuard,
     MediaMatcher,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [CommonService],
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,

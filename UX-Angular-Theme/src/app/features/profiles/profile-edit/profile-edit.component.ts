@@ -17,7 +17,6 @@ export class ProfileEditComponent implements OnInit {
   id: number = 0;
   model: ProfileEditRequestModel | undefined;
   form: FormGroup = new FormGroup({});
-  genderTypes: EnumModel[] | undefined = [];
   firstFormGroup = this.fb.group({
     firstCtrl: ['', Validators.required],
   });
@@ -40,20 +39,9 @@ export class ProfileEditComponent implements OnInit {
 
   ngOnInit() {
     this.id = <number><unknown>this.route.snapshot.paramMap.get('id');
-    this.getPrimaryData();
     this.getData();
   }
-  getPrimaryData() {
-    this.commonService.getPrimaryData().subscribe(
-      (response) => {
-        this.commonService.primaryData=response;
-        this.genderTypes=this.commonService.primaryData.genderTypes;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
+  
 
   getData() {
     this.profileService.get(this.id).subscribe(
@@ -83,7 +71,7 @@ export class ProfileEditComponent implements OnInit {
     return this.form.get("profile") as FormGroup;
   }
 
-  get  addressesForm() {
+  get addressesForm() {
     return this.form.get("addresses") as FormArray;
   }
 
@@ -110,14 +98,14 @@ export class ProfileEditComponent implements OnInit {
     if (this.isValid()) {
       this.model = <ProfileEditRequestModel>this.form.getRawValue();
 
-        this.profileService.update(this.model).subscribe(
-          (response) => {
-            this.router.navigateByUrl('/profiles/list');
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
+      this.profileService.update(this.model).subscribe(
+        (response) => {
+          this.router.navigateByUrl('/profiles/list');
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     }
   }
 

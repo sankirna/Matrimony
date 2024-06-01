@@ -11,25 +11,30 @@ export class CommonService {
 
     primaryData: PrimaryDataModel | undefined;
 
-    primaryDataSubject: Subject<PrimaryDataModel> = new Subject();
-
     constructor(private http: HttpClient
         , private router: Router
     ) {
-        this.getPrimaryData().subscribe(
-            (response) => {
-                this.primaryDataSubject.next(response)
-                this.primaryData = response;
-            },
-            (error) => {
-              console.error(error);
-            }
-          );
-     }
+        // this.getPrimaryData().subscribe(
+        //     (response) => {
+        //         this.primaryData = response;
+        //     },
+        //     (error) => {
+        //       console.error(error);
+        //     }
+        //   );
+    }
 
-    getPrimaryData(): Observable<PrimaryDataModel> {
+    getPrimaryDataFrom(): Observable<PrimaryDataModel> {
         const api = 'Common/GetPrimaryData';
         return this.http.post<PrimaryDataModel>(api, null);
+    }
+
+    setPrimaryData(data: PrimaryDataModel|undefined): void {
+        this.primaryData = data;
+    }
+
+    getPrimaryData(): PrimaryDataModel | undefined {
+        return this.primaryData;
     }
 
     newGuid(): string {
@@ -39,5 +44,5 @@ export class CommonService {
             return v.toString(16);
         });
     }
- 
+
 }

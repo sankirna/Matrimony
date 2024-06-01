@@ -10,22 +10,22 @@ import { CommonService } from 'src/app/core/services/common.service';
 })
 export class ProfileInformationComponent implements OnInit, AfterViewInit {
   @Input() form: FormGroup = new FormGroup({});
-  @Input() genderTypes: EnumModel[] | undefined=[];
+  genderTypes: EnumModel[] | undefined = [];
 
   constructor(
     private commonService: CommonService
-    ) {
+  ) {
   }
 
   ngOnInit() {
-    
+    this.getPrimaryData();
+  }
+
+  getPrimaryData() {
+    this.genderTypes = this.commonService.getPrimaryData()?.genderTypes;
   }
   ngAfterViewInit(): void {
-    // let model=new PrimaryDataModel()
-    // this.commonService.primaryDataSubject.next(model);
-    // this.commonService.primaryDataSubject.subscribe((event)=> {
-    //   this.genderTypesNew=event.genderTypes;
-    // })
+
 
   }
 }
