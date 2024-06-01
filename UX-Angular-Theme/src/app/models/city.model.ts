@@ -10,6 +10,7 @@ export class CityModel {
     name: string | undefined;
     id: number | undefined = 0;
     countryId: number | undefined = 0;
+    stateId: number | undefined = 0;
 }
 
 export class CityListModel extends BasePagedListModel<CityModel> {

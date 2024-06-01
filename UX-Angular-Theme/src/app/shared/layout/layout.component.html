@@ -79,11 +79,17 @@
           </mat-icon>
           <p mat-line> Countries </p>
         </a>
-        <a mat-list-item [routerLink]="['/customers']" routerLinkActive="active">
+        <a mat-list-item [routerLink]="['/states/list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
-            business
+            state
           </mat-icon>
-          <p mat-line> Customers </p>
+          <p mat-line> States </p>
+        </a>
+        <a mat-list-item [routerLink]="['/cities/list']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            city
+          </mat-icon>
+          <p mat-line> Cities </p>
         </a>
         <a mat-list-item [routerLink]="['/users']" routerLinkActive="active">
           <mat-icon mat-list-icon>

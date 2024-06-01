@@ -107,7 +107,6 @@ export class ProfileEditComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
     if (this.isValid()) {
       this.model = <ProfileEditRequestModel>this.form.getRawValue();
 

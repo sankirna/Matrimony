@@ -18,7 +18,6 @@ export class CommonService {
     ) {
         this.getPrimaryData().subscribe(
             (response) => {
-                debugger
                 this.primaryDataSubject.next(response)
                 this.primaryData = response;
             },

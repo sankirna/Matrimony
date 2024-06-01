@@ -30,6 +30,38 @@ export class ProfileAddressFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadContries();
+    // this.form.get('countryId')?.valueChanges.subscribe(countryId => {
+    //   this.form.get('stateId')?.reset();
+    //   this.form.get('cityId')?.reset();
+    //   if (countryId) {
+    //     this.loadSates(countryId);
+    //   } else {
+    //     this.states = [];
+    //   }
+    // });
+
+    // this.form.get('stateId')?.valueChanges.subscribe(stateId => {
+    //   this.form.get('cityId')?.reset();
+    //   if (stateId) {
+    //     this.loadCities(stateId);
+    //   } else {
+    //     this.cities = [];
+    //   }
+    // });
+  }
+
+  onCountryChange(countryId: number): void {
+    this.form.get('stateId')?.reset();
+    this.form.get('cityId')?.reset();
+    if (countryId) {
+      this.loadStates(countryId);
+    } else {
+      this.states = [];
+    }
+  }
+
+  loadContries() {
     let countrySearchModel = new CountrySearchModel();
     countrySearchModel.length = 10000;
     countrySearchModel.start = 0;
@@ -38,39 +70,37 @@ export class ProfileAddressFormComponent implements OnInit {
         this.countries = data.data;
       }
     });
+  }
 
-    this.form.get('countryId')?.valueChanges.subscribe(countryId => {
-      this.form.get('stateId')?.reset();
-      this.form.get('cityId')?.reset();
-      if (countryId) {
-        let stateSearchModel = new StateSearchModel();
-        stateSearchModel.length = 10000;
-        stateSearchModel.start = 0;
-        stateSearchModel.countryId = countryId;
-        this.stateService.list(stateSearchModel).subscribe(data => {
-          if (data.data) {
-            this.states = data.data;
-          }
-        });
-      } else {
-        this.states = [];
+  onStateChange(stateId: number): void {
+    this.form.get('cityId')?.reset();
+    if (stateId) {
+      this.loadCities(stateId);
+    } else {
+      this.cities = [];
+    }
+  }
+
+  loadStates(countryId: number) {
+    let stateSearchModel = new StateSearchModel();
+    stateSearchModel.length = 10000;
+    stateSearchModel.start = 0;
+    stateSearchModel.countryId = countryId;
+    this.stateService.list(stateSearchModel).subscribe(data => {
+      if (data.data) {
+        this.states = data.data;
       }
     });
+  }
 
-    this.form.get('stateId')?.valueChanges.subscribe(stateId => {
-      this.form.get('cityId')?.reset();
-      if (stateId) {
-        let citySearchModel = new CitySearchModel();
-        citySearchModel.length = 10000;
-        citySearchModel.start = 0;
-        citySearchModel.stateId = stateId;
-        this.cityService.list(citySearchModel).subscribe(data => {
-          if (data.data) {
-            this.cities = data.data;
-          }
-        });
-      } else {
-        this.cities = [];
+  loadCities(stateId: number) {
+    let citySearchModel = new CitySearchModel();
+    citySearchModel.length = 10000;
+    citySearchModel.start = 0;
+    citySearchModel.stateId = stateId;
+    this.cityService.list(citySearchModel).subscribe(data => {
+      if (data.data) {
+        this.cities = data.data;
       }
     });
   }

@@ -2,22 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CountryService } from 'src/app/core/services/country.service';
-import { CountryModel } from 'src/app/models/country.model';
+import { StateService } from 'src/app/core/services/state.service';
+import { CountryModel, CountrySearchModel } from 'src/app/models/country.model';
+import { StateModel } from 'src/app/models/state.model';
 
 @Component({
-  selector: 'app-country-create',
-  templateUrl: './country-create.component.html',
-  styleUrls: ['./country-create.component.css']
+  selector: 'app-state-create',
+  templateUrl: './state-create.component.html',
+  styleUrls: ['./state-create.component.css']
 })
-export class CountryCreateComponent implements OnInit {
+export class StateCreateComponent implements OnInit {
   form: FormGroup = new FormGroup({});
-  model: CountryModel | undefined;
-  id: number = 0;
+  model: StateModel | undefined;
+  countries: CountryModel[] = [];  id: number = 0;
 
   constructor(
       private router: Router
     , private route: ActivatedRoute
     , private countryService: CountryService
+    , private stateService: StateService
     , private fb: FormBuilder) {
     this.buildForm();
   }
@@ -27,6 +30,7 @@ export class CountryCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadContries();
     this.id = <number><unknown>this.route.snapshot.paramMap.get('id');
     if (this.isEdit) {
       this.getData();
@@ -35,14 +39,26 @@ export class CountryCreateComponent implements OnInit {
     }
   }
 
+  loadContries() {
+    let countrySearchModel = new CountrySearchModel();
+    countrySearchModel.length = 10000;
+    countrySearchModel.start = 0;
+    this.countryService.list(countrySearchModel).subscribe(data => {
+      if (data.data) {
+        this.countries = data.data;
+      }
+    });
+  }
+
   buildForm() {
     if (!this.model) {
-      this.model= new CountryModel();
+      this.model= new StateModel();
       this.model.id=0;
     }
     this.form = this.fb.group({
       id: [this.model.id],
-      name: [this.model.name, Validators.required]
+      name: [this.model.name, Validators.required],
+      countryId: [this.model.countryId, Validators.required]
     });
   }
 
@@ -51,7 +67,7 @@ export class CountryCreateComponent implements OnInit {
   }
 
   getData() {
-    this.countryService.get(this.id).subscribe(
+    this.stateService.get(this.id).subscribe(
       (response) => {
         this.model = response;
         this.buildForm();
@@ -64,20 +80,20 @@ export class CountryCreateComponent implements OnInit {
 
   onSubmit() {
     if (this.isValid()) {
-      this.model = <CountryModel>this.form.getRawValue();
+      this.model = <StateModel>this.form.getRawValue();
       if(!this.isEdit){
-        this.countryService.create(this.model).subscribe(
+        this.stateService.create(this.model).subscribe(
           (response) => {
-            this.router.navigateByUrl('/countries/list');
+            this.router.navigateByUrl('/states/list');
           },
           (error) => {
             console.error(error);
           }
         );
       }else{
-        this.countryService.update(this.model).subscribe(
+        this.stateService.update(this.model).subscribe(
           (response) => {
-            this.router.navigateByUrl('/countries/list');
+            this.router.navigateByUrl('/states/list');
           },
           (error) => {
             console.error(error);
@@ -92,6 +108,6 @@ export class CountryCreateComponent implements OnInit {
 
   }
   gotoList(){
-    this.router.navigateByUrl('/countries/list');
+    this.router.navigateByUrl('/states/list');
   }
 }

@@ -24,7 +24,6 @@ export class ProfileInformationComponent implements OnInit, AfterViewInit {
     // let model=new PrimaryDataModel()
     // this.commonService.primaryDataSubject.next(model);
     // this.commonService.primaryDataSubject.subscribe((event)=> {
-    //   debugger
     //   this.genderTypesNew=event.genderTypes;
     // })
 

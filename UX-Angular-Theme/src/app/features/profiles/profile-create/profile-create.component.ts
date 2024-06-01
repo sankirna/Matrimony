@@ -30,7 +30,6 @@ export class ProfileCreateComponent implements OnInit {
   }
 
   getPrimaryData() {
-    //debugger
     //this.genderTypes = this.commonService.primaryData?.genderTypes;
     this.commonService.getPrimaryData().subscribe(
       (response) => {
