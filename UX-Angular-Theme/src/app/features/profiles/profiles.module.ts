@@ -12,6 +12,9 @@ import { ProfileAddressFormComponent } from './shared/profile-address/profile-ad
 import { ProfilesRoutingModule } from './profiles-routing.module';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CityService } from 'src/app/core/services/city.service';
+import { StateService } from 'src/app/core/services/state.service';
+import { CountryService } from 'src/app/core/services/country.service';
 
 @NgModule({
   declarations: [ 
@@ -32,7 +35,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ProfilesRoutingModule,
   ],
   providers: [
-    ProfileService
+    ProfileService,
+    CountryService,
+    StateService,
+    CityService
   ]
 })
 export class ProfilesModule { }
