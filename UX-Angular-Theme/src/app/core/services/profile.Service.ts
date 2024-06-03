@@ -120,7 +120,7 @@ export class ProfileService {
       startDate: [model.startDate],
       endDate: [model.endDate],
       isPresent: [model.isPresent],
-      type: [model.type],
+      typeId: [model.typeId],
       description: [model.description],
     });
     return form;

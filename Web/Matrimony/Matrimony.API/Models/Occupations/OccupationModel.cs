@@ -15,7 +15,7 @@ namespace Matrimony.API.Models.Occupations
 
         public bool IsPresent { get; set; }
 
-        public int Type { get; set; }
+        public int TypeId { get; set; }
 
         public string? Description { get; set; }
     }

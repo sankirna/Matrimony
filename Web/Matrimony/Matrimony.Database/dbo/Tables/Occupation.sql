@@ -5,7 +5,7 @@
     [StartDate]       DATETIME       NOT NULL,
     [EndDate]         DATETIME       NULL,
     [IsPresent]       BIT            CONSTRAINT [DF_Occupation_IsPresent] DEFAULT ((0)) NOT NULL,
-    [Type]            INT            NOT NULL,
+    [TypeId]            INT            NOT NULL,
     [Description]     NVARCHAR (MAX) NULL,
     [CreatedBy]       INT            NULL,
     [CreatedDateTime] DATETIME       NULL,

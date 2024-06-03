@@ -30,7 +30,7 @@
         <div fxLayout="row" fxLayoutGap="20px">
             <div fxLayout="column" fxFlex="100">
                 <mat-label>Occupation Type</mat-label>
-                <mat-button-toggle-group *ngIf="occupationTypes" multiple=false formControlName="type">
+                <mat-button-toggle-group *ngIf="occupationTypes" multiple=false formControlName="typeId">
                     <mat-button-toggle *ngFor="let item of occupationTypes;" [value]="item.value">
                         {{item.key}}</mat-button-toggle>
                 </mat-button-toggle-group>

@@ -67,7 +67,7 @@ export class OccupationModel {
     startDate: string | undefined = "";
     endDate: string | undefined = "";
     isPresent: boolean | undefined = false;
-    type: number | undefined = 0;
+    typeId: number | undefined = 0;
     description: string | undefined = "";
 }
 

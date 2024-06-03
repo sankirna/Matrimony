@@ -17,7 +17,7 @@ public partial class Occupation : BaseEntity
 
     public bool IsPresent { get; set; }
 
-    public int Type { get; set; }
+    public int TypeId { get; set; }
 
     public string? Description { get; set; }
 
