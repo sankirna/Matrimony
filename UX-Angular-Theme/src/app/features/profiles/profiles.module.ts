@@ -15,6 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CityService } from 'src/app/core/services/city.service';
 import { StateService } from 'src/app/core/services/state.service';
 import { CountryService } from 'src/app/core/services/country.service';
+import { ProfileFamilyListComponent } from './shared/profile-family/profile-family-list/profile-family-list.component';
+import { ProfileFamilyFormComponent } from './shared/profile-family/profile-family-form/profile-family-form.component';
 
 @NgModule({
   declarations: [ 
@@ -24,6 +26,8 @@ import { CountryService } from 'src/app/core/services/country.service';
     , ProfileInformationComponent
     , ProfileAddressListComponent
     , ProfileAddressFormComponent
+    , ProfileFamilyListComponent
+    , ProfileFamilyFormComponent
   ],
   imports: [
     CommonModule,

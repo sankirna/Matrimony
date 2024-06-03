@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnumModel } from '../../../models/common.model';
 import * as _ from 'lodash';
-import { AddressModel, ProfileEditRequestModel } from 'src/app/models/profile.model';
+import { AddressModel, FamilyModel, ProfileEditRequestModel } from 'src/app/models/profile.model';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { CommonService } from 'src/app/core/services/common.service';
 
@@ -17,12 +17,6 @@ export class ProfileEditComponent implements OnInit {
   id: number = 0;
   model: ProfileEditRequestModel | undefined;
   form: FormGroup = new FormGroup({});
-  firstFormGroup = this.fb.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this.fb.group({
-    secondCtrl: ['', Validators.required],
-  });
 
   constructor(
     private router: Router
@@ -61,9 +55,11 @@ export class ProfileEditComponent implements OnInit {
       this.form = this.fb.group({
         id: [this.model.id],
         profile: profileInformationForm,
-        addresses: this.fb.array([])
+        addresses: this.fb.array([]),
+        families: this.fb.array([])
       });
       this.buildAddressesForm(this.model.addresses);
+      this.buildFamiliesForm(this.model.families);
     }
   }
 
@@ -75,11 +71,23 @@ export class ProfileEditComponent implements OnInit {
     return this.form.get("addresses") as FormArray;
   }
 
+  get familiesForm() {
+    return this.form.get("families") as FormArray;
+  }
+
   buildAddressesForm(addresses: AddressModel[]) {
     var self = this;
     _.forEach(addresses, function (value, key) {
       let addressForm: FormGroup = self.profileService.getProfileAddressForm(value);
       self.addressesForm.push(addressForm);
+    });
+  }
+
+  buildFamiliesForm(families: FamilyModel[]) {
+    var self = this;
+    _.forEach(families, function (value, key) {
+      let familyForm: FormGroup = self.profileService.getProfileFamilyForm(value);
+      self.familiesForm.push(familyForm);
     });
   }
 

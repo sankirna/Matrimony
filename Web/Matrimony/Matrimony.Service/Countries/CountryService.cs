@@ -1,6 +1,7 @@
 ﻿using Matrimony.Core;
 using Matrimony.Core.Domain;
 using Matrimony.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Matrimony.Service.Countries
 {
@@ -19,7 +20,7 @@ namespace Matrimony.Service.Countries
             {
                 if (!string.IsNullOrWhiteSpace(name))
                     query = query.Where(c => c.Name.Contains(name));
-
+                query = query.Include(x => x.States);
                 return query;
             }, pageIndex, pageSize, getOnlyTotalCount, includeDeleted: false);
 

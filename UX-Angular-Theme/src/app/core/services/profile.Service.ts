@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PagedListModel } from 'src/app/models/base-paged-list.model';
 import { CommonService } from './common.service';
-import { AddressModel, ProfileEditRequestModel, ProfileModel, ProfileSearchModel } from 'src/app/models/profile.model';
+import { AddressModel, FamilyModel, ProfileEditRequestModel, ProfileModel, ProfileSearchModel } from 'src/app/models/profile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +76,20 @@ export class ProfileService {
       pinNo: [model.pinNo],
       typeId: [model.typeId],
       displayOrder: [model.displayOrder],
+    });
+    return form;
+  }
+
+  getProfileFamilyForm(model: FamilyModel): FormGroup {
+    let form: FormGroup = this.fb.group({
+      randomId: [this.commonService.newGuid()],
+      id: [model.id],
+      profileId: [model.profileId, Validators.required],
+      name: [model.name, Validators.required],
+      email: [model.email],
+      phoneNo: [model.phoneNo],
+      relationTypeId: [model.relationTypeId],
+      description: [model.description],
     });
     return form;
   }

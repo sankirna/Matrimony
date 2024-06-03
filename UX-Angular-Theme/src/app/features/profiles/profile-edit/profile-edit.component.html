@@ -27,6 +27,13 @@
                                 <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
                             </div>
                         </mat-step>
+                        <mat-step label="Family">
+                            <app-profile-family-list [forms]="familiesForm"></app-profile-family-list>
+                            <div fxLayout="row" fxFlex="100" fxLayoutAlign="end end" fxLayoutGap="10px">
+                                <button mat-button mat-raised-button color="primary" matStepperPrevious>Back</button>
+                                <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
+                            </div>
+                        </mat-step>
                         <mat-step>
                             <ng-template matStepLabel>Done</ng-template>
                             <p>You are now done.</p>

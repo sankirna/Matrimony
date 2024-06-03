@@ -22,13 +22,14 @@ namespace Matrimony.Service.States
             {
                 if (!string.IsNullOrWhiteSpace(name))
                     query = query.Where(s => s.Name.Contains(name));
-                
-                query = query.Include(x => x.Country);
+
+                //query = query.Include(x => x.Country);
+                //query = query.Include(x => x.Country);
 
                 if (countryId > 0)
                     query = query.Where(c => c.CountryId == countryId);
 
-                return query;
+                return query.Include(x => x.Country).Include(x=>x.Cities);
             }, pageIndex, pageSize, getOnlyTotalCount, includeDeleted: false);
 
             return states;

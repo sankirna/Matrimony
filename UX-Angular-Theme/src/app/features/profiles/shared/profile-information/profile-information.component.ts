@@ -24,6 +24,7 @@ export class ProfileInformationComponent implements OnInit, AfterViewInit {
   getPrimaryData() {
     this.genderTypes = this.commonService.getPrimaryData()?.genderTypes;
   }
+  
   ngAfterViewInit(): void {
 
 
