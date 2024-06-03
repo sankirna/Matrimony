@@ -17,6 +17,8 @@ import { StateService } from 'src/app/core/services/state.service';
 import { CountryService } from 'src/app/core/services/country.service';
 import { ProfileFamilyListComponent } from './shared/profile-family/profile-family-list/profile-family-list.component';
 import { ProfileFamilyFormComponent } from './shared/profile-family/profile-family-form/profile-family-form.component';
+import { ProfileAchivementListComponent } from './shared/profile-achivement/profile-achivement-list/profile-achivement-list.component';
+import { ProfileAchivementFormComponent } from './shared/profile-achivement/profile-achivement-form/profile-achivement-form.component';
 
 @NgModule({
   declarations: [ 
@@ -28,6 +30,8 @@ import { ProfileFamilyFormComponent } from './shared/profile-family/profile-fami
     , ProfileAddressFormComponent
     , ProfileFamilyListComponent
     , ProfileFamilyFormComponent
+    , ProfileAchivementListComponent
+    , ProfileAchivementFormComponent
   ],
   imports: [
     CommonModule,

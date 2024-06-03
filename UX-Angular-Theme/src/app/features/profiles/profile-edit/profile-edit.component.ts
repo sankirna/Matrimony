@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnumModel } from '../../../models/common.model';
 import * as _ from 'lodash';
-import { AddressModel, FamilyModel, ProfileEditRequestModel } from 'src/app/models/profile.model';
+import { AchivementModel, AddressModel, FamilyModel, ProfileEditRequestModel } from 'src/app/models/profile.model';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { CommonService } from 'src/app/core/services/common.service';
 
@@ -56,10 +56,12 @@ export class ProfileEditComponent implements OnInit {
         id: [this.model.id],
         profile: profileInformationForm,
         addresses: this.fb.array([]),
-        families: this.fb.array([])
+        families: this.fb.array([]),
+        achivements: this.fb.array([])
       });
       this.buildAddressesForm(this.model.addresses);
       this.buildFamiliesForm(this.model.families);
+      this.buildAchivementsForm(this.model.achivements);
     }
   }
 
@@ -75,6 +77,10 @@ export class ProfileEditComponent implements OnInit {
     return this.form.get("families") as FormArray;
   }
 
+  get achivementsForm() {
+    return this.form.get("achivements") as FormArray;
+  }
+
   buildAddressesForm(addresses: AddressModel[]) {
     var self = this;
     _.forEach(addresses, function (value, key) {
@@ -88,6 +94,14 @@ export class ProfileEditComponent implements OnInit {
     _.forEach(families, function (value, key) {
       let familyForm: FormGroup = self.profileService.getProfileFamilyForm(value);
       self.familiesForm.push(familyForm);
+    });
+  }
+
+  buildAchivementsForm(achivements: AchivementModel[]) {
+    var self = this;
+    _.forEach(achivements, function (value, key) {
+      let achivementForm: FormGroup = self.profileService.getProfileAchivementForm(value);
+      self.achivementsForm.push(achivementForm);
     });
   }
 
