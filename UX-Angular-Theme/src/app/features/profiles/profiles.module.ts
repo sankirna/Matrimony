@@ -19,6 +19,10 @@ import { ProfileFamilyListComponent } from './shared/profile-family/profile-fami
 import { ProfileFamilyFormComponent } from './shared/profile-family/profile-family-form/profile-family-form.component';
 import { ProfileAchivementListComponent } from './shared/profile-achivement/profile-achivement-list/profile-achivement-list.component';
 import { ProfileAchivementFormComponent } from './shared/profile-achivement/profile-achivement-form/profile-achivement-form.component';
+import { ProfileEducationListComponent } from './shared/profile-education/profile-education-list/profile-education-list.component';
+import { ProfileEducationFormComponent } from './shared/profile-education/profile-education-form/profile-education-form.component';
+import { ProfileOccupationListComponent } from './shared/profile-occupation/profile-occupation-list/profile-occupation-list.component';
+import { ProfileOccupationFormComponent } from './shared/profile-occupation/profile-occupation-form/profile-occupation-form.component';
 
 @NgModule({
   declarations: [ 
@@ -30,6 +34,10 @@ import { ProfileAchivementFormComponent } from './shared/profile-achivement/prof
     , ProfileAddressFormComponent
     , ProfileFamilyListComponent
     , ProfileFamilyFormComponent
+    , ProfileEducationListComponent
+    , ProfileEducationFormComponent
+    , ProfileOccupationListComponent
+    , ProfileOccupationFormComponent
     , ProfileAchivementListComponent
     , ProfileAchivementFormComponent
   ],

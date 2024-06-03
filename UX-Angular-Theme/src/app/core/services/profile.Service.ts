@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PagedListModel } from 'src/app/models/base-paged-list.model';
 import { CommonService } from './common.service';
-import { AchivementModel, AddressModel, FamilyModel, ProfileEditRequestModel, ProfileModel, ProfileSearchModel } from 'src/app/models/profile.model';
+import { AchivementModel, AddressModel, EducationModel, FamilyModel, OccupationModel, ProfileEditRequestModel, ProfileModel, ProfileSearchModel } from 'src/app/models/profile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -87,6 +87,40 @@ export class ProfileService {
       email: [model.email],
       phoneNo: [model.phoneNo],
       relationTypeId: [model.relationTypeId],
+      description: [model.description],
+    });
+    return form;
+  }
+
+  getProfileEducationForm(model: EducationModel): FormGroup {
+    let form: FormGroup = this.fb.group({
+      randomId: [this.commonService.newGuid()],
+      id: [model.id],
+      profileId: [model.profileId, Validators.required],
+      name: [model.name, Validators.required],
+      startYear: [model.startYear, Validators.required],
+      startMonth: [model.startMonth, Validators.required],
+      endYear: [model.endYear],
+      endMonth: [model.endMonth],
+      isPresent: [model.isPresent],
+      percentage: [model.percentage],
+      grade: [model.grade],
+      degree: [model.degree],
+      description: [model.description],
+    });
+    return form;
+  }
+
+  getProfileOccupationForm(model: OccupationModel): FormGroup {
+    let form: FormGroup = this.fb.group({
+      randomId: [this.commonService.newGuid()],
+      id: [model.id],
+      profileId: [model.profileId, Validators.required],
+      name: [model.name, Validators.required],
+      startDate: [model.startDate],
+      endDate: [model.endDate],
+      isPresent: [model.isPresent],
+      type: [model.type],
       description: [model.description],
     });
     return form;

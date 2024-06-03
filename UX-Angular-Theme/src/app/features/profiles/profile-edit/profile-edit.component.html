@@ -33,6 +33,20 @@
                                 <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
                             </div>
                         </mat-step>
+                        <mat-step label="Education">
+                            <app-profile-education-list [forms]="educationsForm"></app-profile-education-list>
+                            <div fxLayout="row" fxFlex="100" fxLayoutAlign="end end" fxLayoutGap="10px">
+                                <button mat-button mat-raised-button color="primary" matStepperPrevious>Back</button>
+                                <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
+                            </div>
+                        </mat-step>
+                        <mat-step label="Occupation">
+                            <app-profile-occupation-list [forms]="occupationsForm"></app-profile-occupation-list>
+                            <div fxLayout="row" fxFlex="100" fxLayoutAlign="end end" fxLayoutGap="10px">
+                                <button mat-button mat-raised-button color="primary" matStepperPrevious>Back</button>
+                                <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
+                            </div>
+                        </mat-step>
                         <mat-step label="Achivement">
                             <app-profile-achivement-list [forms]="achivementsForm"></app-profile-achivement-list>
                             <div fxLayout="row" fxFlex="100" fxLayoutAlign="end end" fxLayoutGap="10px">

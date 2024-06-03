@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnumModel } from '../../../models/common.model';
 import * as _ from 'lodash';
-import { AchivementModel, AddressModel, FamilyModel, ProfileEditRequestModel } from 'src/app/models/profile.model';
+import { AchivementModel, AddressModel, EducationModel, FamilyModel, OccupationModel, ProfileEditRequestModel } from 'src/app/models/profile.model';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { CommonService } from 'src/app/core/services/common.service';
 
@@ -57,10 +57,14 @@ export class ProfileEditComponent implements OnInit {
         profile: profileInformationForm,
         addresses: this.fb.array([]),
         families: this.fb.array([]),
-        achivements: this.fb.array([])
+        educations: this.fb.array([]),
+        achivements: this.fb.array([]),
+        occupations: this.fb.array([]),
       });
       this.buildAddressesForm(this.model.addresses);
       this.buildFamiliesForm(this.model.families);
+      this.buildEducationsForm(this.model.educations);
+      this.buildOccupationsForm(this.model.occupations);
       this.buildAchivementsForm(this.model.achivements);
     }
   }
@@ -75,6 +79,14 @@ export class ProfileEditComponent implements OnInit {
 
   get familiesForm() {
     return this.form.get("families") as FormArray;
+  }
+
+  get educationsForm() {
+    return this.form.get("educations") as FormArray;
+  }
+
+  get occupationsForm() {
+    return this.form.get("occupations") as FormArray;
   }
 
   get achivementsForm() {
@@ -97,6 +109,22 @@ export class ProfileEditComponent implements OnInit {
     });
   }
 
+  buildEducationsForm(educations: EducationModel[]) {
+    var self = this;
+    _.forEach(educations, function (value, key) {
+      let educationForm: FormGroup = self.profileService.getProfileEducationForm(value);
+      self.educationsForm.push(educationForm);
+    });
+  }
+
+  buildOccupationsForm(occupations: OccupationModel[]) {
+    var self = this;
+    _.forEach(occupations, function (value, key) {
+      let occupationForm: FormGroup = self.profileService.getProfileOccupationForm(value);
+      self.occupationsForm.push(occupationForm);
+    });
+  }
+
   buildAchivementsForm(achivements: AchivementModel[]) {
     var self = this;
     _.forEach(achivements, function (value, key) {
@@ -104,6 +132,8 @@ export class ProfileEditComponent implements OnInit {
       self.achivementsForm.push(achivementForm);
     });
   }
+
+  
 
 
   isValid(): boolean {
