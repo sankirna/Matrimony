@@ -1,5 +1,6 @@
 using Nop.Web.Framework.Infrastructure.Extensions;
 using Nop.Core.Configuration;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +44,12 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+// Specify the custom static files path
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "StaticFiles")),
+    RequestPath = "/StaticFiles"
+});
 app.MapControllers();
 //configure the application HTTP request pipeline
 app.ConfigureRequestPipeline();
