@@ -12,6 +12,7 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
 import { LayoutComponent } from './layout/layout.component';
 import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.component';
 import { ConfirmComponentDialogComponent } from './confirm-component-dialog/confirm-component-dialog.component';
+import { YearPickerComponent } from './year-picker/year-picker.component';
 
 @NgModule({
     imports: [
@@ -29,7 +30,8 @@ import { ConfirmComponentDialogComponent } from './confirm-component-dialog/conf
         YesNoPipe,
         LayoutComponent,
         CustomPaginatorComponent,
-        ConfirmComponentDialogComponent
+        ConfirmComponentDialogComponent,
+        YearPickerComponent
     ],
     exports: [
         FormsModule,
@@ -42,7 +44,8 @@ import { ConfirmComponentDialogComponent } from './confirm-component-dialog/conf
         LocalDatePipe,
         YesNoPipe,
         CustomPaginatorComponent,
-        ConfirmComponentDialogComponent
+        ConfirmComponentDialogComponent,
+        YearPickerComponent
     ]
 })
 export class SharedModule { }

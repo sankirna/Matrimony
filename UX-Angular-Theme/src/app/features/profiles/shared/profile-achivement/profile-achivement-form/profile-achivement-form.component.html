@@ -10,16 +10,13 @@
        
         <div fxLayout="row" fxLayoutGap="20px">
             <div fxLayout="column" fxFlex="100">
-                <mat-form-field appearance="outline">
-                    <mat-label>Year</mat-label>
-                    <input matInput placeholder="Year" formControlName="year">
-                </mat-form-field>
                 <!-- <mat-form-field appearance="outline">
                     <mat-label>Year</mat-label>
                     <input matInput [matDatepicker]="yearPicker" formControlName="year" readonly>
                     <mat-datepicker-toggle matSuffix [for]="yearPicker"></mat-datepicker-toggle>
                     <mat-datepicker #yearPicker startView="multi-year" (yearSelected)="chosenYearHandler($event, yearPicker)" panelClass="year-picker"></mat-datepicker>
                   </mat-form-field> -->
+                  <app-year-picker formControlName="year"></app-year-picker>
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px">
