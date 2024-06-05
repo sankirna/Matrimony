@@ -1,4 +1,5 @@
-﻿using Matrimony.Core.Enums;
+﻿using Matrimony.API.Models.Media;
+using Matrimony.Core.Enums;
 using Matrimony.Framework.Models;
 
 namespace Matrimony.API.Models.Profiles
@@ -28,5 +29,7 @@ namespace Matrimony.API.Models.Profiles
         public string? Langauge { get; set; }
 
         public string? OtherInformation { get; set; }
+        public FileUploadRequestModel ResumeFileData { get; set; }
+
     }
 }

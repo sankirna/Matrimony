@@ -5,6 +5,8 @@ import { EnumModel } from '../../../models/common.model';
 import { ProfileModel } from 'src/app/models/profile.model';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { CommonService } from 'src/app/core/services/common.service';
+import { FileService } from 'src/app/core/services/file.service';
+import { FileUploadRequestModel } from 'src/app/models/file.model';
 
 @Component({
   selector: 'app-profile-create',
@@ -14,12 +16,13 @@ import { CommonService } from 'src/app/core/services/common.service';
 export class ProfileCreateComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   model: ProfileModel | undefined;
-  
+
   constructor(
     private router: Router
     , private route: ActivatedRoute
     , private profileService: ProfileService
     , public commonService: CommonService
+    , public fileService: FileService
     , private fb: FormBuilder) {
     this.buildForm();
   }
@@ -32,7 +35,12 @@ export class ProfileCreateComponent implements OnInit {
   buildForm() {
     this.model = new ProfileModel();
     this.form = this.profileService.getProfileInformationForm(this.model);
+    let resumeFileData = new FileUploadRequestModel();
+    resumeFileData.fileType = 1;//this.fileService.getProfileResume|0;
+    this.form.addControl("resumeFileData", this.fileService.getForm(resumeFileData));
   }
+
+  
 
   isValid(): boolean {
     return this.form.valid;

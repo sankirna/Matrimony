@@ -1,4 +1,5 @@
 import { BaseSearchModel } from "./base-search.model";
+import { FileUploadRequestModel } from "./file.model";
 
 export class ProfileSearchModel extends BaseSearchModel {
     name: string | undefined = "";
@@ -18,6 +19,7 @@ export class ProfileModel {
     alternatePhoneNo: string | undefined = "";
     langauge: string | undefined = "";
     otherInformation: string | undefined = "";
+    fileUploadRequestModel: FileUploadRequestModel | undefined ;
 }
 
 export class AddressModel {

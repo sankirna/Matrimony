@@ -14,6 +14,7 @@ namespace Matrimony.Service.Common
         List<EnumClass> GetRelationTypes();
         List<EnumClass> GetRoles();
         List<EnumClass> GetGenderTypes();
+        List<EnumClass> GetFileTypes();
 
 
     }

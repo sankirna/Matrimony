@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from "@angular/core";
+import { Component, Input, ViewChild, ElementRef, Output, EventEmitter } from "@angular/core";
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FileService } from "src/app/core/services/file.service";
 import { FileUploadRequestModel } from "src/app/models/file.model";
@@ -49,6 +49,9 @@ export class FileUploadComponent {
   @Input() files: File[] = []
 
   @Input() fileModels: FileUploadRequestModel[] = [];
+  
+  @Output() uploadFileEvent: EventEmitter<FileUploadRequestModel> = new EventEmitter();
+
 
   constructor(private sanitizer: DomSanitizer
     , private fileService: FileService
@@ -66,7 +69,6 @@ export class FileUploadComponent {
   }
 
   onFileSelected(event: any) {
-    debugger
     let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
     console.log('event::::::', event)
     for (let i = 0; i < files.length; i++) {
@@ -78,7 +80,8 @@ export class FileUploadComponent {
         file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(files[i])));
         //      }
         if (!this.isMultiple()) {
-          this.files = []
+          this.files = [];
+          this.fileModels=[];
         }
         this.files.push(files[i]);
         let fileModel: FileUploadRequestModel = new FileUploadRequestModel();
@@ -88,12 +91,14 @@ export class FileUploadComponent {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-          if (reader && reader.result)
+          if (reader && reader.result){
             fileModel.fileAsBase64 = reader.result.toString();
-          this.fileService.Upload(fileModel).subscribe(resp => {
             debugger
-          });
-          //  }
+            this.uploadFileEvent.emit(fileModel);
+          // this.fileService.Upload(fileModel).subscribe(resp => {
+          //   debugger
+          //});
+           }
         }
         //}
       }

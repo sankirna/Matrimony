@@ -5,7 +5,6 @@ namespace Matrimony.Core.Domain;
 
 public partial class City : BaseEntity
 {
-    public int Id { get; set; }
 
     public string Name { get; set; } = null!;
 

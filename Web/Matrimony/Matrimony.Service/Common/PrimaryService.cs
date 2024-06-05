@@ -36,5 +36,10 @@ namespace Matrimony.Service.Common
         {
             return EnumHelper.ListFor<GenderTypeEnum>().ToList();
         }
+
+        public List<EnumClass> GetFileTypes()
+        {
+            return EnumHelper.ListFor<FileTypeEnum>().ToList();
+        }
     }
 }

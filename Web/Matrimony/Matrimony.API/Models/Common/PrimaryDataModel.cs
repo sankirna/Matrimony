@@ -9,5 +9,6 @@ namespace Matrimony.API.Models.Common
         public List<EnumModel> RelationTypes { get;set; }
         public List<EnumModel> Roles { get;set; }
         public List<EnumModel> GenderTypes { get;set; }
+        public List<EnumModel> FileTypes { get;set; }
     }
 }

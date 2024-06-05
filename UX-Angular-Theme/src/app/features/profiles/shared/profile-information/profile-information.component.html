@@ -49,6 +49,10 @@
             </mat-form-field>
         </div>
         <div fxLayout="row" fxLayoutGap="10px">
+                <mat-label>Upload Bio-Data</mat-label>
+                <app-mat-file-Upload (uploadFileEvent)="uploadFile($event)"></app-mat-file-Upload>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
             <mat-form-field appearance="outline">
                 <mat-label>Other Information</mat-label>
                 <input matInput placeholder="Other Information" formControlName="otherInformation">

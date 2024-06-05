@@ -21,7 +21,7 @@ namespace Matrimony.Core
             return webRootPath;
         }
 
-        public static string ToGetFolderPath(this FileType fileType)
+        public static string ToGetFolderPath(this FileTypeEnum fileType)
         {
             return string.Format("{0}/{1}/", SaticFilesPath,  fileType.ToString());
         }

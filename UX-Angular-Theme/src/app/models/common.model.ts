@@ -10,5 +10,6 @@ export class EnumModel {
     relationTypes: EnumModel[] | undefined;
     roles: EnumModel[] | undefined;
     genderTypes: EnumModel[] | undefined;
+    fileTypes: EnumModel[] | undefined;
   }
   

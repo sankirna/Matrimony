@@ -23,6 +23,7 @@ namespace Matrimony.API.Controllers
             model.RelationTypes = _primaryService.GetRelationTypes().Select(x => x.ToModel<EnumModel>()).ToList();
             model.Roles = _primaryService.GetRoles().Select(x => x.ToModel<EnumModel>()).ToList();
             model.GenderTypes = _primaryService.GetGenderTypes().Select(x => x.ToModel<EnumModel>()).ToList();
+            model.FileTypes = _primaryService.GetFileTypes().Select(x => x.ToModel<EnumModel>()).ToList();
             return Success(model);
         }
     }
