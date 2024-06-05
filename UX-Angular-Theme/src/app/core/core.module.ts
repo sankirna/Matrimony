@@ -14,6 +14,7 @@ import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { RequestInterceptor } from './interceptors/request.interceptor';
 import { initializeApp } from '../app-init.factory';
 import { CommonService } from './services/common.service';
+import { FileService } from './services/file.service';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { CommonService } from './services/common.service';
     AuthGuard,
     AdminGuard,
     MediaMatcher,
+    FileService,
     {
       provide: APP_INITIALIZER,
       useFactory: initializeApp,

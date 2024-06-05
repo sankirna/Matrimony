@@ -16,9 +16,11 @@
     [UpdatedBy]        INT            NULL,
     [UpdatedDateTime]  DATETIME       NULL,
     [IsDeleted]        BIT            NULL,
+    [ResumeFileId] INT NULL, 
     CONSTRAINT [PK_Profile] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Profile_AspNetUsers] FOREIGN KEY ([UserId]) REFERENCES [dbo].[AspNetUsers] ([Id]),
     CONSTRAINT [FK_Profile_AspNetUsers1] FOREIGN KEY ([CreatedBy]) REFERENCES [dbo].[AspNetUsers] ([Id]),
-    CONSTRAINT [FK_Profile_AspNetUsers2] FOREIGN KEY ([UpdatedBy]) REFERENCES [dbo].[AspNetUsers] ([Id])
+    CONSTRAINT [FK_Profile_AspNetUsers2] FOREIGN KEY ([UpdatedBy]) REFERENCES [dbo].[AspNetUsers] ([Id]),
+    CONSTRAINT [FK_Resume_File_Id] FOREIGN KEY ([ResumeFileId]) REFERENCES [dbo].[File] ([Id])
 );
 

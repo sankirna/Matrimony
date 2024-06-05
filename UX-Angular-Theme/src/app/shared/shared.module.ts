@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { CustomMaterialModule } from '../custom-material/custom-material.module';
 import { LimitToPipe } from './pipes/limit-to.pipe';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
@@ -13,6 +12,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.component';
 import { ConfirmComponentDialogComponent } from './confirm-component-dialog/confirm-component-dialog.component';
 import { YearPickerComponent } from './year-picker/year-picker.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
     imports: [
@@ -31,7 +31,8 @@ import { YearPickerComponent } from './year-picker/year-picker.component';
         LayoutComponent,
         CustomPaginatorComponent,
         ConfirmComponentDialogComponent,
-        YearPickerComponent
+        YearPickerComponent,
+        FileUploadComponent
     ],
     exports: [
         FormsModule,
@@ -45,7 +46,8 @@ import { YearPickerComponent } from './year-picker/year-picker.component';
         YesNoPipe,
         CustomPaginatorComponent,
         ConfirmComponentDialogComponent,
-        YearPickerComponent
+        YearPickerComponent,
+        FileUploadComponent
     ]
 })
 export class SharedModule { }

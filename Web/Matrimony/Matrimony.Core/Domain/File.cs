@@ -8,9 +8,8 @@ public partial class File : BaseEntity
 {
     public int Id { get; set; }
 
-    public int ProfileId { get; set; }
-
     public string? Name { get; set; }
+    public string? OriginalName { get; set; }
 
     public int TypeId { get; set; }
 
@@ -24,11 +23,11 @@ public partial class File : BaseEntity
 
     public bool? IsDeleted { get; set; }
 
-    public int? DisplayOrder { get; set; }
-
     public virtual AspNetUser? CreatedByNavigation { get; set; }
 
-    public virtual Profile Profile { get; set; } = null!;
+    public virtual ICollection<ProfileFile> ProfileFiles { get; set; } = new List<ProfileFile>();
+
+    public virtual ICollection<Profile> Profiles { get; set; } = new List<Profile>();
 
     public virtual AspNetUser? UpdatedByNavigation { get; set; }
 }

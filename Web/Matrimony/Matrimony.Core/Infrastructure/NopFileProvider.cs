@@ -3,6 +3,7 @@ using System.Security.AccessControl;
 using System.Text;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Hosting;
+using Matrimony.Core;
 
 namespace Nop.Core.Infrastructure;
 
@@ -20,9 +21,11 @@ public partial class NopFileProvider : PhysicalFileProvider, INopFileProvider
     public NopFileProvider(IWebHostEnvironment webHostEnvironment)
         : base(File.Exists(webHostEnvironment.ContentRootPath) ? Path.GetDirectoryName(webHostEnvironment.ContentRootPath)! : webHostEnvironment.ContentRootPath)
     {
-        WebRootPath = File.Exists(webHostEnvironment.WebRootPath)
-            ? Path.GetDirectoryName(webHostEnvironment.WebRootPath)
-            : webHostEnvironment.WebRootPath;
+        //WebRootPath = File.Exists(webHostEnvironment.WebRootPath)
+        //    ? Path.GetDirectoryName(webHostEnvironment.WebRootPath)
+        //    : webHostEnvironment.WebRootPath;
+
+        WebRootPath = webHostEnvironment.GetRootPath();
     }
 
     #endregion

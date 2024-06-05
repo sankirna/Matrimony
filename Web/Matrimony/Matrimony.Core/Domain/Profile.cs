@@ -40,6 +40,8 @@ public partial class Profile : BaseEntity
 
     public bool? IsDeleted { get; set; }
 
+    public int? ResumeFileId { get; set; }
+
     public virtual ICollection<Achivement> Achivements { get; set; } = new List<Achivement>();
 
     public virtual ICollection<Address> Addresses { get; set; } = new List<Address>();
@@ -50,7 +52,7 @@ public partial class Profile : BaseEntity
 
     public virtual ICollection<Family> Families { get; set; } = new List<Family>();
 
-    public virtual ICollection<File> Files { get; set; } = new List<File>();
+    public virtual File? ResumeFile { get; set; }
 
     public virtual AspNetUser? UpdatedByNavigation { get; set; }
 

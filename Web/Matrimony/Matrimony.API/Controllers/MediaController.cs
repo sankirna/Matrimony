@@ -19,7 +19,12 @@ namespace Matrimony.API.Controllers
         [HttpPost]
         public virtual async Task<IActionResult> Upload(FileUploadRequestModel model)
         {
-            byte[] bytes = System.Convert.FromBase64String(model.Base64String);
+            if (model.FileAsBase64.Contains(","))
+            {
+                model.FileAsBase64 = model.FileAsBase64.Substring(model.FileAsBase64.IndexOf(",") + 1);
+            }
+
+            byte[] bytes = System.Convert.FromBase64String(model.FileAsBase64);
             string path = "staticfiles/profile/sing.jpeg";
             _fileService.CreateFile(path);
 

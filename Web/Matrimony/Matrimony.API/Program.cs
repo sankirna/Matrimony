@@ -45,6 +45,12 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 // Specify the custom static files path
+/*
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.GetRootPath(), FileHelper.SaticFilesPath)),
+    RequestPath = "/" + FileHelper.SaticFilesPath
+});*/
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "StaticFiles")),

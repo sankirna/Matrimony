@@ -1,5 +1,6 @@
 ﻿using Matrimony.API.Factories.Cities;
 using Matrimony.API.Factories.Countries;
+using Matrimony.API.Factories.Media;
 using Matrimony.API.Factories.Profiles;
 using Matrimony.API.Factories.States;
 using Matrimony.Core.DbContexts;
@@ -100,12 +101,12 @@ namespace Matrimony.API.Infrastructure
             });
 
             //Factoreis
+            services.AddScoped<IMediaFactoryModel, MediaFactoryModel>();
             services.AddScoped<ICountryFactoryModel, CountryFactoryModel>();
             services.AddScoped<IStateFactoryModel, StateFactoryModel>();
             services.AddScoped<ICityFactoryModel, CityFactoryModel>();
             services.AddScoped<IProfileFactoryModel, ProfileFactoryModel>();
         }
-
 
         public void Configure(IApplicationBuilder application)
         {
