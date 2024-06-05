@@ -3,8 +3,6 @@ namespace Matrimony.Core.Domain
 {
     public partial class ProfileFile : BaseEntity
     {
-        public int Id { get; set; }
-
         public int ProfileId { get; set; }
 
         public int FileId { get; set; }

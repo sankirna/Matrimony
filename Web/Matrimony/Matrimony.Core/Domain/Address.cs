@@ -5,8 +5,6 @@ namespace Matrimony.Core.Domain;
 
 public partial class Address : BaseEntity
 {
-    public int Id { get; set; }
-
     public int ProfileId { get; set; }
 
     public string? Address1 { get; set; }

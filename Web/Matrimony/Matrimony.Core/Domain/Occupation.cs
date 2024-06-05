@@ -5,8 +5,6 @@ namespace Matrimony.Core.Domain;
 
 public partial class Occupation : BaseEntity
 {
-    public int Id { get; set; }
-
     public int ProfileId { get; set; }
 
     public string Name { get; set; } = null!;

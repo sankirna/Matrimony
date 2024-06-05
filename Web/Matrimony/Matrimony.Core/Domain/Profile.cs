@@ -6,8 +6,6 @@ namespace Matrimony.Core.Domain;
 
 public partial class Profile : BaseEntity
 {
-    public int Id { get; set; }
-
     public int UserId { get; set; }
 
     public string FirstName { get; set; } = null!;
