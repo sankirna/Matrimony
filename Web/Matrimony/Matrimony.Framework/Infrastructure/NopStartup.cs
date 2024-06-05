@@ -10,7 +10,9 @@ using Matrimony.Service.Common;
 using Matrimony.Service.Countries;
 using Matrimony.Service.Educations;
 using Matrimony.Service.Families;
+using Matrimony.Service.Files;
 using Matrimony.Service.Occupations;
+using Matrimony.Service.ProfileFiles;
 using Matrimony.Service.Profiles;
 using Matrimony.Service.States;
 using Microsoft.AspNetCore.Builder;
@@ -56,6 +58,10 @@ public partial class NopStartup : INopStartup
         services.AddScoped<IAchivementService, AchivementService>();
         services.AddScoped<IEducationService, EducationService>();
         services.AddScoped<IProfileService, ProfileService>();
+
+        //Files
+        services.AddScoped<IFileService, FileService>();
+        services.AddScoped<IProfileFileService, ProfileFileService>();
 
         //web helper
         //services.AddScoped<IWebHelper, WebHelper>();
@@ -110,7 +116,7 @@ public partial class NopStartup : INopStartup
         //    services.AddScoped<ICacheKeyService, MemoryCacheManager>();
         //}
 
-    
+
 
         //store context
         //services.AddScoped<IStoreContext, WebStoreContext>();

@@ -88,11 +88,11 @@ export class FileUploadComponent {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-          // if (reader && reader.result)
-          //   fileModel.fileAsBase64 = reader.result.toString();
-          // this.fileService.Upload(fileModel).subscribe(resp => {
-          //   debugger
-          // });
+          if (reader && reader.result)
+            fileModel.fileAsBase64 = reader.result.toString();
+          this.fileService.Upload(fileModel).subscribe(resp => {
+            debugger
+          });
           //  }
         }
         //}
